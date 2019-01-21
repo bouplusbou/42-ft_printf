@@ -3,6 +3,7 @@
 int main()
 {
     printf("%%[flags][width][.precision][size]type\n");
+    printf("%%[#,0,-,+,' '][1-x][.0-x][h,hh,l,ll,L]type\n");
 
     printf("\nc : Char\n");
     printf("printf(\"%%c\\n\", 45)\n");
@@ -10,7 +11,14 @@ int main()
     printf("printf(\"%%c\\n\", 'b')\n");
     printf("%c\n", 'b');
 
-    printf("\ns : Chaine de caractère\n");
+
+    printf("printf(\"%%#s\\n\", \"Hello World\")\n");
+    printf("%+s\n", "Hello World");
+
+
+
+
+    printf("\ns : Chaine de caractères\n");
     printf("printf(\"Hello World\")\n");
     printf("Hello World\n");
     printf("printf(\"%%s\\n\", \"Hello World\")\n");
@@ -27,8 +35,10 @@ int main()
     printf("%.12s\n", "Hello World");
     printf("printf(\"%%3.2s\\n\", \"Hello World\") // width 3, precision .2\n");
     printf("%3.2s\n", "Hello World");
+    printf("printf(\"%%-3.2s\\n\", \"Hello World\") // flag -, width 3, precision .2\n");
+    printf("%-3.2s\n", "Hello World");
     printf("flag 0, flag #, flag +, flag ' ', all sizes h,hh,l,ll,L = undefined behavior\n");
-    printf("precision .-2 = invalid specifier\n");
+    printf("%%.-2s, %%-3 .2s = invalid specifier\n");
 
     printf("\np : Adresse d'un pointeur en hexadécimal\n");
     printf("printf(\"%%p\\n\", \"Coucou\")\n");
@@ -37,6 +47,8 @@ int main()
     printf("\nd : Entier décimal signé\n");
     printf("printf(\"%%d\\n\", 45)\n");
     printf("%d\n", 45);
+    printf("printf(\"%%0-d\\n\", 45)\n");
+    printf("%+-d\n", 45);
     
     printf("\ni : Entier décimal signé\n");
     printf("printf(\"%%i\\n\", +45)\n");

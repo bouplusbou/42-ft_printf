@@ -5,8 +5,6 @@ OK = $(OK_COLOR)OK$(NO_COLOR)
 
 IDIR = -Iincludes
 
-SRC =  examples.c
-
 CC = gcc
 
 CFLAGS = -Wall -Wextra -Werror
@@ -14,5 +12,5 @@ CFLAGS = -Wall -Wextra -Werror
 .PHONY: all
 
 all : 
-		@$(CC) $(CFLAGS) examples.c
+		@$(CC) $(CFLAGS) parse_conv.c
 		@./a.out
