@@ -11,13 +11,6 @@ int main()
     printf("printf(\"%%c\\n\", 'b')\n");
     printf("%c\n", 'b');
 
-
-    printf("printf(\"%%#s\\n\", \"Hello World\")\n");
-    printf("%+s\n", "Hello World");
-
-
-
-
     printf("\ns : Chaine de caractères\n");
     printf("printf(\"Hello World\")\n");
     printf("Hello World\n");
@@ -96,5 +89,9 @@ int main()
     printf("printf(\"%%s %%f\\n\", \" Hello\", 45.10)\n");
     printf("%s %f\n", " Hello", 45.10);
 
+
+
+    printf("%c\n", "q");
+    
     return (0);
 }

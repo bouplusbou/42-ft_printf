@@ -12,5 +12,5 @@ CFLAGS = -Wall -Wextra -Werror
 .PHONY: all
 
 all : 
-		@$(CC) $(CFLAGS) isolate_conv.c
+		@$(CC) $(CFLAGS) get_arg.c
 		@./a.out
