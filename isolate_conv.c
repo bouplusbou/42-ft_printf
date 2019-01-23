@@ -53,14 +53,14 @@ char	*ft_strndup(const char *s1, int len)
 }
 
 
-char	*isolate_conv(char *str) // lui envoyer le bout de str à partir du %
+int	isolate_conv(char *str) // lui envoyer le bout de str à partir du %
 {
 	int		i;
 	int		type; // flag si on trouve bien un type 
 
 	i = 1;
 	type = 0;
-	while (is_conv(str[i]))
+	while (str[i] && is_conv(str[i]))
 	{
 		if (is_type(str[i]))
 		{
@@ -71,14 +71,8 @@ char	*isolate_conv(char *str) // lui envoyer le bout de str à partir du %
 		i++;
 	}
 	if (type)
-		return (ft_strndup(str, i));
-	return (NULL); // conv invalide si pas de type
-}
-
-int main()
-{
-    printf("isolate_conv:%s\n", isolate_conv("%#-+ 132.23lls petit bout"));
-    printf("isolate_conv:%s\n", isolate_conv("%s petit bout"));
-    printf("isolate_conv:%s\n", isolate_conv("%#-+ 132.23ll etit bout"));
-    return (0);
+		ft_strndup(str, i);
+		return ();
+	// printf("WOO\n")
+	return (-1); // conv invalide si pas de type
 }
