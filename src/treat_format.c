@@ -18,7 +18,6 @@ int     treat_format(const char *format, va_list args)
             dans tmp et pas directement dans len, si jamais retour negatif*/
             if (0 < (tmp = treat_conv(((char*)format + i), args)))
             {
-                // printf("YO\n");
                 len += tmp;
                 tmp = 0;
                 while (!is_type(format[i - 1])) // avancer i après la conv
@@ -26,7 +25,7 @@ int     treat_format(const char *format, va_list args)
             }
         }
         write(1, &format[i], 1);
-        len++;;
+        len++;
         i++;
     }
     return (len); // retourner le nombre de char printed

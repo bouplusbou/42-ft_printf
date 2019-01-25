@@ -44,7 +44,7 @@ char    *parse_size(char *str_size, int *i)
     return (ft_strndup(str_size, l));
 }
 
-int parse_conv(char *conv, va_list args)
+int parse_conv(char *conv, va_list args) // ne fonctionne que si les elements sont dans l'ordre %[flags][width][.precision][size]type
 {
     t_struct    t_conv;
     int         i;
@@ -57,7 +57,7 @@ int parse_conv(char *conv, va_list args)
     if (is_width(conv[i]))
         t_conv.width = parse_width(conv + i, &i);
     else
-        t_conv.width = -1;    
+        t_conv.width = -1;
     if (conv[i] == '.')
         t_conv.precision = parse_precision(conv + i, &i);
     else
@@ -69,7 +69,8 @@ int parse_conv(char *conv, va_list args)
     if (is_type(conv[i]))
             t_conv.type = conv[i];
     
-    printf("flags:%s\n", t_conv.flags);
+    
+    printf("\nflags:%s\n", t_conv.flags);
     printf("width:%d\n", t_conv.width);
     printf("precision:%d\n", t_conv.precision);
     printf("size:%s\n", t_conv.size);

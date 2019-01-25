@@ -27,3 +27,4 @@ int		is_size(char c);
 int		is_type(char c);
 int		is_conv(char c);
 int     ft_atoi(const char *s);
+int     convert(t_struct t_conv, va_list args);
