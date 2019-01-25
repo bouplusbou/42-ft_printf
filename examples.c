@@ -1,9 +1,15 @@
+#include <string.h>
 #include <stdio.h>
+#include <stdint.h>
+#include <time.h>
 
 int main()
 {
     printf("%%[flags][width][.precision][size]type\n");
     printf("%%[#,0,-,+,' '][1-x][.0-x][h,hh,l,ll,L]type\n");
+
+
+
 
     printf("\nc : Char\n");
     printf("printf(\"%%c\\n\", 45)\n");
@@ -89,9 +95,46 @@ int main()
     printf("printf(\"%%s %%f\\n\", \" Hello\", 45.10)\n");
     printf("%s %f\n", " Hello", 45.10);
 
+    int i = 2147483647;
+    long l = 2147483647;
+    long long ll = 9223372036854775807;
+    char c = 0;
+    intmax_t im = 9223372036854775807;
+    unsigned int ui = 4294967295;
 
+    printf("printf(\"%%#0-+ 123456789.0123456789hlLcdi\")\n");
 
-    printf("%c\n", "q");
-    
+    printf("%%\n");
+    printf("%%%d\n", 42);
+    printf("%d\n", 42);
+    printf("%d%d\n", 42, 41);
+    printf("%d%d%d\n", 42, 43, 44);
+    printf("%ld\n", l);
+    printf("%lld\n", ll);
+    printf("%x\n", 505);
+    printf("%X\n", 505);
+    printf("%p\n", &im);
+    printf("%20.15d\n", 54321);
+    printf("%-10d\n", 3);
+    printf("% d\n", 3);
+    printf("%+d\n", 3);
+    printf("%010d\n", 1);
+    printf("%hhd\n", c);
+    printf("%jd\n", 9223372036854775807);
+    printf("%zd\n", 4294967295);
+    printf("%U\n", ui);
+    printf("%u\n", ui);
+    printf("%x\n", 1000);
+    printf("%#X\n", 1000);
+    printf("%s\n", NULL);
+    printf("%S\n", L"ݗݜशব");
+    printf("%s%s\n", "test", "test");
+    printf("%s%s%s\n", "test", "test", "test");
+    printf("%C\n", 15000);
+    printf("%x %X %p %20.15d\n", 505, 505, &ll, 54321);
+    printf("%-10d % d %+d %010d %hhd\n", 3, 3, 3, 1, c);
+    printf("%jd %zd %u %o %#08x\n", im, (size_t)i, i, 40, 42);
+    printf("%x %#X %S %s%s\n", 1000, 1000, L"ݗݜशব", "test", "test2");
+
     return (0);
 }

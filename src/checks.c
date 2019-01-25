@@ -6,7 +6,7 @@ int		is_flag(char c)
 
 int		is_width(char c)
 {
-	return ('1' <= c && c <= '9');
+	return ('0' <= c && c <= '9');
 }
 
 int		is_precision(char c)

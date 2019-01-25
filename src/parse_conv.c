@@ -54,7 +54,7 @@ int parse_conv(char *conv, va_list args) // ne fonctionne que si les elements so
         t_conv.flags = parse_flags(conv + i, &i);
     else
         t_conv.flags = NULL;
-    if (is_width(conv[i]))
+    if (is_width(conv[i])) // peut être remplacé par is_digit
         t_conv.width = parse_width(conv + i, &i);
     else
         t_conv.width = 0;
@@ -69,11 +69,13 @@ int parse_conv(char *conv, va_list args) // ne fonctionne que si les elements so
     if (is_type(conv[i]))
             t_conv.type = conv[i];
     
+    printf("|||");
     printf("\nflags:%s\n", t_conv.flags);
     printf("width:%d\n", t_conv.width);
     printf("precision:%d\n", t_conv.precision);
     printf("size:%s\n", t_conv.size);
     printf("type:%c\n", t_conv.type);
+    printf("|||\n");
     (void)args;
     return (20);
     // return (convert(t_conv, args)));
