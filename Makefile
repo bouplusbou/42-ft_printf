@@ -9,7 +9,12 @@ SDIR = ./src
 IDIR = ./includes
 
 SRC = 	ft_printf.c \
-		treat_format.c
+		treat_format.c \
+		checks.c \
+		treat_conv.c \
+		ft_strndup.c \
+		parse_conv.c \
+		ft_atoi.c
 
 OBJ = $(SRC:.c=.o)
 
@@ -26,8 +31,13 @@ $(NAME) : $(OBJ)
 	ranlib $(NAME)
 	@echo "libftprintf.a creation		OK"
 
-%.o: %.c
+%.o: $(SDIR)/%.c
 	$(CC) $(CFLAGS) -I$(IDIR) -o $@ -c $?
+
+test : re
+	$(CC) $(CFLAGS) main.c -o test -I$(IDIR) libftprintf.a
+	@echo "libftprintf.a creation		OK"
+	./test
 
 clean :
 	/bin/rm -f $(OBJ)

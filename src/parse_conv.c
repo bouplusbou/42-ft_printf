@@ -69,7 +69,7 @@ int parse_conv(char *conv, va_list args) // ne fonctionne que si les elements so
     if (is_type(conv[i]))
             t_conv.type = conv[i];
     
-    
+
     printf("\nflags:%s\n", t_conv.flags);
     printf("width:%d\n", t_conv.width);
     printf("precision:%d\n", t_conv.precision);
@@ -77,5 +77,5 @@ int parse_conv(char *conv, va_list args) // ne fonctionne que si les elements so
     printf("type:%c\n", t_conv.type);
     (void)args;
     return (20);
-    // return (convert(t_conv, args));
+    // return (convert(t_conv, get_arg(t_conv, args)));
 }

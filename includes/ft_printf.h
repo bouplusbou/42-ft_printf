@@ -15,6 +15,7 @@ typedef struct  s_struct
     char    type;
 }               t_struct;
 
+int     ft_printf(const char *format, ...);
 int     treat_format(const char *format, va_list args);
 int     treat_conv(char *str, va_list args);
 int		is_type(char c);
