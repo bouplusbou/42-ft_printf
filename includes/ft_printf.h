@@ -6,8 +6,6 @@
 /* A supprimer */
 #include <stdio.h>
 
-
-
 typedef struct  s_struct
 {
     char    *flags;
@@ -17,7 +15,15 @@ typedef struct  s_struct
     char    type;
 }               t_struct;
 
-
 int     treat_format(const char *format, va_list args);
-int     isolate_conv(char *str);
+int     treat_conv(char *str, va_list args);
 int		is_type(char c);
+char	*ft_strndup(const char *s1, int len);
+int     parse_conv(char *conv, va_list args);
+int		is_flag(char c);
+int		is_width(char c);
+int		is_precision(char c);
+int		is_size(char c);
+int		is_type(char c);
+int		is_conv(char c);
+int     ft_atoi(const char *s);
