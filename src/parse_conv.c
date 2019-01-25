@@ -49,7 +49,6 @@ int parse_conv(char *conv, va_list args)
     t_struct    t_conv;
     int         i;
 
-
     i = 1;
     if (is_flag(conv[i]))
         t_conv.flags = parse_flags(conv + i, &i);
@@ -70,11 +69,11 @@ int parse_conv(char *conv, va_list args)
     if (is_type(conv[i]))
             t_conv.type = conv[i];
     
-    printf("%s\n", t_conv.flags);
-    printf("%d\n", t_conv.width);
-    printf("%d\n", t_conv.precision);
-    printf("%s\n", t_conv.size);
-    printf("%c\n", t_conv.type);
+    printf("flags:%s\n", t_conv.flags);
+    printf("width:%d\n", t_conv.width);
+    printf("precision:%d\n", t_conv.precision);
+    printf("size:%s\n", t_conv.size);
+    printf("type:%c\n", t_conv.type);
     (void)args;
     return (20);
     // return (convert(t_conv, args));
