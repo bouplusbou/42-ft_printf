@@ -14,7 +14,8 @@ SRC = 	ft_printf.c \
 		treat_conv.c \
 		ft_strndup.c \
 		parse_conv.c \
-		ft_atoi.c
+		ft_atoi.c \
+		convert.c
 
 OBJ = $(SRC:.c=.o)
 

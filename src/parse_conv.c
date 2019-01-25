@@ -57,11 +57,11 @@ int parse_conv(char *conv, va_list args) // ne fonctionne que si les elements so
     if (is_width(conv[i]))
         t_conv.width = parse_width(conv + i, &i);
     else
-        t_conv.width = -1;
+        t_conv.width = 0;
     if (conv[i] == '.')
         t_conv.precision = parse_precision(conv + i, &i);
     else
-        t_conv.precision = -1;
+        t_conv.precision = 0;
     if (is_size(conv[i]))
         t_conv.size = parse_size(conv + i, &i);
     else
@@ -69,7 +69,6 @@ int parse_conv(char *conv, va_list args) // ne fonctionne que si les elements so
     if (is_type(conv[i]))
             t_conv.type = conv[i];
     
-
     printf("\nflags:%s\n", t_conv.flags);
     printf("width:%d\n", t_conv.width);
     printf("precision:%d\n", t_conv.precision);
@@ -77,5 +76,5 @@ int parse_conv(char *conv, va_list args) // ne fonctionne que si les elements so
     printf("type:%c\n", t_conv.type);
     (void)args;
     return (20);
-    // return (convert(t_conv, get_arg(t_conv, args)));
+    // return (convert(t_conv, args)));
 }
