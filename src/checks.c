@@ -1,12 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   checks.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/01/27 16:05:57 by bboucher          #+#    #+#             */
+/*   Updated: 2019/01/27 16:34:09 by bboucher         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "ft_printf.h"
+
 int		is_flag(char c)
 {
 	return (c == '#' || c == '0' || c == '-'
 			|| c == '+' || c == ' ');
-}
-
-int		is_width(char c)
-{
-	return ('0' <= c && c <= '9');
 }
 
 int		is_precision(char c)
@@ -28,5 +37,10 @@ int		is_type(char c)
 
 int		is_conv(char c)
 {
-	return (is_flag(c) || is_width(c) || is_precision(c) || is_size(c) || is_type(c));
+	return (c == '%'
+			|| is_flag(c)
+			|| ft_isdigit(c)
+			|| is_precision(c)
+			|| is_size(c)
+			|| is_type(c));
 }

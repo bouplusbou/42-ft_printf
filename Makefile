@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2019/01/27 16:07:51 by bboucher          #+#    #+#              #
+#    Updated: 2019/01/27 16:13:04 by bboucher         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 OK_COLOR = \033[32m
 NO_COLOR = \033[m
 
@@ -10,6 +22,8 @@ IDIR = ./includes
 
 SRC = 	ft_printf.c \
 		treat_format.c \
+		printf_write.c \
+		ft_strlen.c \
 		checks.c \
 		treat_conv.c \
 		ft_strndup.c \
@@ -47,4 +61,4 @@ fclean : clean
 	/bin/rm -f $(NAME)
 	@echo "fclean		OK"
 
-re : fclean all	
+re : fclean all

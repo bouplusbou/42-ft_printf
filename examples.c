@@ -136,5 +136,7 @@ int main()
     printf("%jd %zd %u %o %#08x\n", im, (size_t)i, i, 40, 42);
     printf("%x %#X %S %s%s\n", 1000, 1000, L"ݗݜशব", "test", "test2");
 
+    printf("\n");
+    printf("dfsd %%s");
     return (0);
 }
