@@ -1,16 +1,104 @@
-#include <string.h>
-#include <stdio.h>
-#include <stdint.h>
 #include <time.h>
+#include <stdio.h>
+#include <string.h>
+#include <stdint.h>
+#include <string.h>
+#include <stdlib.h>
+
+int		ft_find_size(int nb, int base)
+{
+	int	size;
+
+	size = 1;
+	while (nb / base)
+	{
+		nb /= base;
+		size++;
+	}
+	return (size);
+}
+
+char	ft_find_value(int i)
+{
+	char	*base = "0123456789ABCDEF";
+
+	return (base[i]);
+}
+
+
+char	*ft_itoabase(int nb, int base)
+{
+	char	*str;
+	int		size;
+
+	size = ft_find_size(nb, base);
+	if (nb < 0)
+		size++;
+	if (!(str = (char*)malloc(sizeof(char) * (size + 1))))
+		return (0);
+	if (nb < 0)
+	{
+		str[0] = '-';
+		nb = -nb;
+	}
+	str[size] = '\0';
+	size--;
+	printf("nb:%d\n", nb);
+	while (nb >= base)
+	{
+		str[size] = ft_find_value(nb % base);
+		nb = nb / base;
+		size--;
+	}
+	str[size] = ft_find_value(nb);
+	return (str);
+}
+
+
+void	*ft_memcpy(void *dst, const void *src, size_t n)
+{
+	while (n--)
+		((unsigned char *)dst)[n] = ((unsigned char *)src)[n];
+	return (dst);
+}
+
 
 int main()
 {
-    printf("%%[flags][width][.precision][size]type\n");
+  /*   printf("%%[flags][width][.precision][size]type\n");
     printf("%%[#,0,-,+,' '][1-x][.0-x][h,hh,l,ll,L]type\n");
+ */
+
+	// char	*str = "Hello world";
+	// int		ptr = (int)&str;
+
+	// printf("%p\n", str);
+	// printf("%s\n", ft_itoabase(ptr, 16));
+
+	printf("%lu\n", sizeof(signed long));
 
 
 
 
+	// printf("%p\n", j);
+    // printf("%100.2p\n", j);
+    // printf("%hp\n", j);
+    // printf("%hhp\n", j);
+    // printf("%lp\n", j);
+    // printf("%llp\n", j);
+    // printf("%Lp\n", j);
+    // printf("%-p\n", j);
+    // printf("%1p\n", j);
+    // printf("%12p\n", j);
+    // printf("%-100p|\n", j);
+    // printf("%#p\n", j); // pas à gerer
+    // printf("%0p\n", j); // pas à gerer
+    // printf("%+p\n", j); // pas à gerer
+    // printf("% p\n", j); // pas à gerer
+// 0x10dd39f8e
+//                                                                                          0x10dd39f8e
+// 0x10f19df8e                                                                                         |
+/* 
     printf("\nc : Char\n");
     printf("printf(\"%%c\\n\", 45)\n");
     printf("%c\n", 45);
@@ -137,6 +225,6 @@ int main()
     printf("%x %#X %S %s%s\n", 1000, 1000, L"ݗݜशব", "test", "test2");
 
     printf("\n");
-    printf("dfsd %%s");
+    printf("dfsd %%s"); */
     return (0);
 }

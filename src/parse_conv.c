@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/27 16:20:08 by bboucher          #+#    #+#             */
-/*   Updated: 2019/01/27 17:28:36 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/01/28 12:47:30 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int		parse_width(char *str_width, int *i)
 	int l;
 
 	l = 0;
-	while (is_width(str_width[l]))
+	while (ft_isdigit(str_width[l]))
 		l++;
 	*i += l;
 	return (ft_atoi(ft_strndup(str_width, l)));
@@ -70,7 +70,7 @@ int		parse_conv(char *conv, va_list args)
 	if (is_flag(conv[i]))
 		t_conv.flags = parse_flags(conv + i, &i);
 	else
-		t_conv.flags = "Putain il est 2h13,ca fait 30 minutes que je cherche d'ou vient ce putain de segfault, alors que depuis le debut j'avais trouve ! Sauf que j'avais modif la valeur de retour de parse_flag() COMME UN CONNARD !!! Du coup ca fait 30 minutes que je test tout pour quedal, SUPER. Je vais me coucher."; // A modifier pour eviter le segfault avec ft_strchr quand on scan les flags. (ft_strchr qui segfault quand on lui envoi une chaine NULL, donc met ce que tu veux a la place)
+		t_conv.flags = "X";
 	if (ft_isdigit(conv[i]))
 		t_conv.width = parse_width(conv + i, &i);
 	else
@@ -93,6 +93,4 @@ int		parse_conv(char *conv, va_list args)
 	printf("Type:		%c\n", t_conv.type);
 	printf("[=====================]\n\n");
 	return (convert(t_conv, args));
-	//(void)args;
-	//return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/27 16:05:57 by bboucher          #+#    #+#             */
-/*   Updated: 2019/01/27 16:34:09 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/01/28 08:52:14 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,3 @@ int		is_conv(char c)
 			|| is_type(c));
 }
 
-int		is_width(char c)
-{
-	return ('0' <= c && c <= '9');
-}

@@ -2,7 +2,14 @@
 
 int main()
 {
-    // ft_printf("Conv here -> %%#4.20hs <- just here %23.6i \n", 42);
+    char	*str = "42";
+	ft_printf("%p\n", str);
+	printf("%p\n", str);
+    
+	
+	
+	
+	// ft_printf("Conv here -> %%#4.20hs <- just here %23.6i \n", 42);
     // printf("%.000020d\n", 42);
 
     // intmax_t im = 2147483647;
@@ -13,7 +20,6 @@ int main()
     
     
     // ft_printf("%jd %zd %u %o %#08x\n");
-    ft_printf("%c\n", 57);
     // printf("XOXO\n");
     // ft_printf("%%\n");
     // printf("%%\n");

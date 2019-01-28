@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/27 16:06:29 by bboucher          #+#    #+#             */
-/*   Updated: 2019/01/27 16:12:47 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/01/28 09:03:46 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,12 @@ int     treat_conv(char *str, size_t *j, int *len, va_list args);
 int		is_type(char c);
 int     parse_conv(char *conv, va_list args);
 int		is_flag(char c);
-int		is_width(char c);
 int		is_precision(char c);
 int		is_size(char c);
 int		is_type(char c);
 int		is_conv(char c);
-int	convert(t_struct data, va_list list);
-int	convert_char(t_struct data, int target);
+int		convert(t_struct data, va_list list);
+int		convert_char(t_struct data, int target);
+int 	convert_ptr(t_struct data, void *target);
 
 #endif
