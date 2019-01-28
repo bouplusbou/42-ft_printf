@@ -13,7 +13,7 @@ int main()
     
     
     // ft_printf("%jd %zd %u %o %#08x\n");
-    ft_printf("%cd\n");
+    ft_printf("%c\n", 57);
     // printf("XOXO\n");
     // ft_printf("%%\n");
     // printf("%%\n");

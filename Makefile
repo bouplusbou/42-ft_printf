@@ -3,62 +3,81 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+         #
+#    By: bclaudio <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2019/01/27 16:07:51 by bboucher          #+#    #+#              #
-#    Updated: 2019/01/27 16:13:04 by bboucher         ###   ########.fr        #
+#    Created: 2018/11/08 10:34:55 by bclaudio          #+#    #+#              #
+#    Updated: 2018/12/07 14:00:27 by bclaudio         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-OK_COLOR = \033[32m
-NO_COLOR = \033[m
+########## Syntax ##########
 
-OK = $(OK_COLOR)OK$(NO_COLOR)
+RED = \033[31m
+GREEN = \033[32m
+YELLOW = \033[33m
+BLUE = \033[34m
+MAGENTA = \033[35m
+CYAN = \033[36m
+WHITE = \033[m
 
-NAME = libftprintf.a
+OK = $(GREEN)[OK]$(WHITE)
 
-SDIR = ./src
-IDIR = ./includes
+########## Project Infos ##########
 
-SRC = 	ft_printf.c \
-		treat_format.c \
-		printf_write.c \
-		ft_strlen.c \
-		checks.c \
-		treat_conv.c \
-		ft_strndup.c \
-		parse_conv.c \
-		ft_atoi.c
+NAME =	a.out
+PROJECT = $(RED)Printf$(WHITE)
 
-OBJ = $(SRC:.c=.o)
+########## Compilation Infos ##########
 
 CC = gcc
+FLAGS = -Wall -Wextra -Werror
 
-CFLAGS = -Wall -Wextra -Werror
+INCPATH = includes/
+INC = -I$(INCPATH) -I$(LIBPATH)$(INCPATH)			
 
-.PHONY: all
+LIBPATH = libft/
+LIBNAME = libft.a
+LIB = $(LIBPATH)$(LIBNAME)
+
+########## Sources ##########
+
+SRCPATH = src/
+SRCS = $(addprefix $(SRCPATH), $(SRC))
+SRC = checks.c \
+      ft_printf.c \
+      parse_conv.c \
+      printf_write.c \
+      treat_conv.c \
+      treat_format.c \
+      conversions.c \
+      conv_char.c \
+      main.c
+
+########## Compilation Rules ##########
+
+OBJ = $(SRCS:.c=.o)
+
+%.o: %.c
+	@$(CC) $(FLAGS) $(INC) -o $@ -c $?
 
 all : $(NAME)
 
 $(NAME) : $(OBJ)
-	ar rc $(NAME) $(OBJ)
-	ranlib $(NAME)
-	@echo "libftprintf.a creation		OK"
+	@make -C $(LIBPATH) fclean && make -C $(LIBPATH)
+	@$(CC) $(FLAGS) $(INC) $(OBJ) $(LIB) -o $(NAME)
+	@echo "$(BLUE)[$(PROJECT)$(BLUE)] | Compilation$(WHITE)						$(OK)"
 
-%.o: $(SDIR)/%.c
-	$(CC) $(CFLAGS) -I$(IDIR) -o $@ -c $?
-
-test : re
-	$(CC) $(CFLAGS) main.c -o test -I$(IDIR) libftprintf.a
-	@echo "libftprintf.a creation		OK"
-	./test
-
-clean :
-	/bin/rm -f $(OBJ)
-	@echo "clean		OK"
-
-fclean : clean
-	/bin/rm -f $(NAME)
-	@echo "fclean		OK"
+test : all
+	@./$(NAME)
 
 re : fclean all
+
+########## Clean Rules ##########
+
+clean :
+	@rm -f $(OBJ)
+	@echo "$(BLUE)[$(PROJECT)$(BLUE)] | Clean$(WHITE)						$(OK)"
+
+fclean : clean
+	@rm -f $(NAME)
+	@echo "$(BLUE)[$(PROJECT)$(BLUE)] | Full clean$(WHITE)						$(OK)"

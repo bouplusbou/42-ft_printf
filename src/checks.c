@@ -44,3 +44,8 @@ int		is_conv(char c)
 			|| is_size(c)
 			|| is_type(c));
 }
+
+int		is_width(char c)
+{
+	return ('0' <= c && c <= '9');
+}

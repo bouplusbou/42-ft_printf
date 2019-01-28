@@ -70,7 +70,7 @@ int		parse_conv(char *conv, va_list args)
 	if (is_flag(conv[i]))
 		t_conv.flags = parse_flags(conv + i, &i);
 	else
-		t_conv.flags = NULL;
+		t_conv.flags = "Putain il est 2h13,ca fait 30 minutes que je cherche d'ou vient ce putain de segfault, alors que depuis le debut j'avais trouve ! Sauf que j'avais modif la valeur de retour de parse_flag() COMME UN CONNARD !!! Du coup ca fait 30 minutes que je test tout pour quedal, SUPER. Je vais me coucher."; // A modifier pour eviter le segfault avec ft_strchr quand on scan les flags. (ft_strchr qui segfault quand on lui envoi une chaine NULL, donc met ce que tu veux a la place)
 	if (ft_isdigit(conv[i]))
 		t_conv.width = parse_width(conv + i, &i);
 	else
@@ -85,14 +85,14 @@ int		parse_conv(char *conv, va_list args)
 		t_conv.size = NULL;
 	if (is_type(conv[i]))
 		t_conv.type = conv[i];
-	printf("|||");
-	printf("\nflags:%s\n", t_conv.flags);
-	printf("width:%d\n", t_conv.width);
-	printf("precision:%d\n", t_conv.precision);
-	printf("size:%s\n", t_conv.size);
-	printf("type:%c\n", t_conv.type);
-	printf("|||\n");
-	(void)args;
-	return (20);
-	// return (convert(t_conv, args)));
+	printf("\n[====================]");
+	printf("\nFlags:		%s\n", t_conv.flags);
+	printf("Width:		%d\n", t_conv.width);
+	printf("Precision:	%d\n", t_conv.precision);
+	printf("Size:		%s\n", t_conv.size);
+	printf("Type:		%c\n", t_conv.type);
+	printf("[=====================]\n\n");
+	return (convert(t_conv, args));
+	//(void)args;
+	//return (0);
 }

@@ -15,7 +15,7 @@
 int	treat_format(const char *format, va_list args)
 {
 	int	len;
-	int	i;
+	size_t	i;
 	int	tmp;
 
 	len = 0;

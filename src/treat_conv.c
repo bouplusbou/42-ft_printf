@@ -12,9 +12,9 @@
 
 #include "ft_printf.h"
 
-int	treat_conv(char *str, int *j, int *len, va_list args)
+int	treat_conv(char *str, size_t *j, int *len, va_list args)
 {
-	int		i;
+	size_t		i;
 	int		type;
 
 	i = 1;
