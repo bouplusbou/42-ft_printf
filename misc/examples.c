@@ -4,63 +4,70 @@
 #include <stdint.h>
 #include <string.h>
 #include <stdlib.h>
+#include <stdarg.h>
 
-int		ft_find_size(int nb, int base)
-{
-	int	size;
+// int		ft_find_size(unsigned long nb, int base)
+// {
+// 	int	size;
 
-	size = 1;
-	while (nb / base)
-	{
-		nb /= base;
-		size++;
-	}
-	return (size);
-}
+// 	size = 1;
+// 	while (nb / base)
+// 	{
+// 		nb /= base;
+// 		size++;
+// 	}
+// 	return (size);
+// }
 
-char	ft_find_value(int i)
-{
-	char	*base = "0123456789ABCDEF";
+// char	ft_find_value(int i)
+// {
+// 	char	*base = "0123456789abcdef";
 
-	return (base[i]);
-}
-
-
-char	*ft_itoabase(int nb, int base)
-{
-	char	*str;
-	int		size;
-
-	size = ft_find_size(nb, base);
-	if (nb < 0)
-		size++;
-	if (!(str = (char*)malloc(sizeof(char) * (size + 1))))
-		return (0);
-	if (nb < 0)
-	{
-		str[0] = '-';
-		nb = -nb;
-	}
-	str[size] = '\0';
-	size--;
-	printf("nb:%d\n", nb);
-	while (nb >= base)
-	{
-		str[size] = ft_find_value(nb % base);
-		nb = nb / base;
-		size--;
-	}
-	str[size] = ft_find_value(nb);
-	return (str);
-}
+// 	return (base[i]);
+// }
 
 
-void	*ft_memcpy(void *dst, const void *src, size_t n)
-{
-	while (n--)
-		((unsigned char *)dst)[n] = ((unsigned char *)src)[n];
-	return (dst);
-}
+// char	*ft_ultoabase(unsigned long nb, int base)
+// {
+// 	char	*str;
+// 	int		size;
+
+// 	size = ft_find_size(nb, base);
+// 	if (!(str = (char*)malloc(sizeof(char) * (size + 1))))
+// 		return (0);
+// 	str[size] = '\0';
+// 	size--;
+// 	while (nb >= base)
+// 	{
+// 		str[size] = ft_find_value(nb % base);
+// 		nb = nb / base;
+// 		size--;
+// 	}
+// 	str[size] = ft_find_value(nb);
+// 	return (str);
+// }
+
+
+// void	*ft_memcpy(void *dst, const void *src, size_t n)
+// {
+// 	while (n--)
+// 		((unsigned char *)dst)[n] = ((unsigned char *)src)[n];
+// 	return (dst);
+// }
+
+// int ft_printf(char *format, ...)
+// {
+// 	va_list	args;
+
+// 	va_start(args, format);
+
+// 	unsigned long s = va_arg(args, unsigned long);
+
+// 	printf("%lu\n", (unsigned long)s);
+	
+// 	va_end(args);
+// 	return 0;
+// }
 
 
 int main()
@@ -68,14 +75,21 @@ int main()
   /*   printf("%%[flags][width][.precision][size]type\n");
     printf("%%[#,0,-,+,' '][1-x][.0-x][h,hh,l,ll,L]type\n");
  */
+	int		i = 42;
+	char	*s = "hello";
 
-	// char	*str = "Hello world";
-	// int		ptr = (int)&str;
 
-	// printf("%p\n", str);
-	// printf("%s\n", ft_itoabase(ptr, 16));
+	printf("%p\n", i);
+	printf("%p\n", p);
+	// void			*s = "coucou";
 
-	printf("%lu\n", sizeof(signed long));
+	// ft_printf("hello", &s);
+	// printf("%lu\n", (unsigned long)&s);
+	// unsigned long	ptr = (unsigned long)&s;
+	// printf("%p\n", &s);
+	// printf("0x%s\n", ft_ultoabase(ptr, 16));
+
+	// printf("%lu\n", sizeof(signed long));
 
 
 
