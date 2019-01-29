@@ -2,10 +2,10 @@
 
 int main()
 {
-    char	c = 'h';
+    // char	c = 'h';
 	
-	printf("%200p|\n", &c);
-	ft_printf("%200p|\n", &c);
+	printf("%d|\n", 0x1000);
+	ft_printf("%d|\n", 0x1000);
     
 	return (0);
 }

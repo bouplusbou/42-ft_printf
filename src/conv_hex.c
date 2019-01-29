@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   conv_ptr.c                                         :+:      :+:    :+:   */
+/*   conv_hex.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 18:50:37 by bboucher          #+#    #+#             */
-/*   Updated: 2019/01/29 13:16:15 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/01/29 12:22:04 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	convert_ptr(t_struct data, void *target)
+int	convert_hex(t_struct data, unsigned int target)
 {
 	char	*result;
 	char	*hexa;
 	int		result_size;
 	int		hexa_size;
 	
-	hexa = ft_ultoa_base((unsigned long)target, "0123456789abcdef");
-	hexa_size = (int)ft_strlen(hexa) + 2; // taille d'hexa + 2 pour "0x"
+	hexa = ft_itoa_base((unsigned long)target, "0123456789abcdef");
+	hexa_size = ft_strchr(data.flags, '#') ? (int)ft_strlen(hexa) + 2 : (int)ft_strlen(hexa); // taille d'hexa + 2 pour "0x"
 	result_size = data.width > hexa_size ? data.width : hexa_size;	// Getting string size depending on width.
 	result = ft_strnew(result_size);		// Creating string.
 	ft_memset(result, ' ', result_size);	// Filling with spaces depending on flags.

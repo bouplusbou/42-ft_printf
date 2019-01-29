@@ -13,5 +13,10 @@ int	convert(t_struct data, va_list list)
 		printf("Convertion of type P.\n");
 		return (convert_ptr(data, va_arg(list, void*)));
 	}
+	if (data.type == 'x')
+	{
+		printf("Convertion of type x.\n");
+		return (convert_ptr(data, va_arg(list, unsigned int)));
+	}
 	return (0);
 }
