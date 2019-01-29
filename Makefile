@@ -49,8 +49,9 @@ SRC = checks.c \
       printf_write.c \
       treat_conv.c \
       treat_format.c \
-      conversions.c \
+      convert.c \
       conv_char.c \
+      conv_ptr.c \
       main.c
 
 ########## Compilation Rules ##########
