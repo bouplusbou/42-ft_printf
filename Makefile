@@ -52,6 +52,7 @@ SRC = checks.c \
       convert.c \
       conv_char.c \
       conv_ptr.c \
+      conv_hex.c \
       main.c
 
 ########## Compilation Rules ##########
