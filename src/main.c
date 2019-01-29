@@ -2,11 +2,10 @@
 
 int main()
 {
-    char			c = 'h';
+    char	c = 'h';
 	
-	printf("in main:%lu\n", (unsigned long)&c);
-	printf("%-100p|\n", &c);
-	ft_printf("%-100p|\n", &c);
+	printf("%200p|\n", &c);
+	ft_printf("%200p|\n", &c);
     
 	return (0);
 }
