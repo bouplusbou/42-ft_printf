@@ -15,7 +15,7 @@ int	convert(t_struct data, va_list list)
 	}
 	if (data.type == 'x' || data.type == 'X')
 	{
-		// printf("Convertion of type x & X.\n");
+		printf("Convertion of type x & X.\n");
 		return (convert_hex(data, va_arg(list, unsigned int)));
 	}
 	return (0);
