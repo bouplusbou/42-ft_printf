@@ -14,6 +14,7 @@
 
 void	printf_write(char c, int *len)
 {
-	write(1, &c, 1);
+	(void)c;
+	// write(1, &c, 1);
 	*len += 1;
 }

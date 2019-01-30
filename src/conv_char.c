@@ -12,8 +12,6 @@ int convert_char(t_struct data, int target)
 	else
 		ft_memset(result, ' ', resultSize);	// Filling with spaces depending on flags.
 	result[ft_strchr(data.flags, '-') ? 0 : resultSize - 1] = target;	// Assigning char to the start/end of the result.
-	ft_putstr("Result of char(c) conversion : []");
-	ft_putstr(result);	// Printing result.
-	ft_putstr("[]");
+	// ft_putstr(result);	// Printing result.
 	return (resultSize);
 }

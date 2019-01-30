@@ -22,10 +22,14 @@ WHITE = \033[m
 
 OK = $(GREEN)[OK]$(WHITE)
 
-########## Project Infos ##########
+########## Lib Infos ##########
 
-NAME =	a.out
-PROJECT = $(RED)Printf$(WHITE)
+NAME = libftprintf.a
+PROJECT = $(RED)LibftPrintf$(WHITE)
+
+########## Executable Infos ##########
+
+EXNAME = Printf
 
 ########## Compilation Infos ##########
 
@@ -33,16 +37,14 @@ CC = gcc
 FLAGS = -Wall -Wextra -Werror
 
 INCPATH = includes/
-INC = -I$(INCPATH) -I$(LIBPATH)$(INCPATH)			
-
-LIBPATH = libft/
-LIBNAME = libft.a
-LIB = $(LIBPATH)$(LIBNAME)
+INC = -I$(INCPATH)
 
 ########## Sources ##########
 
+SRCS = $(addprefix $(SRCPATH), $(SRC)) $(addprefix $(LIBSRCPATH), $(LIBSRC))
+
+	##### Printf Sources #####
 SRCPATH = src/
-SRCS = $(addprefix $(SRCPATH), $(SRC))
 SRC = checks.c \
       ft_printf.c \
       parse_conv.c \
@@ -52,8 +54,82 @@ SRC = checks.c \
       convert.c \
       conv_char.c \
       conv_ptr.c \
-      conv_hex.c \
-      main.c
+      conv_hex.c
+
+	##### Libft Sources #####
+LIBSRCPATH = libft/
+LIBSRC = ft_strlen.c \
+	  ft_strcpy.c \
+	  ft_putchar.c \
+	  ft_putchar_fd.c \
+	  ft_putstr.c \
+	  ft_putstr_fd.c \
+	  ft_putendl.c \
+	  ft_putendl_fd.c \
+	  ft_putnbr.c \
+	  ft_putnbr_fd.c \
+	  ft_atoi.c \
+	  ft_toupper.c \
+	  ft_tolower.c \
+	  ft_isalpha.c \
+	  ft_isdigit.c \
+	  ft_isalnum.c \
+	  ft_isascii.c \
+	  ft_isprint.c \
+	  ft_strdup.c \
+	  ft_strncpy.c \
+	  ft_strcmp.c \
+	  ft_strncmp.c \
+	  ft_strcat.c \
+	  ft_strncat.c \
+	  ft_strchr.c \
+	  ft_strrchr.c \
+	  ft_strstr.c \
+	  ft_strnstr.c \
+	  ft_strlcat.c \
+	  ft_memset.c \
+	  ft_bzero.c \
+	  ft_memcpy.c \
+	  ft_memccpy.c \
+	  ft_memmove.c \
+	  ft_memchr.c \
+	  ft_memcmp.c \
+	  ft_memalloc.c \
+	  ft_memdel.c \
+	  ft_strnew.c \
+	  ft_strdel.c \
+	  ft_strclr.c \
+	  ft_striter.c \
+	  ft_striteri.c \
+	  ft_strmap.c \
+	  ft_strmapi.c \
+	  ft_strequ.c \
+	  ft_strnequ.c \
+	  ft_strsub.c \
+	  ft_strjoin.c \
+	  ft_strtrim.c \
+	  ft_strsplit.c \
+	  ft_itoa.c \
+	  ft_lstnew.c \
+	  ft_lstdelone.c \
+	  ft_lstdel.c \
+	  ft_lstadd.c \
+	  ft_lstiter.c \
+	  ft_lstmap.c \
+	  ft_charequ.c \
+	  ft_min.c \
+	  ft_max.c \
+	  ft_swap.c \
+	  ft_realloc.c \
+	  ft_strctrim.c \
+	  ft_strjoinf.c \
+	  get_next_line.c \
+	  ft_strndup.c \
+	  ft_itoa_base.c \
+	  ft_ultoa_base.c
+
+	##### EXEC SOURCE #####
+EXSRC = main.c
 
 ########## Compilation Rules ##########
 
@@ -65,21 +141,26 @@ OBJ = $(SRCS:.c=.o)
 all : $(NAME)
 
 $(NAME) : $(OBJ)
-	@make -C $(LIBPATH) fclean && make -C $(LIBPATH)
-	@$(CC) $(FLAGS) $(INC) $(OBJ) $(LIB) -o $(NAME)
+	@ar rc $(NAME) $(OBJ)
+	@ranlib $(NAME)
 	@echo "$(BLUE)[$(PROJECT)$(BLUE)] | Compilation$(WHITE)						$(OK)"
 
-test : all
-	@./$(NAME)
+ex : all
+	@$(CC) -c $(FLAGS) $(INC) $(EXSRC) 
+	@$(CC) $(FLAGS) $(INC) main.o $(NAME) -o $(EXNAME)
+	@echo "$(BLUE)[$(EXNAME)$(BLUE)] | Compilation$(WHITE)						$(OK)"
+	
+test : ex
+	@./$(EXNAME)
 
 re : fclean all
 
 ########## Clean Rules ##########
 
 clean :
-	@rm -f $(OBJ)
-	@echo "$(BLUE)[$(PROJECT)$(BLUE)] | Clean$(WHITE)						$(OK)"
+	@rm -f $(OBJ) main.o
+	@echo "$(BLUE)[$(PROJECT) && $(EXNAME)$(BLUE)] | Clean$(WHITE)						$(OK)"
 
 fclean : clean
-	@rm -f $(NAME)
-	@echo "$(BLUE)[$(PROJECT)$(BLUE)] | Full clean$(WHITE)						$(OK)"
+	@rm -f $(NAME) $(EXNAME)
+	@echo "$(BLUE)[$(PROJECT) && $(EXNAME)$(BLUE)] | Full clean$(WHITE)						$(OK)"
