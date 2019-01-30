@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 18:50:37 by bboucher          #+#    #+#             */
-/*   Updated: 2019/01/30 09:01:30 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/01/30 13:28:46 by bclaudio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,5 @@ int	convert_hex(t_struct data, unsigned int target)
 	// printf("result:%s|\n", result);	// Printing result.
 	// ft_putstr("Result of char(p) conversion : []");
 	// ft_putstr(result);	// Printing result.
-	return (ft_strlen(result_size));
+	return (ft_strlen(result));
 }
