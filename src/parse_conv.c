@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/27 16:20:08 by bboucher          #+#    #+#             */
-/*   Updated: 2019/01/29 09:34:12 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/01/30 08:22:55 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,12 +85,12 @@ int		parse_conv(char *conv, va_list args)
 		t_conv.size = NULL;
 	if (is_type(conv[i]))
 		t_conv.type = conv[i];
-	printf("\n[====================]");
-	printf("\nFlags:		%s\n", t_conv.flags);
-	printf("Width:		%d\n", t_conv.width);
-	printf("Precision:	%d\n", t_conv.precision);
-	printf("Size:		%s\n", t_conv.size);
-	printf("Type:		%c\n", t_conv.type);
-	printf("[=====================]\n\n");
+	// printf("\n[====================]");
+	// printf("\nFlags:		%s\n", t_conv.flags);
+	// printf("Width:		%d\n", t_conv.width);
+	// printf("Precision:	%d\n", t_conv.precision);
+	// printf("Size:		%s\n", t_conv.size);
+	// printf("Type:		%c\n", t_conv.type);
+	// printf("[=====================]\n\n");
 	return (convert(t_conv, args));
 }
