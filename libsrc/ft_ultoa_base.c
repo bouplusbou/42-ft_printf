@@ -6,7 +6,7 @@
 /*   By: bclaudio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 18:55:51 by bclaudio          #+#    #+#             */
-/*   Updated: 2019/01/28 18:55:53 by bclaudio         ###   ########.fr       */
+/*   Updated: 2019/01/31 13:33:06 by bclaudio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,18 @@ char			*ft_ultoa_base(unsigned long nbr, const char *basestr)
 {
 	char			*result;
 	int				resultlen;
-	int				base;
+	unsigned int	base;
 
 	base = ft_strlen(basestr);
 	resultlen = find_result_size(nbr, base);
 	if (!(result = ft_strnew(resultlen)))
 		return (NULL);
 	resultlen--;
-	while (nbr > 0)
+	while (nbr >= base)
 	{
 		result[resultlen--] = find_value(nbr % base, basestr);
 		nbr /= base;
 	}
+	result[resultlen] = find_value(nbr, basestr);
 	return (result);
 }

@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/27 16:05:51 by bboucher          #+#    #+#             */
-/*   Updated: 2019/01/27 16:10:35 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/01/31 14:05:18 by bclaudio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	printf_write(char c, int *len)
 {
-	(void)c;
-	// write(1, &c, 1);
+	write(1, &c, 1);
 	*len += 1;
 }

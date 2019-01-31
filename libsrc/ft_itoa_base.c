@@ -6,7 +6,7 @@
 /*   By: bclaudio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 17:14:48 by bclaudio          #+#    #+#             */
-/*   Updated: 2019/01/28 17:14:53 by bclaudio         ###   ########.fr       */
+/*   Updated: 2019/01/31 13:32:14 by bclaudio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,12 @@ char			*ft_itoa_base(int nbr, const char *basestr)
 {
 	char			*result;
 	int				resultlen;
-	int				base;
+	unsigned int	base;
 	unsigned int	nb;
 
 	base = ft_strlen(basestr);
 	resultlen = find_result_size(nbr, base);
-	if (nbr < 0 && base == 10)
-		resultlen++;
+	resultlen += nbr < 0 && base == 10 ? 1 : 0;
 	if (!(result = ft_strnew(resultlen)))
 		return (NULL);
 	if (nbr < 0)
@@ -53,10 +52,11 @@ char			*ft_itoa_base(int nbr, const char *basestr)
 	}
 	nb = nbr;
 	resultlen--;
-	while (nb > 0)
+	while (nb >= base)
 	{
 		result[resultlen--] = find_value(nb % base, basestr);
 		nb /= base;
 	}
+	result[resultlen] = find_value(nb, basestr);
 	return (result);
 }

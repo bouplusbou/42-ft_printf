@@ -6,7 +6,7 @@
 #    By: bclaudio <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/08 10:34:55 by bclaudio          #+#    #+#              #
-#    Updated: 2018/12/07 14:00:27 by bclaudio         ###   ########.fr        #
+#    Updated: 2019/01/31 14:09:09 by bclaudio         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ PROJECT = $(RED)LibftPrintf$(WHITE)
 
 ########## Executable Infos ##########
 
-EXNAME = Printf
+EXNAME = $(RED)Printf$(WHITE)
 
 ########## Compilation Infos ##########
 
@@ -52,12 +52,9 @@ SRC = checks.c \
       treat_conv.c \
       treat_format.c \
       convert.c \
-      conv_char.c \
-      conv_ptr.c \
-      conv_hex.c
 
 	##### Libft Sources #####
-LIBSRCPATH = libft/
+LIBSRCPATH = libsrc/
 LIBSRC = ft_strlen.c \
 	  ft_strcpy.c \
 	  ft_putchar.c \
@@ -148,7 +145,7 @@ $(NAME) : $(OBJ)
 ex : all
 	@$(CC) -c $(FLAGS) $(INC) $(EXSRC) 
 	@$(CC) $(FLAGS) $(INC) main.o $(NAME) -o $(EXNAME)
-	@echo "$(BLUE)[$(EXNAME)$(BLUE)] | Compilation$(WHITE)						$(OK)"
+	@echo "$(BLUE)[$(EXNAME)$(BLUE)] | Compilation$(WHITE)							$(OK)"
 	
 test : ex
 	@./$(EXNAME)
@@ -159,8 +156,8 @@ re : fclean all
 
 clean :
 	@rm -f $(OBJ) main.o
-	@echo "$(BLUE)[$(PROJECT) && $(EXNAME)$(BLUE)] | Clean$(WHITE)						$(OK)"
+	@echo "$(BLUE)[$(PROJECT)$(BLUE) && $(EXNAME)$(BLUE)] | Clean$(WHITE)						$(OK)"
 
 fclean : clean
 	@rm -f $(NAME) $(EXNAME)
-	@echo "$(BLUE)[$(PROJECT) && $(EXNAME)$(BLUE)] | Full clean$(WHITE)						$(OK)"
+	@echo "$(BLUE)[$(PROJECT)$(BLUE) && $(EXNAME)$(BLUE)] | Full clean$(WHITE)					$(OK)"

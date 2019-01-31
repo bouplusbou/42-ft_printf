@@ -6,7 +6,7 @@
 /*   By: bclaudio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/09 13:07:20 by bclaudio          #+#    #+#             */
-/*   Updated: 2018/12/12 18:53:06 by bclaudio         ###   ########.fr       */
+/*   Updated: 2019/01/31 13:54:58 by bclaudio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,6 @@ char			*ft_strjoinf(char **s1, char **s2, int flag);
 int				get_next_line(int const fd, char **line);
 char			*ft_strndup(const char *s1, size_t len);
 char			*ft_itoa_base(int nbr, const char *basestr);
-char			*ft_ulta_base(unsigned long nbr, const char *basestr);
+char			*ft_ultoa_base(unsigned long nbr, const char *basestr);
 
 #endif

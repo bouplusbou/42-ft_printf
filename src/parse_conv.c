@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/27 16:20:08 by bboucher          #+#    #+#             */
-/*   Updated: 2019/01/30 08:22:55 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/01/31 14:05:09 by bclaudio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,6 @@ char	*parse_size(char *str_size, int *i)
 	return (ft_strndup(str_size, l));
 }
 
- /*
- ** Ne fonctionne que si les elements sont dans l'ordre
- ** %[flags][width][.precision][size]type
- */
-
 int		parse_conv(char *conv, va_list args)
 {
 	t_struct	t_conv;
@@ -85,12 +80,5 @@ int		parse_conv(char *conv, va_list args)
 		t_conv.size = NULL;
 	if (is_type(conv[i]))
 		t_conv.type = conv[i];
-	// printf("\n[====================]");
-	// printf("\nFlags:		%s\n", t_conv.flags);
-	// printf("Width:		%d\n", t_conv.width);
-	// printf("Precision:	%d\n", t_conv.precision);
-	// printf("Size:		%s\n", t_conv.size);
-	// printf("Type:		%c\n", t_conv.type);
-	// printf("[=====================]\n\n");
 	return (convert(t_conv, args));
 }
