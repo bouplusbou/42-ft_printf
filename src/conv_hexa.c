@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 08:08:10 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/01 11:20:48 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/01 13:50:12 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,15 @@ char					*concat_hexa(t_struct data, unsigned long long int arg)
 {
 	char	*concat;
 	int		concat_size;
-	int		hexa_size;
 	char	*hexa;
+	int		hexa_size;
 
 	if (data.type == 'x')
 		hexa = ft_ulltoa_base(arg, "0123456789abcdef");
 	else
 		hexa = ft_ulltoa_base(arg, "0123456789ABCDEF");
+	if (!hexa)
+		return (NULL);
 	hexa_size = ft_strlen(hexa);
 	if (ft_strchr(data.flags, '#') && ft_strcmp(hexa, "0"))
 		concat_size = hexa_size + 2;
@@ -63,6 +65,7 @@ char					*concat_hexa(t_struct data, unsigned long long int arg)
 		return (NULL);
 	ft_memset(concat, '0', concat_size);
 	ft_memcpy(concat + (concat_size - hexa_size), hexa, hexa_size);
+	ft_strdel(&hexa);
 	return (concat);
 }
 
@@ -108,6 +111,15 @@ char					*create_res(t_struct data, int res_size, char *concat)
 	return (res);
 }
 
+void	delete_struct(t_struct data)
+{
+	if (data.flags)
+		ft_strdel(&data.flags);
+	if (data.size)
+		ft_strdel(&data.size);
+}
+
+
 /*
 ** convert into hexadecimal, do all the transformations,
 ** print the result and return the size of the result
@@ -127,7 +139,11 @@ int						conv_hexa(t_struct data, va_list list)
 		result_size = data.width;
 	else
 		result_size = ft_strlen(concat);
-	result = create_res(data, result_size, concat);
+	if (!(result = create_res(data, result_size, concat)))
+		return (0);
 	ft_putstr(result);
+	ft_strdel(&result);
+	ft_strdel(&concat);
+	// delete_struct(data);
 	return (result_size);
 }
