@@ -29,7 +29,7 @@ PROJECT = $(RED)LibftPrintf$(WHITE)
 
 ########## Executable Infos ##########
 
-EXNAME = $(RED)Printf$(WHITE)
+EXNAME = Printf
 
 ########## Compilation Infos ##########
 
@@ -148,7 +148,7 @@ $(NAME) : $(OBJ)
 ex : all
 	@$(CC) -c $(FLAGS) $(INC) $(EXSRC) 
 	@$(CC) $(FLAGS) $(INC) main.o $(NAME) -o $(EXNAME)
-	@echo "$(BLUE)[$(EXNAME)$(BLUE)] | Compilation$(WHITE)							$(OK)"
+	@echo "$(BLUE)[$(RED)$(EXNAME)$(BLUE)] | Compilation$(WHITE)							$(OK)"
 	
 test : ex
 	@./$(EXNAME)
@@ -159,8 +159,8 @@ re : fclean all
 
 clean :
 	@rm -f $(OBJ) main.o
-	@echo "$(BLUE)[$(PROJECT)$(BLUE) && $(EXNAME)$(BLUE)] | Clean$(WHITE)						$(OK)"
+	@echo "$(BLUE)[$(PROJECT)$(BLUE) && $(RED)$(EXNAME)$(BLUE)] | Clean$(WHITE)						$(OK)"
 
 fclean : clean
 	@rm -f $(NAME) $(EXNAME)
-	@echo "$(BLUE)[$(PROJECT)$(BLUE) && $(EXNAME)$(BLUE)] | Full clean$(WHITE)					$(OK)"
+	@echo "$(BLUE)[$(PROJECT)$(BLUE) && $(RED)$(EXNAME)$(BLUE)] | Full clean$(WHITE)					$(OK)"
