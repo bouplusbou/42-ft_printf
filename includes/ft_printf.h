@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/27 16:06:29 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/01 14:43:39 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/01 16:17:51 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,10 @@ int		is_conv(char c);
 int		convert(t_struct *data, va_list list);
 int		conv_hexa(t_struct *data, va_list list);
 void	delete_struct(t_struct *data);
+
+// Test functions (TO REMOVE)
+void	test_char_and_none();
+void	test_octal();
+
 
 #endif

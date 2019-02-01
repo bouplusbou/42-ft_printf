@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 08:08:10 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/01 15:21:43 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/01 16:20:24 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,22 +69,6 @@ char					*concat_hexa(t_struct data, unsigned long long int arg)
 	return (concat);
 }
 
-int						ft_get_char_index(const char *s, int c)
-{
-	int	i;
-
-	i = 0;
-	while (s[i])
-	{
-		if (s[i] == (char)c)
-			return (i);
-		i++;
-	}
-	if ((char)c == '\0')
-		return (i);
-	return (0);
-}
-
 /*
 ** create the final result:
 ** place the concatenated form of hexa
@@ -108,7 +92,7 @@ char					*create_res(t_struct data, int result_size, char *concat)
 	else
 		ft_memcpy(result + (result_size - concat_size), concat, concat_size); // put to the right otherwise
 	if (ft_strchr(data.flags, '#') && ft_strcmp(concat, "0")) // add the 'x' or 'X' to the second '0' char with flag '#'
-		result[ft_get_char_index(result, '0') + 1] = data.type;
+		result[ft_get_char_index('0', result) + 1] = data.type;
 	return (result);
 }
 
