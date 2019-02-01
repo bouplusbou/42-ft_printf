@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 08:08:10 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/01 16:20:24 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/01 16:54:15 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ char					*create_res(t_struct data, int result_size, char *concat)
 	char	*result;
 	int		concat_size;
 
-	if (!(result = ft_strnew(result_size)))
+	if (!result_size || !(result = ft_strnew(result_size))) // if result_size is 0 return NULL directly
 		return (NULL);
 	if (ft_strchr(data.flags, '0') && data.precision < 0
 			&& !ft_strchr(data.flags, '-')) // flag '0' without precision and no flag '-' => fill everything with '0'
@@ -91,6 +91,7 @@ char					*create_res(t_struct data, int result_size, char *concat)
 		ft_memcpy(result, concat, concat_size);
 	else
 		ft_memcpy(result + (result_size - concat_size), concat, concat_size); // put to the right otherwise
+	// if (ft_strchr(data.flags, '#') && ft_strcmp(concat, "0")) // add the 'x' or 'X' to the second '0' char with flag '#'
 	if (ft_strchr(data.flags, '#') && ft_strcmp(concat, "0")) // add the 'x' or 'X' to the second '0' char with flag '#'
 		result[ft_get_char_index('0', result) + 1] = data.type;
 	return (result);
