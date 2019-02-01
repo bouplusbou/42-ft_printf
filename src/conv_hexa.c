@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 08:08:10 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/01 14:37:50 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/01 15:21:43 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,20 +52,20 @@ char					*concat_hexa(t_struct data, unsigned long long int arg)
 		hexa = ft_ulltoa_base(arg, "0123456789abcdef");
 	else
 		hexa = ft_ulltoa_base(arg, "0123456789ABCDEF");
-	if (!hexa)
+	if (!hexa) // if malloc hexa didn't work
 		return (NULL);
 	hexa_size = ft_strlen(hexa);
-	if (ft_strchr(data.flags, '#') && ft_strcmp(hexa, "0"))
+	if (ft_strchr(data.flags, '#') && ft_strcmp(hexa, "0")) // add enough space for '0x' if needed
 		concat_size = hexa_size + 2;
 	else
 		concat_size = hexa_size;
-	if (data.precision > (int)hexa_size)
+	if (data.precision > (int)hexa_size) // add enough space for '0's if needed (if precision is longer than input)
 		concat_size += data.precision - hexa_size;
 	if (!(concat = ft_strnew(concat_size)))
 		return (NULL);
-	ft_memset(concat, '0', concat_size);
-	ft_memcpy(concat + (concat_size - hexa_size), hexa, hexa_size);
-	ft_strdel(&hexa);
+	ft_memset(concat, '0', concat_size); // fill fill '0'
+	ft_memcpy(concat + (concat_size - hexa_size), hexa, hexa_size); // write upon the '0' the input translated into hexa
+	ft_strdel(&hexa); // we don't need hexa anymore, it is inside concat now
 	return (concat);
 }
 
@@ -86,39 +86,30 @@ int						ft_get_char_index(const char *s, int c)
 }
 
 /*
-** create the result based on the concatenated form of hexa
+** create the final result:
+** place the concatenated form of hexa
 */
 
-char					*create_res(t_struct data, int res_size, char *concat)
+char					*create_res(t_struct data, int result_size, char *concat)
 {
-	char	*res;
+	char	*result;
 	int		concat_size;
 
-	if (!(res = ft_strnew(res_size)))
+	if (!(result = ft_strnew(result_size)))
 		return (NULL);
 	if (ft_strchr(data.flags, '0') && data.precision < 0
-			&& !ft_strchr(data.flags, '-'))
-		ft_memset(res, '0', res_size);
+			&& !ft_strchr(data.flags, '-')) // flag '0' without precision and no flag '-' => fill everything with '0'
+		ft_memset(result, '0', result_size);
 	else
-		ft_memset(res, ' ', res_size);
+		ft_memset(result, ' ', result_size); // else fill with spaces
 	concat_size = ft_strlen(concat);
-	if (!ft_strchr(data.flags, '-'))
-		ft_memcpy(res + (res_size - concat_size), concat, concat_size);
+	if (ft_strchr(data.flags, '-')) // put to the left if flag '-'
+		ft_memcpy(result, concat, concat_size);
 	else
-		ft_memcpy(res, concat, concat_size);
-	if (ft_strchr(data.flags, '#') && ft_strcmp(concat, "0"))
-		res[ft_get_char_index(res, '0') + 1] = data.type;
-	return (res);
-}
-
-void	delete_struct(t_struct *data)
-{
-	if (data->flags)
-		ft_strdel(&data->flags);
-	if (data->size)
-		ft_strdel(&data->size);
-	free(data);
-	data = NULL;
+		ft_memcpy(result + (result_size - concat_size), concat, concat_size); // put to the right otherwise
+	if (ft_strchr(data.flags, '#') && ft_strcmp(concat, "0")) // add the 'x' or 'X' to the second '0' char with flag '#'
+		result[ft_get_char_index(result, '0') + 1] = data.type;
+	return (result);
 }
 
 /*
@@ -132,18 +123,18 @@ int						conv_hexa(t_struct *data, va_list list)
 	char	*result;
 	char	*concat;
 
-	if (!(concat = concat_hexa(*data, get_size(*data, list))))
+	if (!(concat = concat_hexa(*data, get_size(*data, list)))) // concatenate '0x' + '0's + input translated in hexa
 		return (0);
-	if (!ft_strcmp(concat, "0") && data->precision == 0)
+	if (!ft_strcmp(concat, "0") && data->precision == 0) // if input is '0' with a precision of 0, write nothing at all
 		concat[0] = '\0';
-	if (data->width > (int)ft_strlen(concat))
+	if (data->width > (int)ft_strlen(concat)) // choose the result's size: the longer between width and concat 
 		result_size = data->width;
 	else
 		result_size = ft_strlen(concat);
-	if (!(result = create_res(*data, result_size, concat)))
+	if (!(result = create_res(*data, result_size, concat))) // create the final result
 		return (0);
-	ft_putstr(result);
-	ft_strdel(&result);
+	ft_putstr(result); // print result
+	ft_strdel(&result); // clean everything: result, concat, struct
 	ft_strdel(&concat);
 	delete_struct(data);
 	return (result_size);
