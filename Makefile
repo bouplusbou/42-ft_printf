@@ -123,7 +123,9 @@ LIBSRC = ft_strlen.c \
 	  get_next_line.c \
 	  ft_strndup.c \
 	  ft_itoa_base.c \
-	  ft_ultoa_base.c
+	  ft_ultoa_base.c \
+	  ft_lltoa_base.c \
+	  ft_ulltoa_base.c
 
 	##### EXEC SOURCE #####
 EXSRC = main.c
