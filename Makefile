@@ -129,11 +129,16 @@ LIBSRC = ft_strlen.c \
 	  ft_get_char_index.c
 
 	##### EXEC SOURCE #####
-EXSRC = main.c
+EXSRCS = $(addprefix $(EXPATH), $(EXSRC))
+EXPATH = tests/
+EXSRC = main.c \
+		test_char_and_none.c
 
 ########## Compilation Rules ##########
 
 OBJ = $(SRCS:.c=.o)
+EXOBJ = main.o \
+		test_char_and_none.o
 
 %.o: %.c
 	@$(CC) $(FLAGS) $(INC) -o $@ -c $?
@@ -146,19 +151,19 @@ $(NAME) : $(OBJ)
 	@echo "$(BLUE)[$(PROJECT)$(BLUE)] | Compilation$(WHITE)						$(OK)"
 
 ex : all
-	@$(CC) -c $(FLAGS) $(INC) $(EXSRC) 
-	@$(CC) $(FLAGS) $(INC) main.o $(NAME) -o $(EXNAME)
+	@$(CC) -c $(FLAGS) $(INC) $(EXSRCS) 
+	@$(CC) $(FLAGS) $(INC) $(EXOBJ) $(NAME) -o $(EXNAME)
 	@echo "$(BLUE)[$(RED)$(EXNAME)$(BLUE)] | Compilation$(WHITE)							$(OK)"
 	
-test : ex
-	@./$(EXNAME)
+testc : ex
+	@./$(EXNAME) c
 
 re : fclean all
 
 ########## Clean Rules ##########
 
 clean :
-	@rm -f $(OBJ) main.o
+	@rm -f $(OBJ) $(EXOBJ)
 	@echo "$(BLUE)[$(PROJECT)$(BLUE) && $(RED)$(EXNAME)$(BLUE)] | Clean$(WHITE)						$(OK)"
 
 fclean : clean

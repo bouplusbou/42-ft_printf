@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bclaudio <bclaudio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/27 16:06:29 by bboucher          #+#    #+#             */
-/*   Updated: 2019/01/31 13:54:18 by bclaudio         ###   ########.fr       */
+/*   Updated: 2019/02/01 14:50:26 by bclaudio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,9 @@ int		convert(t_struct data, va_list list);
 int		convert_char(t_struct data, int target);
 int 	convert_ptr(t_struct data, void *target);
 int		convert_hex(t_struct data, unsigned int target);
+
+// Test functions (TO REMOVE)
+void	test_char_and_none();
+
 
 #endif
