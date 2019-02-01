@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 08:08:10 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/01 13:50:12 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/01 14:37:50 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,39 +111,40 @@ char					*create_res(t_struct data, int res_size, char *concat)
 	return (res);
 }
 
-void	delete_struct(t_struct data)
+void	delete_struct(t_struct *data)
 {
-	if (data.flags)
-		ft_strdel(&data.flags);
-	if (data.size)
-		ft_strdel(&data.size);
+	if (data->flags)
+		ft_strdel(&data->flags);
+	if (data->size)
+		ft_strdel(&data->size);
+	free(data);
+	data = NULL;
 }
-
 
 /*
 ** convert into hexadecimal, do all the transformations,
 ** print the result and return the size of the result
 */
 
-int						conv_hexa(t_struct data, va_list list)
+int						conv_hexa(t_struct *data, va_list list)
 {
 	int		result_size;
 	char	*result;
 	char	*concat;
 
-	if (!(concat = concat_hexa(data, get_size(data, list))))
+	if (!(concat = concat_hexa(*data, get_size(*data, list))))
 		return (0);
-	if (!ft_strcmp(concat, "0") && data.precision == 0)
+	if (!ft_strcmp(concat, "0") && data->precision == 0)
 		concat[0] = '\0';
-	if (data.width > (int)ft_strlen(concat))
-		result_size = data.width;
+	if (data->width > (int)ft_strlen(concat))
+		result_size = data->width;
 	else
 		result_size = ft_strlen(concat);
-	if (!(result = create_res(data, result_size, concat)))
+	if (!(result = create_res(*data, result_size, concat)))
 		return (0);
 	ft_putstr(result);
 	ft_strdel(&result);
 	ft_strdel(&concat);
-	// delete_struct(data);
+	delete_struct(data);
 	return (result_size);
 }
