@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/27 16:06:29 by bboucher          #+#    #+#             */
-/*   Updated: 2019/01/31 13:54:18 by bclaudio         ###   ########.fr       */
+/*   Updated: 2019/02/01 08:30:52 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,6 @@ int		is_size(char c);
 int		is_type(char c);
 int		is_conv(char c);
 int		convert(t_struct data, va_list list);
-int		convert_char(t_struct data, int target);
-int 	convert_ptr(t_struct data, void *target);
-int		convert_hex(t_struct data, unsigned int target);
+int		conv_hexa(t_struct data, va_list list);
 
 #endif

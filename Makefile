@@ -52,6 +52,7 @@ SRC = checks.c \
       treat_conv.c \
       treat_format.c \
       convert.c \
+	  conv_hexa.c
 
 	##### Libft Sources #####
 LIBSRCPATH = libsrc/
