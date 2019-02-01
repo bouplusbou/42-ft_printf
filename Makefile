@@ -132,13 +132,15 @@ LIBSRC = ft_strlen.c \
 EXSRCS = $(addprefix $(EXPATH), $(EXSRC))
 EXPATH = tests/
 EXSRC = main.c \
-		test_char_and_none.c
+		test_char_and_none.c \
+		test_octal.c
 
 ########## Compilation Rules ##########
 
 OBJ = $(SRCS:.c=.o)
 EXOBJ = main.o \
-		test_char_and_none.o
+		test_char_and_none.o \
+		test_octal.o
 
 %.o: %.c
 	@$(CC) $(FLAGS) $(INC) -o $@ -c $?
@@ -157,6 +159,9 @@ ex : all
 	
 testc : ex
 	@./$(EXNAME) c
+
+testo : ex
+	@./$(EXNAME) o
 
 re : fclean all
 

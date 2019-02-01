@@ -6,7 +6,7 @@
 /*   By: bclaudio <bclaudio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 14:00:10 by bclaudio          #+#    #+#             */
-/*   Updated: 2019/02/01 15:17:56 by bclaudio         ###   ########.fr       */
+/*   Updated: 2019/02/01 15:44:00 by bclaudio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ int main(int argc, char **argv)
 	{
 		if (argv[1][0] == 'c')
 			test_char_and_none();
+		if (argv[1][0] == 'o')
+			test_octal();
 	}
 	return (0);
 }

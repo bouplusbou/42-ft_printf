@@ -6,7 +6,7 @@
 /*   By: bclaudio <bclaudio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/27 16:06:29 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/01 14:50:26 by bclaudio         ###   ########.fr       */
+/*   Updated: 2019/02/01 15:42:26 by bclaudio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ int		convert_hex(t_struct data, unsigned int target);
 
 // Test functions (TO REMOVE)
 void	test_char_and_none();
+void	test_octal();
 
 
 #endif
