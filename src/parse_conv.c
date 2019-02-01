@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/27 16:20:08 by bboucher          #+#    #+#             */
-/*   Updated: 2019/01/31 14:05:09 by bclaudio         ###   ########.fr       */
+/*   Updated: 2019/02/01 14:34:56 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,27 +58,24 @@ char	*parse_size(char *str_size, int *i)
 
 int		parse_conv(char *conv, va_list args)
 {
-	t_struct	t_conv;
+	t_struct	*data;
 	int			i;
 
 	i = 1;
+	if (!(data = (t_struct*)malloc(sizeof(t_struct))))
+		return (0);
+	data->flags = ft_strdup("X");
 	if (is_flag(conv[i]))
-		t_conv.flags = parse_flags(conv + i, &i);
-	else
-		t_conv.flags = "X";
+		data->flags = parse_flags(conv + i, &i);
+	data->width = -1;
 	if (ft_isdigit(conv[i]))
-		t_conv.width = parse_width(conv + i, &i);
-	else
-		t_conv.width = -1;
+		data->width = parse_width(conv + i, &i);
+	data->precision = -1;
 	if (conv[i] == '.')
-		t_conv.precision = parse_precision(conv + i, &i);
-	else
-		t_conv.precision = -1;
+		data->precision = parse_precision(conv + i, &i);
+	data->size = NULL;
 	if (is_size(conv[i]))
-		t_conv.size = parse_size(conv + i, &i);
-	else
-		t_conv.size = NULL;
-	if (is_type(conv[i]))
-		t_conv.type = conv[i];
-	return (convert(t_conv, args));
+		data->size = parse_size(conv + i, &i);
+	data->type = conv[i];
+	return (convert(data, args));
 }
