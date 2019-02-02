@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/27 16:05:46 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/02 14:59:25 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/02 15:05:38 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	treat_conv(char *str, size_t *j, int *len, va_list args)
 {
 	size_t		i;
-	int		type;
+	int			type;
 
 	i = 1;
 	type = 0;
