@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 08:08:10 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/02 15:12:57 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/02 15:26:10 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,24 +74,23 @@ char					*concat_hexa(t_struct data, unsigned long long int arg)
 ** place the concatenated form of hexa
 */
 
-char					*create_res_hexa(t_struct data, int result_size, char *concat)
+char					*create_res_hexa(t_struct data, int res_s, char *concat)
 {
 	char	*result;
 	int		concat_size;
 
-	if (!result_size || !(result = ft_strnew(result_size))) // if result_size is 0 return NULL directly
+	if (!res_s || !(result = ft_strnew(res_s))) // if res_s is 0 return NULL directly
 		return (NULL);
 	if (ft_strchr(data.flags, '0') && data.precision < 0
 			&& !ft_strchr(data.flags, '-')) // flag '0' without precision and no flag '-' => fill everything with '0'
-		ft_memset(result, '0', result_size);
+		ft_memset(result, '0', res_s);
 	else
-		ft_memset(result, ' ', result_size); // else fill with spaces
+		ft_memset(result, ' ', res_s); // else fill with spaces
 	concat_size = ft_strlen(concat);
 	if (ft_strchr(data.flags, '-')) // put to the left if flag '-'
 		ft_memcpy(result, concat, concat_size);
 	else
-		ft_memcpy(result + (result_size - concat_size), concat, concat_size); // put to the right otherwise
-	// if (ft_strchr(data.flags, '#') && ft_strcmp(concat, "0")) // add the 'x' or 'X' to the second '0' char with flag '#'
+		ft_memcpy(result + (res_s - concat_size), concat, concat_size); // put to the right otherwise
 	if (ft_strchr(data.flags, '#') && ft_strcmp(concat, "0")) // add the 'x' or 'X' to the second '0' char with flag '#'
 		result[ft_get_char_index('0', result) + 1] = data.type;
 	return (result);
