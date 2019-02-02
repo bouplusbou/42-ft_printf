@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 14:00:10 by bclaudio          #+#    #+#             */
-/*   Updated: 2019/02/02 20:41:13 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/02 20:44:50 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int main(int argc, char **argv)
 	nb1 = 123456;
 
 		//Precision : chiffre apres la virgule
-		//Croision : mettre chiffre apres la virgule meme si ya rien
+		//Croision : mettre virgule si jamais precision de 0
 
 	printf("BLABLA:%#.0f\n", nb1);
 	printf("test basique:");
