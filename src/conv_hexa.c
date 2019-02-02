@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 08:08:10 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/01 16:54:15 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/02 11:00:13 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 ** and put the result in the biggest unsigned type (unsigned long long int)
 */
 
-unsigned long long int	get_size(t_struct data, va_list list)
+unsigned long long int	get_size_hexa(t_struct data, va_list list)
 {
 	unsigned long long int	arg;
 
@@ -29,7 +29,7 @@ unsigned long long int	get_size(t_struct data, va_list list)
 		arg = va_arg(list, unsigned long long int);
 	else if (ft_strstr(data.size, "l"))
 		arg = va_arg(list, unsigned long int);
-	else if (ft_strstr(data.size, "h"))
+	else if (ft_strstr(data.size, "h") && !ft_strstr(data.size, "hh"))
 		arg = (unsigned short int)va_arg(list, unsigned int);
 	else if (ft_strstr(data.size, "hh"))
 		arg = (unsigned char)va_arg(list, unsigned int);
@@ -74,7 +74,7 @@ char					*concat_hexa(t_struct data, unsigned long long int arg)
 ** place the concatenated form of hexa
 */
 
-char					*create_res(t_struct data, int result_size, char *concat)
+char					*create_res_hexa(t_struct data, int result_size, char *concat)
 {
 	char	*result;
 	int		concat_size;
@@ -108,7 +108,7 @@ int						conv_hexa(t_struct *data, va_list list)
 	char	*result;
 	char	*concat;
 
-	if (!(concat = concat_hexa(*data, get_size(*data, list)))) // concatenate '0x' + '0's + input translated in hexa
+	if (!(concat = concat_hexa(*data, get_size_hexa(*data, list)))) // concatenate '0x' + '0's + input translated in hexa
 		return (0);
 	if (!ft_strcmp(concat, "0") && data->precision == 0) // if input is '0' with a precision of 0, write nothing at all
 		concat[0] = '\0';
@@ -116,7 +116,7 @@ int						conv_hexa(t_struct *data, va_list list)
 		result_size = data->width;
 	else
 		result_size = ft_strlen(concat);
-	if (!(result = create_res(*data, result_size, concat))) // create the final result
+	if (!(result = create_res_hexa(*data, result_size, concat))) // create the final result
 		return (0);
 	ft_putstr(result); // print result
 	ft_strdel(&result); // clean everything: result, concat, struct
