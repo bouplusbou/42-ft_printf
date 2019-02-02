@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 19:11:28 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/01 19:13:48 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/02 10:53:04 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ long long int	get_size_decimal(t_struct data, va_list list)
 		arg = va_arg(list, long long int);
 	else if (ft_strstr(data.size, "l"))
 		arg = va_arg(list, long int);
+	else if (ft_strstr(data.size, "hh"))
+		arg = (signed char)va_arg(list, int);
 	else if (ft_strstr(data.size, "h"))
 		arg = (short int)va_arg(list, int);
-	else if (ft_strstr(data.size, "hh"))
-		arg = (char)va_arg(list, int);
 	return (arg);
 }
 
@@ -48,19 +48,23 @@ char					*concat_decimal(t_struct data, long long int arg)
 	char	*decimal;
 	int		decimal_size;
 
-	if (!(decimal = ft_lltoa_base(arg, "0123456789"))) // if malloc decimal didn't work
+	if (!(decimal = ft_lltoa_base(arg < 0 ? -arg : arg, "0123456789"))) // if malloc decimal didn't work
 		return (NULL);
 	decimal_size = ft_strlen(decimal);
-	if (ft_strchr(data.flags, '#') && ft_strcmp(decimal, "0")) // add enough space for '0' if needed
-		concat_size = decimal_size + 1;
-	else
-		concat_size = decimal_size;
+	concat_size = decimal_size;
+	if ((ft_strchr(data.flags, ' ') && data.width < decimal_size + 1)
+			|| arg < 0 || ft_strchr(data.flags, '+')) // add one space for ' ' or '+' '-' if needed
+		concat_size++;
 	if (data.precision > (int)decimal_size) // add enough space for '0's if needed (if precision is longer than input)
 		concat_size += data.precision - decimal_size;
 	if (!(concat = ft_strnew(concat_size)))
 		return (NULL);
 	ft_memset(concat, '0', concat_size); // fill '0'
 	ft_memcpy(concat + (concat_size - decimal_size), decimal, decimal_size); // write upon the '0' the input translated into decimal
+	if (ft_strchr(data.flags, ' ') && data.width < 0)
+		concat[0] = ' ';
+	if ((arg < 0 || ft_strchr(data.flags, '+')) && (data.width < concat_size))
+		concat[0] = arg < 0 ? '-' : '+';
 	ft_strdel(&decimal); // we don't need decimal anymore, it is inside concat now
 	return (concat);
 }
@@ -70,7 +74,7 @@ char					*concat_decimal(t_struct data, long long int arg)
 ** place the concatenated form of hexa
 */
 
-char					*create_res_decimal(t_struct data, int result_size, char *concat)
+char					*create_res_decimal(t_struct data, int result_size, char *concat, int neg)
 {
 	char	*result;
 	int		concat_size;
@@ -87,9 +91,8 @@ char					*create_res_decimal(t_struct data, int result_size, char *concat)
 		ft_memcpy(result, concat, concat_size);
 	else
 		ft_memcpy(result + (result_size - concat_size), concat, concat_size); // put to the right otherwise
-	// if (ft_strchr(data.flags, '#') && ft_strcmp(concat, "0")) // add the 'x' or 'X' to the second '0' char with flag '#'
-	// if (ft_strchr(data.flags, '#') && ft_strcmp(concat, "0")) // add the 'x' or 'X' to the second '0' char with flag '#'
-		// result[ft_get_char_index('0', result) + 1] = data.type;
+	if (data.width == result_size && (neg || ft_strchr(data.flags, '+'))) // add the 'x' or 'X' to the second '0' char with flag '#'
+			result[ft_get_char_index('0', result)] = neg ? '-' : '+';
 	return (result);
 }
 
@@ -100,19 +103,21 @@ char					*create_res_decimal(t_struct data, int result_size, char *concat)
 
 int						conv_decimal(t_struct *data, va_list list)
 {
-	int		result_size;
-	char	*result;
-	char	*concat;
+	int				result_size;
+	char			*result;
+	char			*concat;
+	long long int	arg;
 
-	if (!(concat = concat_decimal(*data, get_size_decimal(*data, list)))) // concatenate '0x' + '0's + input translated in hexa
+	arg = get_size_decimal(*data, list);
+	if (!(concat = concat_decimal(*data, arg))) //
 		return (0);
 	if (!ft_strcmp(concat, "0") && data->precision == 0) // if input is '0' with a precision of 0, write nothing at all
 		concat[0] = '\0';
-	if (data->width > (int)ft_strlen(concat)) // choose the result's size: the longer between width and concat 
+	if (data->width > (int)ft_strlen(concat)) // choose the result's size: the longer between width and concat
 		result_size = data->width;
 	else
 		result_size = ft_strlen(concat);
-	if (!(result = create_res_decimal(*data, result_size, concat))) // create the final result
+	if (!(result = create_res_decimal(*data, result_size, concat, arg < 0 ? 1 : 0))) // create the final result
 		return (0);
 	ft_putstr(result); // print result
 	ft_strdel(&result); // clean everything: result, concat, struct
