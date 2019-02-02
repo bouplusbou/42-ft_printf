@@ -54,6 +54,7 @@ SRC = checks.c \
       convert.c \
 	  conv_hexa.c \
 	  conv_perc.c \
+	  conv_float.c \
 	  delete_struct.c
 
 	##### Libft Sources #####
