@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 08:08:10 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/02 15:26:10 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/02 16:26:25 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,9 @@ char					*concat_hexa(t_struct data, unsigned long long int arg)
 	if (!hexa) // if malloc hexa didn't work
 		return (NULL);
 	hexa_size = ft_strlen(hexa);
+	concat_size = hexa_size;
 	if (ft_strchr(data.flags, '#') && ft_strcmp(hexa, "0")) // add enough space for '0x' if needed
-		concat_size = hexa_size + 2;
-	else
-		concat_size = hexa_size;
+		concat_size += 2;
 	if (data.precision > (int)hexa_size) // add enough space for '0's if needed (if precision is longer than input)
 		concat_size += data.precision - hexa_size;
 	if (!(concat = ft_strnew(concat_size)))
