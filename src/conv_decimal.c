@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 19:11:28 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/02 11:45:27 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/02 18:46:57 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,8 @@ char					*create_res_decimal(t_struct data, int result_size, char *concat, int n
 		ft_memcpy(result + (result_size - concat_size), concat, concat_size); // put to the right otherwise
 	if (data.width == result_size && (neg || ft_strchr(data.flags, '+'))) // add the 'x' or 'X' to the second '0' char with flag '#'
 			result[ft_get_char_index('0', result)] = neg ? '-' : '+';
+	if (ft_strchr(data.flags, ' ') && result[0] == '0')
+		result[0] = ' ';
 	return (result);
 }
 
