@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/27 16:20:08 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/02 15:06:38 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/02 16:22:56 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,24 +25,34 @@ char	*parse_flags(char *str_flags, int *i)
 
 int		parse_width(char *str_width, int *i)
 {
-	int l;
+	int		l;
+	int		width;
+	char	*str;
 
 	l = 0;
 	while (ft_isdigit(str_width[l]))
 		l++;
 	*i += l;
-	return (ft_atoi(ft_strndup(str_width, l)));
+	str = ft_strndup(str_width, l);
+	width = ft_atoi(str);
+	ft_strdel(&str);
+	return (width);
 }
 
 int		parse_precision(char *str_precision, int *i)
 {
-	int l;
+	int		l;
+	int		precision;
+	char	*str;
 
 	l = 1;
 	while (is_precision(str_precision[l]))
 		l++;
 	*i += l;
-	return (ft_atoi(ft_strndup(str_precision + 1, l)));
+	str = ft_strndup(str_precision + 1, l);
+	precision = ft_atoi(str);
+	ft_strdel(&str);
+	return (precision);
 }
 
 char	*parse_size(char *str_size, int *i)
