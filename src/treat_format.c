@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/27 16:05:38 by bboucher          #+#    #+#             */
-/*   Updated: 2019/01/31 14:05:37 by bclaudio         ###   ########.fr       */
+/*   Updated: 2019/02/02 15:13:18 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int	treat_format(const char *format, va_list args)
 {
-	int	len;
+	int		len;
 	size_t	i;
-	int	tmp;
+	int		tmp;
 
 	len = 0;
 	i = 0;

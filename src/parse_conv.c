@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/27 16:20:08 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/01 14:34:56 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/02 15:06:38 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,6 @@ int		parse_conv(char *conv, va_list args)
 	if (is_size(conv[i]))
 		data->size = parse_size(conv + i, &i);
 	data->type = conv[i];
+	ft_strdel(&conv);
 	return (convert(data, args));
 }
