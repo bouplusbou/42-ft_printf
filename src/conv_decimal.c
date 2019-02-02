@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 19:11:28 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/02 10:53:04 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/02 11:40:58 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ long long int	get_size_decimal(t_struct data, va_list list)
 		arg = va_arg(list, long long int);
 	else if (ft_strstr(data.size, "l"))
 		arg = va_arg(list, long int);
+	else if (ft_strstr(data.size, "h") && !ft_strstr(data.size, "hh"))
+		arg = (short int)va_arg(list, int);
 	else if (ft_strstr(data.size, "hh"))
 		arg = (signed char)va_arg(list, int);
-	else if (ft_strstr(data.size, "h"))
-		arg = (short int)va_arg(list, int);
 	return (arg);
 }
 
@@ -48,7 +48,7 @@ char					*concat_decimal(t_struct data, long long int arg)
 	char	*decimal;
 	int		decimal_size;
 
-	if (!(decimal = ft_lltoa_base(arg < 0 ? -arg : arg, "0123456789"))) // if malloc decimal didn't work
+	if (!(decimal = ft_ulltoa_base(arg < 0 ? -arg : arg, "0123456789"))) // if malloc decimal didn't work
 		return (NULL);
 	decimal_size = ft_strlen(decimal);
 	concat_size = decimal_size;

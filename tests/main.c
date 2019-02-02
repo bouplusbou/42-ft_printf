@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 14:00:10 by bclaudio          #+#    #+#             */
-/*   Updated: 2019/02/02 10:45:42 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/02 11:39:22 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@
 
 int main(int argc, char **argv)
 {
-	ft_printf("%hhd|\n", 128);//                       -> "-128"
-	ft_printf("%hhd|\n", -129);//                      -> "127"
 	if (argc != 2)
 		printf("Usage parameter:\n-c --> Char and none.\n-s --> String.\n-f --> Float.\n-d --> Decimal.\n-p --> Pointer.\n-o --> Octal.\n-x --> Hexa.\n-u --> Unsigned.\n");
 	else
