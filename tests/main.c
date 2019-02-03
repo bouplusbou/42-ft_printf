@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 14:00:10 by bclaudio          #+#    #+#             */
-/*   Updated: 2019/02/03 12:47:46 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/03 15:46:22 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 int main(int argc, char **argv)
 {
 	double nb;
-	nb = 123.456;
-	ft_printf("%-016f|\n", nb);
-	ft_printf("%016f|\n", nb);
+	nb = -12547.48;
+	printf(" 7 precision + hash:%#.0f$\n", nb);
+	ft_printf(" 7 precision + hash:%#.0f$\n", nb);
 	// printf("Real printf:%-016f|\n", nb);
 
 		//Precision : chiffre apres la virgule
