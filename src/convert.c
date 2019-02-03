@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 14:08:38 by bclaudio          #+#    #+#             */
-/*   Updated: 2019/02/02 20:10:10 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/03 11:12:51 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,6 @@ int	convert(t_struct *data, va_list list)
 	if (data->type == 'u')
 		return (0); // return unsigned decimal conversion fonction call
 	if (data->type == 'f')
-		return (0); // return float conversion fonction call
+		size_printed = conv_float(data, list); // return float conversion fonction call
 	return (size_printed);
 }

@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/09 13:07:20 by bclaudio          #+#    #+#             */
-/*   Updated: 2019/02/02 19:56:15 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/03 12:36:52 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,5 +102,6 @@ char			*ft_ultoa_base(unsigned long nbr, const char *basestr);
 char			*ft_lltoa_base(long long nbr, const char *basestr);
 char			*ft_ulltoa_base(unsigned long long nbr, const char *basestr);
 int				ft_get_char_index(char c, char *str);
+long long		ft_power(int nb, int power);
 
 #endif

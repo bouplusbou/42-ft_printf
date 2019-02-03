@@ -130,7 +130,8 @@ LIBSRC = ft_strlen.c \
 	  ft_ultoa_base.c \
 	  ft_lltoa_base.c \
 	  ft_ulltoa_base.c \
-	  ft_get_char_index.c
+	  ft_get_char_index.c \
+	  ft_power.c
 
 	##### EXEC SOURCE #####
 EXSRCS = $(addprefix $(EXPATH), $(EXSRC))
@@ -160,12 +161,6 @@ ex : all
 	@$(CC) -c $(FLAGS) $(INC) $(EXSRCS) 
 	@$(CC) $(FLAGS) $(INC) $(EXOBJ) $(NAME) -o $(EXNAME)
 	@echo "$(BLUE)[$(RED)$(EXNAME)$(BLUE)] | Compilation$(WHITE)							$(OK)"
-	
-testc : ex
-	@./$(EXNAME) c
-
-testo : ex
-	@./$(EXNAME) o
 
 re : fclean all
 
