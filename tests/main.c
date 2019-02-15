@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 14:00:10 by bclaudio          #+#    #+#             */
-/*   Updated: 2019/02/02 11:39:22 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/15 17:45:01 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,36 @@
 
 int main(int argc, char **argv)
 {
-	if (argc != 2)
-		printf("Usage parameter:\n-c --> Char and none.\n-s --> String.\n-f --> Float.\n-d --> Decimal.\n-p --> Pointer.\n-o --> Octal.\n-x --> Hexa.\n-u --> Unsigned.\n");
-	else
-	{
-		if (argv[1][0] == 'c')
-			test_char_and_none();
-		if (argv[1][0] == 'o')
-			test_octal();
-	}
+	int pos = 12345;
+	int neg = -12345;
+
+	(void)argc;
+	(void)argv;
+	ft_printf("%010d|\n", 42);
+	printf("%010d|\n", 42);
+	ft_printf("%010.5d|\n", 42);
+	printf("%010.5d|\n", 42);
+	ft_printf("%010.d|\n", 42);
+	printf("%010.d|\n", 42);
+	// ft_printf("%5d\n", -42);
+	// ft_printf("%-5d\n", -42);
+	// ft_printf("%-05d\n", -42);
+	// printf("%+ d|\n", pos);
+	// // printf("%+ d|\n", neg);
+	// printf("%0+d|\n", pos);
+	// printf("%0+d|\n", neg);
+	// printf("%0 d|\n", pos);
+	// printf("%0 d|\n", neg);
+	// printf("%0d|\n", pos);
+	// printf("%0d|\n", neg);
+	// printf("%010d|\n", pos);
+	// printf("%010d|\n", neg);
+	// printf("%- d|\n", pos);
+	// printf("%- d|\n", neg);
+	// printf("% d|\n", pos);
+	// printf("% d|\n", neg);
+	// printf("%+-d|\n", pos);
+	// printf("%+-d|\n", neg);
+
 	return (0);
 }

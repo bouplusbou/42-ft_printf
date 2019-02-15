@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/27 16:06:29 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/01 19:11:06 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/15 15:08:44 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ typedef struct  s_struct
     int     precision;
     char    *size;
     char    type;
+	char	*base;
+	char	sign;
 }               t_struct;
 
 int     ft_printf(const char *format, ...);
