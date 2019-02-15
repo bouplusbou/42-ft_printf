@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/27 16:06:29 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/15 15:08:44 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/15 18:24:14 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ int		is_size(char c);
 int		is_type(char c);
 int		is_conv(char c);
 int		convert(t_struct *data, va_list list);
-int		conv_hexa(t_struct *data, va_list list);
 int		conv_decimal(t_struct *data, va_list list);
+int		conv_oux(t_struct *data, va_list list);
 void	delete_struct(t_struct *data);
 
 // Test functions (TO REMOVE)

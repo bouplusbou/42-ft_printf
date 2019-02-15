@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 19:11:28 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/15 17:46:46 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/15 18:31:05 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ long long int	get_arg_decimal(t_struct data, va_list list)
 ** depending on '#' & '0' flags and precision
 */
 
-char	find_sign(t_struct data, int pos) // find the sign between ' ', +, - or null
+char	find_sign_decimal(t_struct data, int pos) // find the sign between ' ', +, - or null
 {
 	if (pos)
 	{
@@ -115,7 +115,7 @@ int						conv_decimal(t_struct *data, va_list list)
 	long long int	arg;
 
 	arg = get_arg_decimal(*data, list); // Recupere la valeur caste avec le size donnee
-	data->sign = find_sign(*data, arg >= 0 ? 1 : 0); // Defini le signe (ou space) si besoin. 0 si pas de signe
+	data->sign = find_sign_decimal(*data, arg >= 0 ? 1 : 0); // Defini le signe (ou space) si besoin. 0 si pas de signe
 	if (!(small_res = small_res_decimal(*data, arg))) // Converti le valeur en brut (Sans prendre en compte la size (petit resultat))
 		return (0);
 	if (!ft_strcmp(small_res, "0") && data->precision == 0) // if input is '0' with a precision of 0, write nothing at all
