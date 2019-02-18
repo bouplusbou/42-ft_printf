@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_conv.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bclaudios <bclaudios@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/27 16:20:08 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/15 18:14:47 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/18 18:04:37 by bclaudios        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ char *parse_size(char *str_size, int *i)
 
 char *get_base(char type)
 {
-	if (type == 'd' || type == 'i')
+	if (type == 'd' || type == 'i' || type == 'u')
 		return ("0123456789");
 	if (type == 'x')
 		return ("0123456789abcdef");
