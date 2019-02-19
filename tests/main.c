@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 14:00:10 by bclaudio          #+#    #+#             */
-/*   Updated: 2019/02/19 13:56:23 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/19 16:32:04 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,75 +16,108 @@
 static void test_float1()
 {
         double          nb;
-        nb = -12547.58;
+        nb = -12547.512345;
 
                 printf("% f$\n", nb);
 				ft_printf("% f$\n", nb);
-                printf("%+f$\n", nb);
+                printf("\n");
+				printf("%+f$\n", nb);
 				ft_printf("%+f$\n", nb);
-                printf("%#f$\n", nb);
+                printf("\n");
+				printf("%#f$\n", nb);
 				ft_printf("%#f$\n", nb);
-                printf("%.2f$\n", nb);
+                printf("\n");
+				printf("%.2f$\n", nb);
 				ft_printf("%.2f$\n", nb);
-                printf("%.14f$\n", nb);
+                printf("\n");
+				printf("%.14f$\n", nb);
 				ft_printf("%.14f$\n", nb);
-                printf("%#.0f$\n", nb);
+                printf("\n");
+				printf("%#.0f$\n", nb);
 				ft_printf("%#.0f$\n", nb);
-                printf("% .5f$\n", nb);
+                printf("\n");
+				printf("% .5f$\n", nb);
 				ft_printf("% .5f$\n", nb);
-                printf("%# .0f$\n", nb);
+                printf("\n");
+				printf("%# .0f$\n", nb);
 				ft_printf("%# .0f$\n", nb);
-                printf("% #.0f$\n", nb);
+                printf("\n");
+				printf("% #.0f$\n", nb);
 				ft_printf("% #.0f$\n", nb);
-                printf("%+.5f$\n", nb);
+                printf("\n");
+				printf("%+.5f$\n", nb);
 				ft_printf("%+.5f$\n", nb);
-                printf("%+.0f$\n", nb);
+                printf("\n");
+				printf("%+.0f$\n", nb);
 				ft_printf("%+.0f$\n", nb);
-                printf("%#+.0f$\n", nb);
+                printf("\n");
+				printf("%#+.0f$\n", nb);
 				ft_printf("%#+.0f$\n", nb);
-                printf("%0.5f$\n", nb);
+                printf("\n");
+				printf("%0.5f$\n", nb);
 				ft_printf("%0.5f$\n", nb);
-                printf("%-.5f$\n", nb);
+                printf("\n");
+				printf("%-.5f$\n", nb);
 				ft_printf("%-.5f$\n", nb);
-                printf("%5f$\n", nb);
+                printf("\n");
+				printf("%5f$\n", nb);
 				ft_printf("%5f$\n", nb);
-                printf("% 5f$\n", nb);
+                printf("\n");
+				printf("% 5f$\n", nb);
 				ft_printf("% 5f$\n", nb);
-                printf("%+5f$\n", nb);
+                printf("\n");
+				printf("%+5f$\n", nb);
 				ft_printf("%+5f$\n", nb);
-                printf("%# 5f$\n", nb);
+                printf("\n");
+				printf("%# 5f$\n", nb);
 				ft_printf("%# 5f$\n", nb);
-                printf("%#+5f$\n", nb);
+                printf("\n");
+				printf("%#+5f$\n", nb);
 				ft_printf("%#+5f$\n", nb);
-                printf("%-5f$\n", nb);
+                printf("\n");
+				printf("%-5f$\n", nb);
 				ft_printf("%-5f$\n", nb);
-                printf("%05f$\n", nb);
+                printf("\n");
+				printf("%05f$\n", nb);
 				ft_printf("%05f$\n", nb);
-                printf("%+05f$\n", nb);
+                printf("\n");
+				printf("%+05f$\n", nb);
 				ft_printf("%+05f$\n", nb);
-                printf("%0+5f$\n", nb);
+                printf("\n");
+				printf("%0+5f$\n", nb);
 				ft_printf("%0+5f$\n", nb);
-                printf("%05.3f$\n", nb);
+                printf("\n");
+				printf("%05.3f$\n", nb);
 				ft_printf("%05.3f$\n", nb);
-                printf("%0#5.0f$\n", nb);
+                printf("\n");
+				printf("%0#5.0f$\n", nb);
 				ft_printf("%0#5.0f$\n", nb);
-                printf("%-5.3f$\n", nb);
+                printf("\n");
+				printf("%-5.3f$\n", nb);
 				ft_printf("%-5.3f$\n", nb);
-                printf("%-#5.0f$\n", nb);
+                printf("\n");
+				printf("%-#5.0f$\n", nb);
 				ft_printf("%-#5.0f$\n", nb);
-                printf("%+05.3f$\n", nb);
+                printf("\n");
+				printf("%+05.3f$\n", nb);
 				ft_printf("%+05.3f$\n", nb);
-                printf("%0+#5.0f$\n", nb);
+                printf("\n");
+				printf("%0+#5.0f$\n", nb);
 				ft_printf("%0+#5.0f$\n", nb);
-                printf("%0 5.3f$\n", nb);
+                printf("\n");
+				printf("%0 5.3f$\n", nb);
 				ft_printf("%0 5.3f$\n", nb);
-                printf("% 05.3f$\n", nb);
+                printf("\n");
+				printf("% 05.3f$\n", nb);
 				ft_printf("% 05.3f$\n", nb);
-                printf("%#0 5.0f$\n", nb);
+                printf("\n");
+				printf("%#0 5.0f$\n", nb);
 				ft_printf("%#0 5.0f$\n", nb);
-                printf("%-+5.3f$\n", nb);
+                printf("\n");
+				printf("%-+5.3f$\n", nb);
 				ft_printf("%-+5.3f$\n", nb);
-                printf("%-#+5.0f$\n", nb);
+                printf("\n");
+				printf("%-#+5.0f$\n", nb);
 				ft_printf("%-#+5.0f$\n", nb);
 }
 
@@ -204,71 +237,104 @@ static void test_float3()
 
                 printf("% f$\n", nb);
 				ft_printf("% f$\n", nb);
-                printf("%+f$\n", nb);
+                printf("\n");
+				printf("%+f$\n", nb);
 				ft_printf("%+f$\n", nb);
-                printf("%#f$\n", nb);
+                printf("\n");
+				printf("%#f$\n", nb);
 				ft_printf("%#f$\n", nb);
-                printf("%.2f$\n", nb);
+                printf("\n");
+				printf("%.2f$\n", nb);
 				ft_printf("%.2f$\n", nb);
-                printf("%.14f$\n", nb);
-				ft_printf("%.14f$\n", nb);
-                printf("%#.0f$\n", nb);
+                printf("\n");
+				printf("%.20f$\n", nb);
+				ft_printf("%.20f$\n", nb);
+                printf("\n");
+				printf("%#.0f$\n", nb);
 				ft_printf("%#.0f$\n", nb);
-                printf("% .5f$\n", nb);
+                printf("\n");
+				printf("% .5f$\n", nb);
 				ft_printf("% .5f$\n", nb);
-                printf("%# .0f$\n", nb);
+                printf("\n");
+				printf("%# .0f$\n", nb);
 				ft_printf("%# .0f$\n", nb);
-                printf("% #.0f$\n", nb);
+                printf("\n");
+				printf("% #.0f$\n", nb);
 				ft_printf("% #.0f$\n", nb);
-                printf("%+.5f$\n", nb);
+                printf("\n");
+				printf("%+.5f$\n", nb);
 				ft_printf("%+.5f$\n", nb);
-                printf("%+.0f$\n", nb);
+                printf("\n");
+				printf("%+.0f$\n", nb);
 				ft_printf("%+.0f$\n", nb);
-                printf("%#+.0f$\n", nb);
+                printf("\n");
+				printf("%#+.0f$\n", nb);
 				ft_printf("%#+.0f$\n", nb);
-                printf("%0.5f$\n", nb);
+                printf("\n");
+				printf("%0.5f$\n", nb);
 				ft_printf("%0.5f$\n", nb);
-                printf("%-.5f$\n", nb);
+                printf("\n");
+				printf("%-.5f$\n", nb);
 				ft_printf("%-.5f$\n", nb);
-                printf("%5f$\n", nb);
+                printf("\n");
+				printf("%5f$\n", nb);
 				ft_printf("%5f$\n", nb);
-                printf("% 5f$\n", nb);
+                printf("\n");
+				printf("% 5f$\n", nb);
 				ft_printf("% 5f$\n", nb);
-                printf("%+5f$\n", nb);
+                printf("\n");
+				printf("%+5f$\n", nb);
 				ft_printf("%+5f$\n", nb);
-                printf("%# 5f$\n", nb);
+                printf("\n");
+				printf("%# 5f$\n", nb);
 				ft_printf("%# 5f$\n", nb);
-                printf("%#+5f$\n", nb);
+                printf("\n");
+				printf("%#+5f$\n", nb);
 				ft_printf("%#+5f$\n", nb);
-                printf("%-5f$\n", nb);
+                printf("\n");
+				printf("%-5f$\n", nb);
 				ft_printf("%-5f$\n", nb);
-                printf("%05f$\n", nb);
+                printf("\n");
+				printf("%05f$\n", nb);
 				ft_printf("%05f$\n", nb);
-                printf("%+05f$\n", nb);
+                printf("\n");
+				printf("%+05f$\n", nb);
 				ft_printf("%+05f$\n", nb);
-                printf("%0+5f$\n", nb);
+                printf("\n");
+				printf("%0+5f$\n", nb);
 				ft_printf("%0+5f$\n", nb);
-                printf("%05.3f$\n", nb);
+                printf("\n");
+				printf("%05.3f$\n", nb);
 				ft_printf("%05.3f$\n", nb);
-                printf("%0#5.0f$\n", nb);
+                printf("\n");
+				printf("%0#5.0f$\n", nb);
 				ft_printf("%0#5.0f$\n", nb);
-                printf("%-5.3f$\n", nb);
+                printf("\n");
+				printf("%-5.3f$\n", nb);
 				ft_printf("%-5.3f$\n", nb);
-                printf("%-#5.0f$\n", nb);
+                printf("\n");
+				printf("%-#5.0f$\n", nb);
 				ft_printf("%-#5.0f$\n", nb);
-                printf("%+05.3f$\n", nb);
+                printf("\n");
+				printf("%+05.3f$\n", nb);
 				ft_printf("%+05.3f$\n", nb);
-                printf("%0+#5.0f$\n", nb);
+                printf("\n");
+				printf("%0+#5.0f$\n", nb);
 				ft_printf("%0+#5.0f$\n", nb);
-                printf("%0 5.3f$\n", nb);
+                printf("\n");
+				printf("%0 5.3f$\n", nb);
 				ft_printf("%0 5.3f$\n", nb);
-                printf("% 05.3f$\n", nb);
+                printf("\n");
+				printf("% 05.3f$\n", nb);
 				ft_printf("% 05.3f$\n", nb);
-                printf("%#0 5.0f$\n", nb);
+                printf("\n");
+				printf("%#0 5.0f$\n", nb);
 				ft_printf("%#0 5.0f$\n", nb);
-                printf("%-+5.3f$\n", nb);
+                printf("\n");
+				printf("%-+5.3f$\n", nb);
 				ft_printf("%-+5.3f$\n", nb);
-                printf("%-#+5.0f$\n", nb);
+                printf("\n");
+				printf("%-#+5.0f$\n", nb);
 				ft_printf("%-#+5.0f$\n", nb);
 }
 
@@ -568,11 +634,11 @@ static void test_float7()
 void test_ft_float()
 {
         // test_float1();
-        test_float2();
-        // test_float3();`
-        // test_float4();`
-        // test_float5();`
-        // test_float6();`
+        // test_float2();
+        test_float3();
+        // test_float4();
+        // test_float5();
+        // test_float6();
         // test_float7();
 }
 
@@ -580,12 +646,20 @@ int main(int argc, char **argv)
 {
 	(void)argc;
 	(void)argv;
-	double nb = 123.456;
-	double nb2 = -123.456;
-
+	long double nb = 1.23456789;
+	long double nb2 = 152.4546;
+// 
 	// test_ft_float();
-	ft_printf("%f", nb);
-	ft_printf("%f", nb2);
+	printf("Printf:%Lf$\n", nb);
+	ft_printf("Printf:%Lf$\n", nb);
+	printf("Printf:%Lf$\n", nb2);
+	ft_printf("Printf:%Lf$\n", nb2);
+
+	// printf("0.1 + 0.2 = %.10f\n", 0.1 + 0.2);
+	// long double test = ft_power(10, 15);
+	// printf("Muti:%Lf\n", test);
+	// ft_printf("%f", nb);
+	// ft_printf("%f", nb2);
 	// nb = -12547.48;
 	// printf(" 7 precision + hash:%#.0f$\n", nb);
 		// ft_printf(" 7 precision + hash:%#.0f$\n", nb);
