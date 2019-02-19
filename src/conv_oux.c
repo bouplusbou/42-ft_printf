@@ -23,7 +23,7 @@ unsigned long long int get_arg_oux(t_struct data, va_list list)
 ** depending on '#' & '0' flags and precision
 */
 
-char find_sign(t_struct data, unsigned long long int value)
+static char find_sign(t_struct data, unsigned long long int value)
 {
 
 	if (ft_strchr(data.flags, '#') && value != 0)
