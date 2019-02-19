@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 08:08:10 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/01 16:54:15 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/02 16:26:25 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 ** and put the result in the biggest unsigned type (unsigned long long int)
 */
 
-unsigned long long int	get_size(t_struct data, va_list list)
+unsigned long long int	get_size_hexa(t_struct data, va_list list)
 {
 	unsigned long long int	arg;
 
@@ -29,7 +29,7 @@ unsigned long long int	get_size(t_struct data, va_list list)
 		arg = va_arg(list, unsigned long long int);
 	else if (ft_strstr(data.size, "l"))
 		arg = va_arg(list, unsigned long int);
-	else if (ft_strstr(data.size, "h"))
+	else if (ft_strstr(data.size, "h") && !ft_strstr(data.size, "hh"))
 		arg = (unsigned short int)va_arg(list, unsigned int);
 	else if (ft_strstr(data.size, "hh"))
 		arg = (unsigned char)va_arg(list, unsigned int);
@@ -55,10 +55,9 @@ char					*concat_hexa(t_struct data, unsigned long long int arg)
 	if (!hexa) // if malloc hexa didn't work
 		return (NULL);
 	hexa_size = ft_strlen(hexa);
+	concat_size = hexa_size;
 	if (ft_strchr(data.flags, '#') && ft_strcmp(hexa, "0")) // add enough space for '0x' if needed
-		concat_size = hexa_size + 2;
-	else
-		concat_size = hexa_size;
+		concat_size += 2;
 	if (data.precision > (int)hexa_size) // add enough space for '0's if needed (if precision is longer than input)
 		concat_size += data.precision - hexa_size;
 	if (!(concat = ft_strnew(concat_size)))
@@ -74,24 +73,23 @@ char					*concat_hexa(t_struct data, unsigned long long int arg)
 ** place the concatenated form of hexa
 */
 
-char					*create_res(t_struct data, int result_size, char *concat)
+char					*create_res_hexa(t_struct data, int res_s, char *concat)
 {
 	char	*result;
 	int		concat_size;
 
-	if (!result_size || !(result = ft_strnew(result_size))) // if result_size is 0 return NULL directly
+	if (!res_s || !(result = ft_strnew(res_s))) // if res_s is 0 return NULL directly
 		return (NULL);
 	if (ft_strchr(data.flags, '0') && data.precision < 0
 			&& !ft_strchr(data.flags, '-')) // flag '0' without precision and no flag '-' => fill everything with '0'
-		ft_memset(result, '0', result_size);
+		ft_memset(result, '0', res_s);
 	else
-		ft_memset(result, ' ', result_size); // else fill with spaces
+		ft_memset(result, ' ', res_s); // else fill with spaces
 	concat_size = ft_strlen(concat);
 	if (ft_strchr(data.flags, '-')) // put to the left if flag '-'
 		ft_memcpy(result, concat, concat_size);
 	else
-		ft_memcpy(result + (result_size - concat_size), concat, concat_size); // put to the right otherwise
-	// if (ft_strchr(data.flags, '#') && ft_strcmp(concat, "0")) // add the 'x' or 'X' to the second '0' char with flag '#'
+		ft_memcpy(result + (res_s - concat_size), concat, concat_size); // put to the right otherwise
 	if (ft_strchr(data.flags, '#') && ft_strcmp(concat, "0")) // add the 'x' or 'X' to the second '0' char with flag '#'
 		result[ft_get_char_index('0', result) + 1] = data.type;
 	return (result);
@@ -108,7 +106,7 @@ int						conv_hexa(t_struct *data, va_list list)
 	char	*result;
 	char	*concat;
 
-	if (!(concat = concat_hexa(*data, get_size(*data, list)))) // concatenate '0x' + '0's + input translated in hexa
+	if (!(concat = concat_hexa(*data, get_size_hexa(*data, list)))) // concatenate '0x' + '0's + input translated in hexa
 		return (0);
 	if (!ft_strcmp(concat, "0") && data->precision == 0) // if input is '0' with a precision of 0, write nothing at all
 		concat[0] = '\0';
@@ -116,7 +114,7 @@ int						conv_hexa(t_struct *data, va_list list)
 		result_size = data->width;
 	else
 		result_size = ft_strlen(concat);
-	if (!(result = create_res(*data, result_size, concat))) // create the final result
+	if (!(result = create_res_hexa(*data, result_size, concat))) // create the final result
 		return (0);
 	ft_putstr(result); // print result
 	ft_strdel(&result); // clean everything: result, concat, struct

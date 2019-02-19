@@ -1,36 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   treat_format.c                                     :+:      :+:    :+:   */
+/*   ft_power.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/27 16:05:38 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/02 15:13:18 by bboucher         ###   ########.fr       */
+/*   Created: 2019/02/03 12:33:04 by bboucher          #+#    #+#             */
+/*   Updated: 2019/02/03 12:40:42 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-
-int	treat_format(const char *format, va_list args)
+long long	ft_power(int nb, int power)
 {
-	int		len;
-	size_t	i;
-	int		tmp;
+	long long	result;
+	int			count;
 
-	len = 0;
-	i = 0;
-	tmp = 0;
-	while (i < ft_strlen(format))
+	result = nb;
+	count = 1;
+	while (count < power)
 	{
-		if (format[i] == '%')
-		{
-			tmp = 0;
-			if (0 < (tmp = treat_conv(((char*)format + i), &i, &len, args)))
-				len += tmp;
-		}
-		else
-			printf_write(format[i++], &len);
+		result *= nb;;
+		count++;
 	}
-	return (len);
+	return (result);
 }

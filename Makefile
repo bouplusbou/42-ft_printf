@@ -54,6 +54,9 @@ SRC = checks.c \
       convert.c \
 	  conv_oux.c \
 	  conv_decimal.c \
+	  conv_hexa.c \
+	  conv_perc.c \
+	  conv_float.c \
 	  delete_struct.c
 
 	##### Libft Sources #####
@@ -129,7 +132,8 @@ LIBSRC = ft_strlen.c \
 	  ft_ultoa_base.c \
 	  ft_lltoa_base.c \
 	  ft_ulltoa_base.c \
-	  ft_get_char_index.c
+	  ft_get_char_index.c \
+	  ft_power.c
 
 	##### EXEC SOURCE #####
 EXSRCS = $(addprefix $(EXPATH), $(EXSRC))
@@ -155,12 +159,6 @@ ex : all
 	@$(CC) -c $(INC) $(EXSRCS) 
 	@$(CC) $(INC) $(EXOBJ) $(NAME) -o $(EXNAME)
 	@echo "$(BLUE)[$(RED)$(EXNAME)$(BLUE)] | Compilation$(WHITE)							$(OK)"
-	
-testc : ex
-	@./$(EXNAME) c
-
-testo : ex
-	@./$(EXNAME) o
 
 re : fclean all
 
