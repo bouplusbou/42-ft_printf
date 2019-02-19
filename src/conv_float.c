@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/02 19:17:32 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/03 15:50:37 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/19 12:08:36 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 ** and put the result in the biggest type (long long int)
 */
 
-long double get_size_float(t_struct data, va_list list)
+long double get_arg_float(t_struct data, va_list list)
 {
 	long double arg;
 
@@ -31,11 +31,11 @@ long double get_size_float(t_struct data, va_list list)
 }
 
 /*
-** concatenate a string with '0x' + '000..' + translation in 'hexa'
+** small_resenate a string with '0x' + '000..' + translation in 'hexa'
 ** depending on '#' & '0' flags and precision
 */
 
-char *concat_float(t_struct data, long double arg)
+char *small_res_float(t_struct data, long double arg)
 {
 	char *result;
 	char *tmpstr;
@@ -71,13 +71,13 @@ char *concat_float(t_struct data, long double arg)
 
 /*
 ** create the final result:
-** place the concatenated form of hexa
+** place the small_resenated form of hexa
 */
 
-char *create_res_float(t_struct data, int result_size, char *concat, int neg)
+char *create_res_float(t_struct data, int result_len, char *small_res, int neg)
 {
 	char *result;
-	int concat_size;
+	int small_res_size;
 	int i;
 	char	c;
 
@@ -85,16 +85,16 @@ char *create_res_float(t_struct data, int result_size, char *concat, int neg)
 	c = ' ';
 	if (ft_strchr(data.flags, '+') || neg || (ft_strchr(data.flags, ' ') && neg))
 		c = neg ? '-' : '+';
-	if (!result_size || !(result = ft_strnew(result_size))) // if result_size is 0 return NULL directly
+	if (!result_len || !(result = ft_strnew(result_len))) // if result_len is 0 return NULL directly
 		return (NULL);
-	ft_memset(result, ' ', result_size);												 // else fill with spaces
+	ft_memset(result, ' ', result_len);												 // else fill with spaces
 	if (ft_strchr(data.flags, '0') && data.precision < 0 && !ft_strchr(data.flags, '-')) // flag '0' without precision and no flag '-' => fill everything with '0'
-		ft_memset(result, '0', result_size);
-	concat_size = ft_strlen(concat);
+		ft_memset(result, '0', result_len);
+	small_res_size = ft_strlen(small_res);
 	if (ft_strchr(data.flags, '-')) // put to the left if flag '-'
-		ft_memcpy(result, concat, concat_size);
+		ft_memcpy(result, small_res, small_res_size);
 	else
-		ft_memcpy(result + (result_size - concat_size), concat, concat_size); // put to the right otherwise
+		ft_memcpy(result + (result_len - small_res_size), small_res, small_res_size); // put to the right otherwise
 	if (neg || ft_strchr(data.flags, '+') || ft_strchr(data.flags, ' ')) // add the 'x' or 'X' to the second '0' char with flag '#'
 	{
 		while (!ft_isdigit(result[i]))
@@ -111,21 +111,21 @@ char *create_res_float(t_struct data, int result_size, char *concat, int neg)
 
 int conv_float(t_struct *data, va_list list)
 {
-	int result_size;
+	int result_len;
 	char *result;
-	char *concat;
+	char *small_res;
 	long double arg;
 
-	arg = get_size_float(*data, list);
-	if (!(concat = concat_float(*data, arg))) //
+	arg = get_arg_float(*data, list);
+	if (!(small_res = small_res_float(*data, arg))) //
 		return (0);
-	result_size = ft_strlen(concat);
-	result_size = data->width > result_size ? data->width : result_size;		   // choose the result's size: the longer between width and concat
-	if (!(result = create_res_float(*data, result_size, concat, arg < 0 ? 1 : 0))) // create the final result
+	result_len = ft_strlen(small_res);
+	result_len = data->width > result_len ? data->width : result_len;		   // choose the result's size: the longer between width and small_res
+	if (!(result = create_res_float(*data, result_len, small_res, arg < 0 ? 1 : 0))) // create the final result
 		return (0);
 	ft_putstr(result);  // print result
-	ft_strdel(&result); // clean everything: result, concat, struct
-	ft_strdel(&concat);
+	ft_strdel(&result); // clean everything: result, small_res, struct
+	ft_strdel(&small_res);
 	delete_struct(data);
 	return (100);
 }
