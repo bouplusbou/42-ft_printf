@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/27 16:06:29 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/21 16:53:00 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/21 17:03:05 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int		conv_id(t_struct *data, va_list list);
 int		conv_p(t_struct *data, va_list list);
 int		conv_oux(t_struct *data, va_list list);
 int     conv_cs(t_struct *data, va_list list);
+int		conv_float(t_struct *data, va_list list);
 void	delete_struct(t_struct *data);
 
 #endif

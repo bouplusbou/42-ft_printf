@@ -1,18 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_power.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/31 14:00:10 by bclaudio          #+#    #+#             */
-/*   Updated: 2019/02/21 16:57:41 by bboucher         ###   ########.fr       */
+/*   Created: 2019/02/03 12:33:04 by bboucher          #+#    #+#             */
+/*   Updated: 2019/02/21 16:59:47 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-
-int main()
+long long	ft_power(int nb, int power)
 {
-	return (0);
+	long long	result;
+	int			count;
+
+	result = nb;
+	count = 1;
+	while (count < power)
+	{
+		result *= nb;;
+		count++;
+	}
+	return (result);
 }
