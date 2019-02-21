@@ -59,5 +59,5 @@ int     conv_cs(t_struct *data, va_list list)
 	small_res = small_res_cs(*data, arg);
 	result = create_res_cs(*data, small_res);
 	ft_putstr(result);
-	return (0);
+	return (ft_strlen(result));
 }
