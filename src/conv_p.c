@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   conv_addr.c                                        :+:      :+:    :+:   */
+/*   conv_p.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/02 11:57:57 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/02 13:30:02 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/21 16:41:35 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 ** depending on '#' & '0' flags and precision
 */
 
-char					*concat_addr(unsigned long arg)
+static char					*concat_addr(unsigned long arg)
 {
 	char	*concat;
 	int		concat_size;
@@ -42,7 +42,7 @@ char					*concat_addr(unsigned long arg)
 ** place the concatenated form of addr
 */
 
-char					*create_res_addr(t_struct data, char *concat)
+static char					*create_res_addr(t_struct data, char *concat)
 {
 	char	*result;
 	int		result_size;
@@ -64,7 +64,7 @@ char					*create_res_addr(t_struct data, char *concat)
 ** print the result and return the size of the result
 */
 
-int						conv_addr(t_struct *data, va_list list)
+int						conv_p(t_struct *data, va_list list)
 {
 	int		result_size;
 	char	*result;

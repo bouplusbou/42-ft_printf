@@ -1,24 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   conv_decimal.c                                     :+:      :+:    :+:   */
+/*   conv_id.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/01 19:11:28 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/15 17:46:46 by bboucher         ###   ########.fr       */
+/*   Created: 2019/02/21 16:38:32 by bboucher          #+#    #+#             */
+/*   Updated: 2019/02/21 16:40:51 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-/*
-** get the right size directly in va_arg (if size > int)
-** OR cast (if size < int)
-** and put the result in the biggest type (long long int)
-*/
-
-long long int	get_arg_decimal(t_struct data, va_list list)
+static long long int	get_arg_decimal(t_struct data, va_list list)
 {
 	long long int	arg;
 
@@ -36,12 +30,7 @@ long long int	get_arg_decimal(t_struct data, va_list list)
 	return (arg);
 }
 
-/*
-** small_resenate a string with '0x' + '000..' + translation in 'hexa'
-** depending on '#' & '0' flags and precision
-*/
-
-char	find_sign(t_struct data, int pos) // find the sign between ' ', +, - or null
+static char	find_sign(t_struct data, int pos)
 {
 	if (pos)
 	{
@@ -56,7 +45,7 @@ char	find_sign(t_struct data, int pos) // find the sign between ' ', +, - or nul
 }
 
 
-char					*small_res_decimal(t_struct data, long long int arg)
+static char					*small_res_decimal(t_struct data, long long int arg)
 {
 	char	*small_res;
 	int		small_res_len;
@@ -77,12 +66,7 @@ char					*small_res_decimal(t_struct data, long long int arg)
 	return (small_res);
 }
 
-/*
-** create the final result:
-** place the small_resenated form of hexa
-*/
-
-char					*create_res_decimal(t_struct data, int result_len, char *small_res)
+static char					*create_res_decimal(t_struct data, int result_len, char *small_res)
 {
 	char	*result;
 	int		small_res_len;
@@ -102,12 +86,7 @@ char					*create_res_decimal(t_struct data, int result_len, char *small_res)
 	return (result);
 }
 
-/*
-** convert into decimal, do all the transformations,
-** print the result and return the size of the result
-*/
-
-int						conv_decimal(t_struct *data, va_list list)
+int						conv_id(t_struct *data, va_list list)
 {
 	int				result_len;
 	char			*result;

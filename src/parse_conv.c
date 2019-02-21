@@ -6,13 +6,13 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/27 16:20:08 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/21 16:28:06 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/21 16:32:23 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*parse_flags(char *str_flags, int *i)
+char *parse_flags(char *str_flags, int *i)
 {
 	int l;
 
@@ -23,7 +23,7 @@ char	*parse_flags(char *str_flags, int *i)
 	return (ft_strndup(str_flags, l));
 }
 
-int		parse_width(char *str_width, int *i)
+int parse_width(char *str_width, int *i)
 {
 	int		l;
 	int		width;
@@ -39,7 +39,7 @@ int		parse_width(char *str_width, int *i)
 	return (width);
 }
 
-int		parse_precision(char *str_precision, int *i)
+int parse_precision(char *str_precision, int *i)
 {
 	int		l;
 	int		precision;
@@ -55,9 +55,9 @@ int		parse_precision(char *str_precision, int *i)
 	return (precision);
 }
 
-char	*parse_size(char *str_size, int *i)
+char *parse_size(char *str_size, int *i)
 {
-	int	l;
+	int l;
 
 	l = 0;
 	while (is_size(str_size[l]))
@@ -66,20 +66,26 @@ char	*parse_size(char *str_size, int *i)
 	return (ft_strndup(str_size, l));
 }
 
-char	*get_base(char type)
+char *get_base(char type)
 {
-	if (type == 'p')
+	if (type == 'd' || type == 'i' || type == 'u')
+		return ("0123456789");
+	if (type == 'x' || type == 'p')
 		return ("0123456789abcdef");
+	if (type == 'X')
+		return ("0123456789ABCDEF");
+	if (type == 'o')
+		return ("01234567");
 	return ("0123456789");
 }
 
-int		parse_conv(char *conv, va_list args)
+int parse_conv(char *conv, va_list args)
 {
-	t_struct	*data;
-	int			i;
+	t_struct *data;
+	int i;
 
 	i = 1;
-	if (!(data = (t_struct*)malloc(sizeof(t_struct))))
+	if (!(data = (t_struct *)malloc(sizeof(t_struct))))
 		return (0);
 	data->flags = ft_strdup("X");
 	if (is_flag(conv[i]))
