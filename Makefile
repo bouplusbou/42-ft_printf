@@ -172,3 +172,5 @@ clean :
 fclean : clean
 	@rm -f $(NAME) $(EXNAME)
 	@echo "$(BLUE)[$(PROJECT)$(BLUE) && $(RED)$(EXNAME)$(BLUE)] | Full clean$(WHITE)					$(OK)"
+
+.PHONY: clean fclean
