@@ -99,7 +99,7 @@ char	*manage_precision(t_struct data, char *result)
 			else
 			{													//	Else if we're on the first int digit
 				result = ft_strjoin("1", result);							//	Adding 1 to the left of the result
-				last_i++;
+				last_i++;										//	Incrementing last digit index to keep matching the precision value
 			}
 		}
 		i--;
