@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bclaudios <bclaudios@student.42.fr>        +#+  +:+       +#+        */
+/*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 14:00:10 by bclaudio          #+#    #+#             */
-/*   Updated: 2019/02/21 04:54:11 by bclaudios        ###   ########.fr       */
+/*   Updated: 2019/02/21 11:25:47 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -325,38 +325,38 @@ int		main()
 
 	//	TEST "NAN" && "INF" PAS ENCORE IMPLEMENTER
 
-	// nb = 1.0/0.0;
+	nb = 1.0/0.0;
 	
-	// printf("\n===|%f$\n", nb);
-	// ft_printf(">>>|%f$\n", nb);
-	// printf("\n===|%12f$\n", nb);
-	// ft_printf(">>>|%12f$\n", nb);
-	// printf("\n===|%-12f$\n", nb);
-	// ft_printf(">>>|%-12f$\n", nb);
-	// printf("\n===|%5.9f$\n", nb);
-	// ft_printf(">>>|%5.9f$\n", nb);
-// 
-    // nb = -1.0/0.0;
+	printf("\n===|%f$\n", nb);
+	ft_printf(">>>|%f$\n", nb);
+	printf("\n===|%12f$\n", nb);
+	ft_printf(">>>|%12f$\n", nb);
+	printf("\n===|%-12f$\n", nb);
+	ft_printf(">>>|%-12f$\n", nb);
+	printf("\n===|%5.9f$\n", nb);
+	ft_printf(">>>|%5.9f$\n", nb);
+
+    nb = -1.0/0.0;
 	
-	// printf("\n===|%f$\n", nb);
-	// ft_printf(">>>|%f$\n", nb);
-	// printf("\n===|%12f$\n", nb);
-	// ft_printf(">>>|%12f$\n", nb);
-	// printf("\n===|%-12f$\n", nb);
-	// ft_printf(">>>|%-12f$\n", nb);
-	// printf("\n===|%5.9f$\n", nb);
-	// ft_printf(">>>|%5.9f$\n", nb);
-// 
-	// nb = 0.0/0.0;
+	printf("\n===|%f$\n", nb);
+	ft_printf(">>>|%f$\n", nb);
+	printf("\n===|%12f$\n", nb);
+	ft_printf(">>>|%12f$\n", nb);
+	printf("\n===|%-12f$\n", nb);
+	ft_printf(">>>|%-12f$\n", nb);
+	printf("\n===|%5.9f$\n", nb);
+	ft_printf(">>>|%5.9f$\n", nb);
+
+	nb = 0.0/0.0;
 	
-	// printf("\n===|%f$\n", nb);
-	// ft_printf(">>>|%f$\n", nb);
-	// printf("\n===|%12f$\n", nb);
-	// ft_printf(">>>|%12f$\n", nb);
-	// printf("\n===|%-12f$\n", nb);
-	// ft_printf(">>>|%-12f$\n", nb);
-	// printf("\n===|%5.9f$\n", nb);
-	// ft_printf(">>>|%5.9f$\n", nb);
+	printf("\n===|%f$\n", nb);
+	ft_printf(">>>|%f$\n", nb);
+	printf("\n===|%12f$\n", nb);
+	ft_printf(">>>|%12f$\n", nb);
+	printf("\n===|%-12f$\n", nb);
+	ft_printf(">>>|%-12f$\n", nb);
+	printf("\n===|%5.9f$\n", nb);
+	ft_printf(">>>|%5.9f$\n", nb);
 
 	return (0);
 }
@@ -801,4 +801,4 @@ $-1000.00000
 
 ===|-8965421.$
 >>>|-8965421.$
-/*
+*/

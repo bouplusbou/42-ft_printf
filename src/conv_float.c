@@ -12,12 +12,16 @@ long double get_arg_float(t_struct data, va_list list)
 	return (arg);
 }
 
-char	*formating_result(t_struct data, char *small_res)
+char	*formating_result(t_struct data, char *small_res, long double arg)
 {
 	char	*result;
 	int		result_len;
 	int		small_res_len;
 
+	if (arg != arg)
+		small_res = ft_strdup("nan");
+	if (arg == +1.0/0.0 || arg == -1.0/0.0)
+		small_res = ft_strdup("inf");
 	if (data.sign)
 		small_res = ft_strjoin("0", small_res);
 	small_res_len = (int)ft_strlen(small_res);
@@ -133,7 +137,7 @@ int		conv_float(t_struct *data, va_list list)
 		result = manage_precision(*data, result);						//	Applying precision on result
 		// printf("Precision:%s$\n", result);
 	}
-	result = formating_result(*data, result);							//	Formating result
+	result = formating_result(*data, result, arg);							//	Formating result
 	ft_putstr(result);													//	Printing result
 	return (100);
 }
