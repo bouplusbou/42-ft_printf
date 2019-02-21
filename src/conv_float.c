@@ -41,7 +41,14 @@ char	*formating_result(t_struct data, char *small_res, long double arg)
 
 static char	find_sign(t_struct data, long double arg)
 {
-	if (!(1 / arg > 0) || arg < 0)
+	// if (arg != arg)																	// si arg is NaN (NaN ne peut etre negatif)
+	// {
+	// 	if (ft_strchr(data.flags, '+'))
+	// 		return ('+');
+	// 	if (ft_strchr(data.flags, ' '))
+	// 		return (' ');
+	// }
+	if ((1 / arg < 0) || arg == -1.0/0.0 || arg < 0)
 		return ('-');
 	else
 	{
