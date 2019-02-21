@@ -41,14 +41,7 @@ char	*formating_result(t_struct data, char *small_res, long double arg)
 
 static char	find_sign(t_struct data, long double arg)
 {
-	// if (arg != arg)																	// si arg is NaN (NaN ne peut etre negatif)
-	// {
-	// 	if (ft_strchr(data.flags, '+'))
-	// 		return ('+');
-	// 	if (ft_strchr(data.flags, ' '))
-	// 		return (' ');
-	// }
-	if ((1 / arg < 0) || arg == -1.0/0.0 || arg < 0)
+	if ((1 / arg < 0) || arg == -1.0/0.0 || arg < 0)								// Si arg == -0.0 ou -inf ou est negatif
 		return ('-');
 	else
 	{
@@ -87,15 +80,15 @@ char	*get_float(t_struct data, long double value, char *result)
 	return (result);
 }
 
-char	*manage_precision(t_struct data, char *result)
+char	*manage_precision(t_struct data, char *result, long double value)
 {
 	int		last_i;
 	int		i;
 
 	last_i = ft_get_char_index('.', result) + data.precision;			//	Finding the last digit required by the precision (+1 for the digit used for the rounding)
-	if (result[last_i - 1] == '.' && result[0] != '0')					//	If precision = 0, rounding value on the first digit of the int
+	if (result[last_i - 1] == '.' && value != 0)					//	If precision = 0, rounding value on the first digit of the int
 		result[last_i - 2] += result[last_i] >= '5' ? 1 : 0;
-	else if (result[0] != '0')											//	Rounding last digit in the result
+	else if (value != 0)											//	Rounding last digit in the result
 		result[last_i - 1] += result[last_i] >= '5' ? 1 : 0;
 	i = last_i;
 	while (i >= 0)														//	Check the entire result starting from the end
@@ -141,7 +134,7 @@ int		conv_float(t_struct *data, va_list list)
 		data->precision++;												//	Incrementation de la precision pour les arrondit plus tard (augmente la taille de la string de 1)
 		result = get_float(*data, arg, result);							//	Getting float value from argument if required
 		// printf("Float:%s$\n", result);
-		result = manage_precision(*data, result);						//	Applying precision on result
+		result = manage_precision(*data, result, arg);						//	Applying precision on result
 		// printf("Precision:%s$\n", result);
 	}
 	result = formating_result(*data, result, arg);							//	Formating result

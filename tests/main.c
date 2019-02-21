@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 14:00:10 by bclaudio          #+#    #+#             */
-/*   Updated: 2019/02/21 12:57:26 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/21 13:33:58 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int		main()
 	double f2 = -5.789789789;
 	double f3 = -987.999999999;
 	double f4 = -999.9999999;
+	double f5 = 0.99;
 
 	printf("\n########## Test Perso ##########\n");
 	printf("\n&%.12f\n", f);
@@ -33,6 +34,8 @@ int		main()
 	ft_printf("$%.5f\n", f3);
 	printf("\n&%.5f\n", f4);
 	ft_printf("$%.5f\n", f4);
+	printf("\n&%.1f\n", f5);
+	ft_printf("$%.1f\n", f5);
 	
 	double		nb;
 
