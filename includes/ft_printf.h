@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/27 16:06:29 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/21 16:05:05 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/21 16:23:04 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int		convert(t_struct *data, va_list list);
 int		conv_hexa(t_struct *data, va_list list);
 int		conv_perc(t_struct *data);
 int		conv_decimal(t_struct *data, va_list list);
+int		conv_addr(t_struct *data, va_list list);
 void	delete_struct(t_struct *data);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/27 16:20:08 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/21 16:04:19 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/21 16:28:06 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,9 @@ char	*parse_size(char *str_size, int *i)
 
 char	*get_base(char type)
 {
-	if (type == 'd' || type == 'i')
-		return ("0123456789");
-	return (NULL);
+	if (type == 'p')
+		return ("0123456789abcdef");
+	return ("0123456789");
 }
 
 int		parse_conv(char *conv, va_list args)

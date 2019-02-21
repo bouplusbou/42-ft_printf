@@ -53,6 +53,7 @@ SRC = checks.c \
       treat_format.c \
       convert.c \
 	  conv_decimal.c \
+	  conv_p.c \
 	  delete_struct.c
 
 	##### Libft Sources #####
