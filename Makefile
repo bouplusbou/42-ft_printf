@@ -52,10 +52,6 @@ SRC = checks.c \
       treat_conv.c \
       treat_format.c \
       convert.c \
-	  conv_oux.c \
-	  conv_decimal.c \
-	  conv_hexa.c \
-	  conv_perc.c \
 	  conv_float.c \
 	  delete_struct.c
 
