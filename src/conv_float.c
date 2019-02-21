@@ -96,8 +96,11 @@ char	*manage_precision(t_struct data, char *result)
 				result[i - 2]++;											//	Incrementing first int digit
 			else if (i != 0)											//	Else if we're not on the first int digit
 				result[i - 1]++;											//	Incrementing previous digit
-			else														//	Else if we're on the first int digit
+			else
+			{													//	Else if we're on the first int digit
 				result = ft_strjoin("1", result);							//	Adding 1 to the left of the result
+				last_i++;
+			}
 		}
 		i--;
 	}
