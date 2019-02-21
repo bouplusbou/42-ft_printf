@@ -39,17 +39,17 @@ char	*formating_result(t_struct data, char *small_res, long double arg)
 	return (result);
 }
 
-static char	find_sign(t_struct data, int pos)
+static char	find_sign(t_struct data, long double arg)
 {
-	if (pos)
+	if (!(1 / arg > 0) || arg < 0)
+		return ('-');
+	else
 	{
 		if (ft_strchr(data.flags, '+'))
 			return ('+');
 		if (ft_strchr(data.flags, ' '))
 			return (' ');
 	}
-	else
-		return ('-');
 	return (0);
 }
 
@@ -120,7 +120,7 @@ int		conv_float(t_struct *data, va_list list)
 	long double arg;
 
 	arg = get_arg_float(*data, list);									//	Getting argument value
-	data->sign = find_sign(*data, arg < 0 ? 0 : 1);						//	Getting sign
+	data->sign = find_sign(*data, arg);						//	Getting sign
 	arg = arg > 0 ? arg : -arg;											//	Switching argument trop positive if it wasn't
 	// printf("Pos Arg:%Lf\n", arg);
 	result = get_int(*data, arg);										//	Getting integer value from argument

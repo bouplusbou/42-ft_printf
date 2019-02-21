@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 14:00:10 by bclaudio          #+#    #+#             */
-/*   Updated: 2019/02/21 11:25:47 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/21 12:57:26 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -357,6 +357,78 @@ int		main()
 	ft_printf(">>>|%-12f$\n", nb);
 	printf("\n===|%5.9f$\n", nb);
 	ft_printf(">>>|%5.9f$\n", nb);
+
+	float           nb2;
+    nb2 = -0.000;
+
+    printf("\n===|% f$\n", nb2);
+	ft_printf(">>>|% f$\n", nb2);
+    printf("\n===|%+f$\n", nb2);
+	ft_printf(">>>|%+f$\n", nb2);
+    printf("\n===|%#f$\n", nb2);
+	ft_printf(">>>|%#f$\n", nb2);
+    printf("\n===|%.2f$\n", nb2);
+	ft_printf(">>>|%.2f$\n", nb2);
+    printf("\n===|%.14f$\n", nb2);
+	ft_printf(">>>|%.14f$\n", nb2);
+    printf("\n===|%#.0f$\n", nb2);
+	ft_printf(">>>|%#.0f$\n", nb2);
+    printf("\n===|% .5f$\n", nb2);
+	ft_printf(">>>|% .5f$\n", nb2);
+    printf("\n===|%# .0f$\n", nb2);
+	ft_printf(">>>|%# .0f$\n", nb2);
+    printf("\n===|% #.0f$\n", nb2);
+	ft_printf(">>>|% #.0f$\n", nb2);
+    printf("\n===|%+.5f$\n", nb2);
+	ft_printf(">>>|%+.5f$\n", nb2);
+    printf("\n===|%+.0f$\n", nb2);
+	ft_printf(">>>|%+.0f$\n", nb2);
+    printf("\n===|%#+.0f$\n", nb2);
+	ft_printf(">>>|%#+.0f$\n", nb2);
+    printf("\n===|%0.5f$\n", nb2);
+	ft_printf(">>>|%0.5f$\n", nb2);
+    printf("\n===|%-.5f$\n", nb2);
+	ft_printf(">>>|%-.5f$\n", nb2);
+    printf("\n===|%5f$\n", nb2);
+	ft_printf(">>>|%5f$\n", nb2);
+    printf("\n===|% 5f$\n", nb2);
+	ft_printf(">>>|% 5f$\n", nb2);
+    printf("\n===|%+5f$\n", nb2);
+	ft_printf(">>>|%+5f$\n", nb2);
+    printf("\n===|%# 5f$\n", nb2);
+	ft_printf(">>>|%# 5f$\n", nb2);
+    printf("\n===|%#+5f$\n", nb2);
+	ft_printf(">>>|%#+5f$\n", nb2);
+    printf("\n===|%-5f$\n", nb2);
+	ft_printf(">>>|%-5f$\n", nb2);
+    printf("\n===|%05f$\n", nb2);
+	ft_printf(">>>|%05f$\n", nb2);
+    printf("\n===|%+05f$\n", nb2);
+	ft_printf(">>>|%+05f$\n", nb2);
+    printf("\n===|%0+5f$\n", nb2);
+	ft_printf(">>>|%0+5f$\n", nb2);
+    printf("\n===|%05.3f$\n", nb2);
+	ft_printf(">>>|%05.3f$\n", nb2);
+    printf("\n===|%0#5.0f$\n", nb2);
+	ft_printf(">>>|%0#5.0f$\n", nb2);
+    printf("\n===|%-5.3f$\n", nb2);
+	ft_printf(">>>|%-5.3f$\n", nb2);
+    printf("\n===|%-#5.0f$\n", nb2);
+	ft_printf(">>>|%-#5.0f$\n", nb2);
+    printf("\n===|%+05.3f$\n", nb2);
+	ft_printf(">>>|%+05.3f$\n", nb2);
+    printf("\n===|%0+#5.0f$\n", nb2);
+	ft_printf(">>>|%0+#5.0f$\n", nb2);
+    printf("\n===|%0 5.3f$\n", nb2);
+	ft_printf(">>>|%0 5.3f$\n", nb2);
+    printf("\n===|% 05.3f$\n", nb2);
+	ft_printf(">>>|% 05.3f$\n", nb2);
+    printf("\n===|%#0 5.0f$\n", nb2);
+	ft_printf(">>>|%#0 5.0f$\n", nb2);
+    printf("\n===|%-+5.3f$\n", nb2);
+	ft_printf(">>>|%-+5.3f$\n", nb2);
+    printf("\n===|%-#+5.0f$\n", nb2);
+	ft_printf(">>>|%-#+5.0f$\n", nb2);
 
 	return (0);
 }
