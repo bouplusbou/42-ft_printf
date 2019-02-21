@@ -52,8 +52,6 @@ SRC = checks.c \
       treat_conv.c \
       treat_format.c \
       convert.c \
-	  conv_hexa.c \
-	  conv_perc.c \
 	  delete_struct.c
 
 	##### Libft Sources #####
@@ -135,15 +133,11 @@ LIBSRC = ft_strlen.c \
 EXSRCS = $(addprefix $(EXPATH), $(EXSRC))
 EXPATH = tests/
 EXSRC = main.c \
-		test_char_and_none.c \
-		test_octal.c
 
 ########## Compilation Rules ##########
 
 OBJ = $(SRCS:.c=.o)
 EXOBJ = main.o \
-		test_char_and_none.o \
-		test_octal.o
 
 %.o: %.c
 	@$(CC) $(FLAGS) $(INC) -o $@ -c $?
