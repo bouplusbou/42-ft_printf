@@ -52,6 +52,7 @@ SRC = checks.c \
       treat_conv.c \
       treat_format.c \
       convert.c \
+	  conv_decimal.c \
 	  delete_struct.c
 
 	##### Libft Sources #####
@@ -150,8 +151,8 @@ $(NAME) : $(OBJ)
 	@echo "$(BLUE)[$(PROJECT)$(BLUE)] | Compilation$(WHITE)						$(OK)"
 
 ex : all
-	@$(CC) -c $(FLAGS) $(INC) $(EXSRCS) 
-	@$(CC) $(FLAGS) $(INC) $(EXOBJ) $(NAME) -o $(EXNAME)
+	@$(CC) -c $(INC) $(EXSRCS) 
+	@$(CC) $(INC) $(EXOBJ) $(NAME) -o $(EXNAME)
 	@echo "$(BLUE)[$(RED)$(EXNAME)$(BLUE)] | Compilation$(WHITE)							$(OK)"
 	
 testc : ex

@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/27 16:20:08 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/02 16:22:56 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/21 16:04:19 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,13 @@ char	*parse_size(char *str_size, int *i)
 	return (ft_strndup(str_size, l));
 }
 
+char	*get_base(char type)
+{
+	if (type == 'd' || type == 'i')
+		return ("0123456789");
+	return (NULL);
+}
+
 int		parse_conv(char *conv, va_list args)
 {
 	t_struct	*data;
@@ -88,5 +95,6 @@ int		parse_conv(char *conv, va_list args)
 		data->size = parse_size(conv + i, &i);
 	data->type = conv[i];
 	ft_strdel(&conv);
+	data->base = ft_strdup(get_base(data->type));
 	return (convert(data, args));
 }

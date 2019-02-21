@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bclaudio <bclaudio@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/09 13:07:20 by bclaudio          #+#    #+#             */
-/*   Updated: 2019/02/01 11:24:17 by bclaudio         ###   ########.fr       */
+/*   Updated: 2019/02/01 19:14:33 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ int				get_next_line(int const fd, char **line);
 char			*ft_strndup(const char *s1, size_t len);
 char			*ft_itoa_base(int nbr, const char *basestr);
 char			*ft_ultoa_base(unsigned long nbr, const char *basestr);
-char			*ft_llt0oa_base(long long nbr, const char *basestr);
+char			*ft_lltoa_base(long long nbr, const char *basestr);
 char			*ft_ulltoa_base(unsigned long long nbr, const char *basestr);
 int				ft_get_char_index(char c, char *str);
 

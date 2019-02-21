@@ -6,13 +6,13 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 14:00:10 by bclaudio          #+#    #+#             */
-/*   Updated: 2019/02/21 15:58:43 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/21 16:03:52 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int main(int argc, char **argv)
+int main()
 {
 	return (0);
 }
