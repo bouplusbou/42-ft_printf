@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 14:08:38 by bclaudio          #+#    #+#             */
-/*   Updated: 2019/02/01 19:10:47 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/21 15:38:36 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	convert(t_struct *data, va_list list)
 	if (data->type == 'p')
 		return (0); // return pointer conversion fonction call
 	if (data->type == 'x' || data->type == 'X')
-		size_printed = conv_hexa(data, list); // return hexa conversion fonction call
+		return (0); // return hexa conversion fonction call
 	if (data->type == 's')
 		return (0); // return string conversion fonction call
 	if (data->type == 'i' || data->type == 'd')
