@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/27 16:06:29 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/21 17:03:05 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/21 17:16:20 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,21 +36,21 @@ typedef struct  s_struct
 int     ft_printf(const char *format, ...);
 int     treat_format(const char *format, va_list args);
 void	printf_write(char c, int *len);
-int     treat_conv(char *str, size_t *j, int *len, va_list args);
+void	delete_struct(t_struct *data);
 int		is_type(char c);
-int     parse_conv(char *conv, va_list args);
 int		is_flag(char c);
 int		is_precision(char c);
 int		is_size(char c);
 int		is_type(char c);
 int		is_conv(char c);
+int     treat_conv(char *str, size_t *j, int *len, va_list args);
+int     parse_conv(char *conv, va_list args);
 int		convert(t_struct *data, va_list list);
 int		conv_perc(t_struct *data);
 int		conv_id(t_struct *data, va_list list);
 int		conv_p(t_struct *data, va_list list);
-int		conv_oux(t_struct *data, va_list list);
+int		conv_ouxX(t_struct *data, va_list list);
 int     conv_cs(t_struct *data, va_list list);
-int		conv_float(t_struct *data, va_list list);
-void	delete_struct(t_struct *data);
+int		conv_f(t_struct *data, va_list list);
 
 #endif

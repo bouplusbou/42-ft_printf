@@ -102,7 +102,7 @@ static char *create_res_oux(t_struct data, int result_len, char *small_res)
 ** print the result and return the size of the result
 */
 
-int conv_oux(t_struct *data, va_list list)
+int conv_ouxX(t_struct *data, va_list list)
 {
 	int result_len;
 	char *result;

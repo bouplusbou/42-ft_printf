@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 14:08:38 by bclaudio          #+#    #+#             */
-/*   Updated: 2019/02/21 16:57:18 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/21 17:17:45 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ int	convert(t_struct *data, va_list list)
 		|| data->type == 'X'
 		|| data->type == 'o'
 		|| data->type == 'u')
-		size_printed = conv_oux(data, list); // return hexa conversion fonction call
+		size_printed = conv_ouxX(data, list); // return hexa conversion fonction call
 	if (data->type == 'i' || data->type == 'd')
 		size_printed = conv_id(data, list); // return decimal conversion fonction call
 	if (data->type == 'f')
-		size_printed = conv_float(data, list); // return float conversion fonction call
+		size_printed = conv_f(data, list); // return float conversion fonction call
 	return (size_printed);
 }

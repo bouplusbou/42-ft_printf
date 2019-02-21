@@ -1,6 +1,6 @@
 #include "ft_printf.h"
 
-char	*get_arg_cs(t_struct data, va_list list)
+static char	*get_arg_cs(t_struct data, va_list list)
 {
 	char	*arg;
 
@@ -14,7 +14,7 @@ char	*get_arg_cs(t_struct data, va_list list)
 	return(arg);
 }
 
-char	*small_res_cs(t_struct data, char *arg)
+static char	*small_res_cs(t_struct data, char *arg)
 {
 	char	*small_res;
 	int		len;
@@ -25,7 +25,7 @@ char	*small_res_cs(t_struct data, char *arg)
 	return (small_res);
 }
 
-char	*create_res_cs(t_struct data, char *small_res)
+static char	*create_res_cs(t_struct data, char *small_res)
 {
 	char *result;
 	int		len;

@@ -1,6 +1,6 @@
 #include "ft_printf.h"
 
-long double get_arg_float(t_struct data, va_list list)
+static long double get_arg_float(t_struct data, va_list list)
 {
 	long double arg;
 
@@ -12,7 +12,7 @@ long double get_arg_float(t_struct data, va_list list)
 	return (arg);
 }
 
-char	*formating_result(t_struct data, char *small_res, long double arg)
+static char	*formating_result(t_struct data, char *small_res, long double arg)
 {
 	char	*result;
 	int		result_len;
@@ -53,7 +53,7 @@ static char	find_sign(t_struct data, long double arg)
 	return (0);
 }
 
-char	*get_int(t_struct data, long double arg)
+static char	*get_int(t_struct data, long double arg)
 {
 	char	*int_res;
 
@@ -61,7 +61,7 @@ char	*get_int(t_struct data, long double arg)
 	return (int_res);
 }
 
-char	*get_float(t_struct data, long double value, char *result)
+static char	*get_float(t_struct data, long double value, char *result)
 {
 	char	*float_res;
 	char	*digit;
@@ -80,7 +80,7 @@ char	*get_float(t_struct data, long double value, char *result)
 	return (result);
 }
 
-char	*manage_precision(t_struct data, char *result, long double value)
+static char	*manage_precision(t_struct data, char *result, long double value)
 {
 	int		last_i;
 	int		i;
@@ -114,7 +114,7 @@ char	*manage_precision(t_struct data, char *result, long double value)
 	return (result);
 }
 
-int		conv_float(t_struct *data, va_list list)
+int		conv_f(t_struct *data, va_list list)
 {
 	char *result;
 	long double arg;
