@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 16:38:32 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/22 13:11:24 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/22 14:22:34 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ static char	find_sign(t_struct data, int pos)
 {
 	if (pos)
 	{
-		if (data.flags && ft_strchr(data.flags, '+'))
+		if (ft_strchr(data.flags, '+'))
 			return ('+');
-		if (data.flags && ft_strchr(data.flags, ' '))
+		if (ft_strchr(data.flags, ' '))
 			return (' ');
 	}
 	else
@@ -74,10 +74,10 @@ static char					*create_res_decimal(t_struct data, int result_len, char *small_r
 	if (!result_len || !(result = ft_strnew(result_len))) // if result_len is 0 return NULL directly
 		return (NULL);
 	ft_memset(result, ' ', result_len); // fill with spaces
-	if (data.flags && ft_strchr(data.flags, '0') && data.precision < 0 && !ft_strchr(data.flags, '-')) // flag '0' without precision and no flag '-' => fill everything with '0' (La precision cancel le 0)
+	if (ft_strchr(data.flags, '0') && data.precision < 0 && !ft_strchr(data.flags, '-')) // flag '0' without precision and no flag '-' => fill everything with '0' (La precision cancel le 0)
 		ft_memset(result, '0', result_len);
 	small_res_len = ft_strlen(small_res);
-	if (data.flags && ft_strchr(data.flags, '-')) // put to the left if flag '-'
+	if (ft_strchr(data.flags, '-')) // put to the left if flag '-'
 		ft_memcpy(result, small_res, small_res_len);
 	else
 		ft_memcpy(result + (result_len - small_res_len), small_res, small_res_len); // put to the right otherwise
