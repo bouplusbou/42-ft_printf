@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 14:08:38 by bclaudio          #+#    #+#             */
-/*   Updated: 2019/02/22 16:04:34 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/22 16:48:29 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	convert(t_struct *data, va_list list)
 	int	len;
 
 	len = 0;
+	if (data->type == '%')
+		len = conv_perc(data); // return char conversion fonction call
 	if (data->type == 'p')
 		len = conv_p(data, list); // return pointer conversion fonction call
 	if (data->type == 'f')

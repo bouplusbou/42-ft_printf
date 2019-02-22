@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/27 16:06:29 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/22 16:04:13 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/22 16:47:53 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,6 @@ int		convert(t_struct *data, va_list list);
 int		conv_id(t_struct *data, va_list list);
 int		conv_f(t_struct *data, va_list list);
 int		conv_p(t_struct *data, va_list list);
-
+int		conv_perc(t_struct *data);
 
 #endif

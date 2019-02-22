@@ -55,6 +55,7 @@ SRC = checks.c \
       convert.c \
 	  conv_id.c \
 	  conv_p.c \
+	  conv_perc.c \
 	  conv_f.c
 
 	##### Libft Sources #####
