@@ -41,7 +41,8 @@ static char	*formating_result(t_struct data, long double arg, char *small_res)
 		small_res = concat_before("0", small_res);
 	small_res_len = (int)ft_strlen(small_res);
 	result_len = data.width < small_res_len ? small_res_len : data.width;
-	result = ft_strnew(result_len);
+	if (!(result = ft_strnew(result_len)))
+		return (NULL);
 	ft_memset(result, ' ', result_len);												 // else fill with spaces
 	if (ft_strchr(data.flags, '0') && !ft_strchr(data.flags, '-'))
 		ft_memset(result, '0', result_len);
@@ -80,7 +81,8 @@ static char	*get_float(t_struct data, long double value, char *result)
 	char	*digit;
 
 	value -= (unsigned long long)value;									//	Extracting float value
-	float_res = ft_strnew(0);
+	if (!(float_res = ft_strnew(0)))
+		return (NULL);
 	while (data.precision >= 0)											//	Looping times precision
 	{
 		value *= 10;													//	Converting first float digit to int
@@ -155,9 +157,13 @@ int		conv_f(t_struct *data, va_list list)
 		result = get_float(*data, arg, result);							//	Getting float value from argument if required
 		result = manage_precision(*data, arg, result);						//	Applying precision on result
 	}
-	result = formating_result(*data, arg, result);							//	Formating result
-	ft_putstr(result);
-	result_len = ft_strlen(result);													//	Printing result
+	if (!(result = formating_result(*data, arg, result)))							//	Formating result
+		result_len = 0;													//	Printing result
+	else
+	{
+		ft_putstr(result);
+		result_len = ft_strlen(result);													//	Printing result
+	}
 	ft_strdel(&result); // clean everything: result, small_res, struct
 	delete_struct(data);
 	return (result_len);
