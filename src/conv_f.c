@@ -12,30 +12,46 @@ static long double get_arg_float(t_struct data, va_list list)
 	return (arg);
 }
 
-static char	*formating_result(t_struct data, char *small_res, long double arg)
+static char	*concat_before(char *before, char *tmp)
+{
+	char	*result;
+
+	result = ft_strjoin(before, tmp);
+	ft_strdel(&tmp);
+	return (result);
+}
+
+static char	*inf_nan(long double arg, char *small_res)
+{
+	ft_strdel(&small_res);
+	if (arg != arg)
+		return (ft_strdup("nan"));
+	return (ft_strdup("inf"));
+}
+
+static char	*formating_result(t_struct data, long double arg, char *small_res)
 {
 	char	*result;
 	int		result_len;
 	int		small_res_len;
 
-	if (arg != arg)
-		small_res = ft_strdup("nan");
-	if (arg == +1.0/0.0 || arg == -1.0/0.0)
-		small_res = ft_strdup("inf");
+	if (arg != arg || arg == +1.0/0.0 || arg == -1.0/0.0)
+		small_res = inf_nan(arg, small_res);
 	if (data.sign)
-		small_res = ft_strjoin("0", small_res);
+		small_res = concat_before("0", small_res);
 	small_res_len = (int)ft_strlen(small_res);
 	result_len = data.width < small_res_len ? small_res_len : data.width;
 	result = ft_strnew(result_len);
 	ft_memset(result, ' ', result_len);												 // else fill with spaces
-	if (data.flags && ft_strchr(data.flags, '0') && !ft_strchr(data.flags, '-'))
+	if (ft_strchr(data.flags, '0') && !ft_strchr(data.flags, '-'))
 		ft_memset(result, '0', result_len);
-	if (data.flags && ft_strchr(data.flags, '-')) // put to the left if flag '-'
+	if (ft_strchr(data.flags, '-')) // put to the left if flag '-'
 		ft_memcpy(result, small_res, small_res_len);
 	else
 		ft_memcpy(result + (result_len - small_res_len), small_res, small_res_len);
 	if (data.sign)																	// Si un signe est requis
 		result[ft_get_char_index('0', result)] = data.sign;
+	ft_strdel(&small_res);
 	return (result);
 }
 
@@ -45,9 +61,9 @@ static char	find_sign(t_struct data, long double arg)
 		return ('-');
 	else
 	{
-		if (data.flags && ft_strchr(data.flags, '+'))
+		if (ft_strchr(data.flags, '+'))
 			return ('+');
-		if (data.flags && ft_strchr(data.flags, ' '))
+		if (ft_strchr(data.flags, ' '))
 			return (' ');
 	}
 	return (0);
@@ -55,10 +71,7 @@ static char	find_sign(t_struct data, long double arg)
 
 static char	*get_int(t_struct data, long double arg)
 {
-	char	*int_res;
-
-	int_res = ft_ulltoa_base((unsigned long long)arg, data.base);
-	return (int_res);
+	return (ft_ulltoa_base((unsigned long long)arg, data.base));
 }
 
 static char	*get_float(t_struct data, long double value, char *result)
@@ -80,7 +93,7 @@ static char	*get_float(t_struct data, long double value, char *result)
 	return (result);
 }
 
-static char	*manage_precision(t_struct data, char *result, long double value)
+static char	*manage_precision(t_struct data, long double value, char *result)
 {
 	int		last_i;
 	int		i;
@@ -102,15 +115,24 @@ static char	*manage_precision(t_struct data, char *result, long double value)
 				result[i - 1]++;											//	Incrementing previous digit
 			else
 			{													//	Else if we're on the first int digit
-				result = ft_strjoin("1", result);							//	Adding 1 to the left of the result
+				result = concat_before("1", result);							//	Adding 1 to the left of the result
 				last_i++;										//	Incrementing last digit index to keep matching the precision value
 			}
 		}
 		i--;
 	}
-	if (result[last_i - 1] == '.' && data.flags && !ft_strchr(data.flags, '#'))		//	Move the index backward if precision = 0 and the '#' flag is not present
+	if (result[last_i - 1] == '.' && !ft_strchr(data.flags, '#'))		//	Move the index backward if precision = 0 and the '#' flag is not present
 		last_i--;														//	to get rid of the decimal point that is not requested
 	result[last_i] = '\0';												//	Nul terminating the result depending on the precision
+	return (result);
+}
+
+static char *concat_after(char *tmp, char *after)
+{
+	char	*result;
+
+	result = ft_strjoin(tmp, after);
+	ft_strdel(&tmp);
 	return (result);
 }
 
@@ -126,14 +148,14 @@ int		conv_f(t_struct *data, va_list list)
 	result = get_int(*data, arg);										//	Getting integer value from argument
 	data->precision = data->precision == -1 ? 6 : data->precision;		//	Normalising precision value
 	if (data->precision >= 0 || ft_strchr(data->flags, '#'))			//	Adding '.' to the result string if required
-		result = ft_strjoin(result, ".");
+		result = concat_after(result, ".");
 	if (data->precision >= 0)								
 	{
 		data->precision++;												//	Incrementation de la precision pour les arrondit plus tard (augmente la taille de la string de 1)
 		result = get_float(*data, arg, result);							//	Getting float value from argument if required
-		result = manage_precision(*data, result, arg);						//	Applying precision on result
+		result = manage_precision(*data, arg, result);						//	Applying precision on result
 	}
-	result = formating_result(*data, result, arg);							//	Formating result
+	result = formating_result(*data, arg, result);							//	Formating result
 	ft_putstr(result);
 	result_len = ft_strlen(result);													//	Printing result
 	ft_strdel(&result); // clean everything: result, small_res, struct
