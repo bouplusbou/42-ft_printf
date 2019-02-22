@@ -6,78 +6,55 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/02 11:57:57 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/21 16:41:35 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/22 08:41:56 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-/*
-** concatenate a string with '0x' + '000..' + translation in 'addr'
-** depending on '#' & '0' flags and precision
-*/
-
-static char					*concat_addr(unsigned long arg)
+static char					*small_res_addr(t_struct data, unsigned long arg)
 {
 	char	*concat;
-	int		concat_size;
 	char	*addr;
-	int		addr_size;
 
-	if (!(addr = ft_ulltoa_base(arg, "0123456789abcdef")))
+	if (!(addr = ft_ulltoa_base(arg, data.base)))
 		return (NULL);
-	addr_size = ft_strlen(addr); // taille d'addr + 2 pour "0x"
-	concat_size = addr_size + 2;
-	if (!(concat = ft_strnew(concat_size)))
-		return (NULL);
-	ft_memcpy(concat + (concat_size - addr_size), addr, addr_size); // write upon the '0' the input translated into addr
-	ft_memcpy(concat, "0x", 2);
-	ft_strdel(&addr); // we don't need addr anymore, it is inside concat now
-	// printf("concat:%s|\n", concat);
+	concat = ft_strdup("0x");
+	concat = ft_strjoinf(&concat, &addr, 3);
 	return (concat);
 }
-
-/*
-** create the final result:
-** place the concatenated form of addr
-*/
 
 static char					*create_res_addr(t_struct data, char *concat)
 {
 	char	*result;
-	int		result_size;
-	int		concat_size;
+	int		result_len;
+	int		concat_len;
 
-	concat_size = ft_strlen(concat);
-	result_size = data.width > concat_size ? data.width : concat_size;	// Getting string size depending on width.
-	result = ft_strnew(result_size);		// Creating string.
-	ft_memset(result, ' ', result_size);	// Filling with spaces depending on flags.
-	if (data.width > concat_size && !ft_strchr(data.flags, '-')) // colle a droite
-		ft_memcpy(result + (result_size - concat_size), concat, concat_size);
+	concat_len = ft_strlen(concat);
+	result_len = data.width > concat_len ? data.width : concat_len;	// Getting string len depending on width.
+	result = ft_strnew(result_len);		// Creating string.
+	ft_memset(result, ' ', result_len);	// Filling with spaces depending on flags.
+	if (data.width > concat_len && !ft_strchr(data.flags, '-')) // colle a droite
+		ft_memcpy(result + (result_len - concat_len), concat, concat_len);
 	else // colle a gauche (si width <= output ou si flag -)
-		ft_memcpy(result, concat, concat_size);
+		ft_memcpy(result, concat, concat_len);
 	return (result);
 }
 
-/*
-** convert into addrdecimal, do all the transformations,
-** print the result and return the size of the result
-*/
-
 int						conv_p(t_struct *data, va_list list)
 {
-	int		result_size;
+	int		result_len;
 	char	*result;
-	char	*concat;
+	char	*small_res;
 
-	if (!(concat = concat_addr((unsigned long)va_arg(list, void*)))) // concatenate '0x' + '0's + input translated in addr
+	if (!(small_res = small_res_addr(*data, (unsigned long)va_arg(list, void*)))) // small_resenate '0x' + '0's + input translated in addr
 		return (0);
-	if (!(result = create_res_addr(*data, concat))) // create the final result
+	if (!(result = create_res_addr(*data, small_res))) // create the final result
 		return (0);
-	result_size = ft_strlen(result);
+	result_len = ft_strlen(result);
 	ft_putstr(result); // print result
-	ft_strdel(&result); // clean everything: result, concat, struct
-	ft_strdel(&concat);
+	ft_strdel(&result); // clean everything: result, small_res, struct
+	ft_strdel(&small_res);
 	delete_struct(data);
-	return (result_size);
+	return (result_len);
 }
