@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/27 16:20:08 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/22 12:25:46 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/22 12:53:13 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ static char	*parse_flags(char *conv, size_t *i)
 	*i += l;
 	if (l != 0)
 	{
-		ft_strdel(&flags);
 		if (!(flags = ft_strndup(conv, l)))
 			return (NULL);
 		return (flags);
@@ -97,6 +96,8 @@ static void	init_data_struct(t_struct *data)
 	data->type = '0';
 	data->size = NULL;
 	data->flags = NULL;
+	data->base = NULL;
+	data->sign = 'X';
 }
 
 int 		parse_conv(char *conv, va_list list)

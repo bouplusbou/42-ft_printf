@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 16:38:32 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/22 12:27:29 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/22 13:11:24 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,11 @@ static long long int	get_arg_decimal(t_struct data, va_list list)
 
 static char	find_sign(t_struct data, int pos)
 {
-	if (pos && data.flags)
+	if (pos)
 	{
-		if (ft_strchr(data.flags, '+'))
+		if (data.flags && ft_strchr(data.flags, '+'))
 			return ('+');
-		if (ft_strchr(data.flags, ' '))
+		if (data.flags && ft_strchr(data.flags, ' '))
 			return (' ');
 	}
 	else
@@ -103,7 +103,7 @@ int						conv_id(t_struct *data, va_list list)
 	if (data->width > (int)ft_strlen(small_res)) // choose the result's size: the longer between width and small_res (pour malloc de la grande partie)
 		result_len = data->width;
 	if (!(result = create_res_decimal(*data, result_len, small_res))) // create the final result
-		return (0);
+		result_len = 0;
 	ft_putstr(result); // print result
 	ft_strdel(&result); // clean everything: result, small_res, struct
 	ft_strdel(&small_res);
