@@ -6,16 +6,17 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/27 16:05:46 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/02 15:05:38 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/22 10:02:52 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	treat_conv(char *str, size_t *j, int *len, va_list args)
+int	treat_conv(char *str, size_t *j, int *len, va_list list)
 {
-	size_t		i;
-	int			type;
+	size_t	i;
+	int		type;
+	char	*conv;
 
 	i = 1;
 	type = 0;
@@ -28,7 +29,9 @@ int	treat_conv(char *str, size_t *j, int *len, va_list args)
 	if (type)
 	{
 		*j += i;
-		return (parse_conv(ft_strndup(str, i), args));
+		if (!(conv = ft_strndup(str, i)))
+			return (0);
+		return (parse_conv(conv, list));
 	}
 	printf_write('%', len);
 	*j += 1;

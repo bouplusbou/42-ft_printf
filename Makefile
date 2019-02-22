@@ -53,12 +53,7 @@ SRC = checks.c \
       treat_format.c \
 	  delete_struct.c \
       convert.c \
-	  conv_id.c \
-	  conv_p.c \
-	  conv_ouxX.c \
-	  conv_cs.c \
-	  conv_perc.c \
-	  conv_f.c
+	  conv_id.c
 
 	##### Libft Sources #####
 LIBSRCPATH = libsrc/

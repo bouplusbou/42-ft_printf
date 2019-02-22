@@ -6,67 +6,80 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/27 16:20:08 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/21 16:58:36 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/22 12:25:46 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char *parse_flags(char *str_flags, int *i)
+static char	*parse_flags(char *conv, size_t *i)
 {
-	int l;
+	char	*flags;
+	size_t 	l;
 
 	l = 0;
-	while (is_flag(str_flags[l]))
+	while (is_flag(conv[l]))
 		l++;
 	*i += l;
-	return (ft_strndup(str_flags, l));
+	if (l != 0)
+	{
+		ft_strdel(&flags);
+		if (!(flags = ft_strndup(conv, l)))
+			return (NULL);
+		return (flags);
+	}
+	return (ft_strdup("FFF"));
 }
 
-int parse_width(char *str_width, int *i)
+static int	parse_width(char *conv, size_t *i)
 {
-	int		l;
-	int		width;
-	char	*str;
+	int		width_int;
+	size_t	l;
+	char	*width_str;
 
 	l = 0;
-	while (ft_isdigit(str_width[l]))
+	while (ft_isdigit(conv[l]))
 		l++;
 	*i += l;
-	str = ft_strndup(str_width, l);
-	width = ft_atoi(str);
-	ft_strdel(&str);
-	return (width);
+	if (!(width_str = ft_strndup(conv, l)))
+		return (0);
+	width_int = ft_atoi(width_str);
+	ft_strdel(&width_str);
+	return (width_int);
 }
 
-int parse_precision(char *str_precision, int *i)
+static int	parse_precision(char *conv, size_t *i)
 {
-	int		l;
-	int		precision;
-	char	*str;
+	int		precision_int;
+	size_t	l;
+	char	*precision_str;
 
 	l = 1;
-	while (is_precision(str_precision[l]))
+	while (is_precision(conv[l]))
 		l++;
 	*i += l;
-	str = ft_strndup(str_precision + 1, l);
-	precision = ft_atoi(str);
-	ft_strdel(&str);
-	return (precision);
+	if (!(precision_str = ft_strndup(conv + 1, l)))
+		return (0);
+	precision_int = ft_atoi(precision_str);
+	ft_strdel(&precision_str);
+	return (precision_int);
 }
 
-char *parse_size(char *str_size, int *i)
+char 		*parse_size(char *conv, size_t *i)
 {
-	int l;
+	char	*size;
+	size_t	l;
 
 	l = 0;
-	while (is_size(str_size[l]))
+	while (is_size(conv[l]))
 		l++;
 	*i += l;
-	return (ft_strndup(str_size, l));
+	if (!(size = ft_strndup(conv, l)))
+		return (NULL);
+	return (size);
 }
 
-char *get_base(char type)
+char 		*get_base(char type)
 {
 	if (type == 'x' || type == 'p')
 		return ("0123456789abcdef");
@@ -77,29 +90,35 @@ char *get_base(char type)
 	return ("0123456789");
 }
 
-int parse_conv(char *conv, va_list args)
+static void	init_data_struct(t_struct *data)
 {
-	t_struct *data;
-	int i;
+	data->width = -1;
+	data->precision = -1;
+	data->type = '0';
+	data->size = NULL;
+	data->flags = NULL;
+}
+
+int 		parse_conv(char *conv, va_list list)
+{
+	t_struct	*data;
+	size_t 		i;
 
 	i = 1;
 	if (!(data = (t_struct *)malloc(sizeof(t_struct))))
 		return (0);
-	data->flags = ft_strdup("X");
+	init_data_struct(data);
 	if (is_flag(conv[i]))
 		data->flags = parse_flags(conv + i, &i);
-	data->width = -1;
 	if (ft_isdigit(conv[i]))
 		data->width = parse_width(conv + i, &i);
-	data->precision = -1;
 	if (conv[i] == '.')
 		data->precision = parse_precision(conv + i, &i);
-	data->size = NULL;
 	if (is_size(conv[i]))
 		data->size = parse_size(conv + i, &i);
 	data->type = conv[i];
+	if (!(data->base = ft_strdup(get_base(data->type))))
+		return (0);
 	ft_strdel(&conv);
-	if (data->type != 'c' && data->type != 's')
-		data->base = ft_strdup(get_base(data->type));
-	return (convert(data, args));
+	return (convert(data, list));
 }

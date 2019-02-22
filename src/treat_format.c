@@ -6,13 +6,13 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/27 16:05:38 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/02 15:13:18 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/22 10:03:04 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	treat_format(const char *format, va_list args)
+int	treat_format(const char *format, va_list list)
 {
 	int		len;
 	size_t	i;
@@ -26,7 +26,7 @@ int	treat_format(const char *format, va_list args)
 		if (format[i] == '%')
 		{
 			tmp = 0;
-			if (0 < (tmp = treat_conv(((char*)format + i), &i, &len, args)))
+			if (0 < (tmp = treat_conv(((char*)format + i), &i, &len, list)))
 				len += tmp;
 		}
 		else
