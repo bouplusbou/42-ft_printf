@@ -3,15 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bclaudio <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/08 11:00:54 by bclaudio          #+#    #+#             */
-/*   Updated: 2018/11/09 12:53:02 by bclaudio         ###   ########.fr       */
+/*   Updated: 2019/02/25 15:14:53 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <string.h>
+
+#include <stdio.h>
 
 static size_t	fts_strlen(const char *s)
 {

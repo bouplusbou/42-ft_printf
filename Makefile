@@ -56,7 +56,8 @@ SRC = checks.c \
 	  conv_id.c \
 	  conv_p.c \
 	  conv_perc.c \
-	  conv_cs.c \
+	  conv_c.c \
+	  conv_s.c \
 	  conv_oux.c \
 	  conv_f.c
 
