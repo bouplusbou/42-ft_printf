@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/02 11:57:57 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/22 16:32:54 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/25 13:21:04 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,13 @@ static char	*create_res_addr(t_struct data, char *concat)
 	int		concat_len;
 
 	concat_len = ft_strlen(concat);
-	result_len = data.width > concat_len ? data.width : concat_len;	// Getting string len depending on width.
-	if (!(result = ft_strnew(result_len)))		// Creating string.
+	result_len = data.width > concat_len ? data.width : concat_len;			// Getting string len depending on width.
+	if (!(result = ft_strnew(result_len)))									// Creating string.
 		return (NULL);
-	ft_memset(result, ' ', result_len);	// Filling with spaces depending on flags.
-	if (data.width > concat_len && !ft_strchr(data.flags, '-')) // colle a droite
+	ft_memset(result, ' ', result_len);										// Filling with spaces depending on flags.
+	if (data.width > concat_len && !ft_strchr(data.flags, '-')) 			// colle a droite
 		ft_memcpy(result + (result_len - concat_len), concat, concat_len);
-	else // colle a gauche (si width <= output ou si flag -)
+	else 																	// colle a gauche (si width <= output ou si flag -)
 		ft_memcpy(result, concat, concat_len);
 	return (result);
 }
@@ -49,13 +49,13 @@ int			conv_p(t_struct *data, va_list list)
 	char	*small_res;
 
 	if (!(small_res = small_res_addr(*data, (unsigned long)va_arg(list, void*)))
-		|| (!(result = create_res_addr(*data, small_res)))) // create the final result
+		|| (!(result = create_res_addr(*data, small_res)))) 						// create the final result
 		result_len = 0;
 	else
 	{
 		result_len = ft_strlen(result);
-		ft_putstr(result); // print result
-		ft_strdel(&result); // clean everything: result, small_res, struct
+		ft_putstr(result); 															// print result
+		ft_strdel(&result); 														// clean everything: result, small_res, struct
 	}
 	ft_strdel(&small_res);
 	delete_struct(data);

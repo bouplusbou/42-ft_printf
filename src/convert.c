@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 14:08:38 by bclaudio          #+#    #+#             */
-/*   Updated: 2019/02/25 09:55:57 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/25 13:13:22 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	convert(t_struct *data, va_list list)
 		|| data->type == 'u'
 		|| data->type == 'x'
 		|| data->type == 'X')
-		len = conv_ouxX(data, list);
+		len = conv_oux(data, list);
 	if (data->type == 'f')
 		len = conv_f(data, list);
 	if (data->type == 'i' || data->type == 'd')

@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   conv_ouxX.c                                        :+:      :+:    :+:   */
+/*   conv_oux.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/25 09:44:58 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/25 10:28:40 by bboucher         ###   ########.fr       */
+/*   Created: 2019/02/25 13:12:50 by bboucher          #+#    #+#             */
+/*   Updated: 2019/02/25 13:19:34 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static unsigned long long int get_arg_ouxX(t_struct data, va_list list)
+static unsigned long long int	get_arg_oux(t_struct data, va_list list)
 {
 	unsigned long long int arg;
 
@@ -30,9 +30,8 @@ static unsigned long long int get_arg_ouxX(t_struct data, va_list list)
 	return (arg);
 }
 
-static char find_sign(t_struct data, unsigned long long int value)
+static char						find_sign(t_struct data, unsigned long long int value)
 {
-
 	if (ft_strchr(data.flags, '#') && value != 0)
 	{
 		if (data.type == 'x')
@@ -45,14 +44,13 @@ static char find_sign(t_struct data, unsigned long long int value)
 	return (0);
 }
 
-static char *small_res_oux(t_struct data, unsigned long long int arg)
+static char						*small_res_oux(t_struct data, unsigned long long int arg)
 {
-	char *small_res;
-	int small_res_len;
-	char *arg_str;
-	int arg_str_len;
+	char	*small_res;
+	int		small_res_len;
+	char	*arg_str;
+	int		arg_str_len;
 
-																// free arg_str
 	if (!(arg_str = ft_ulltoa_base(arg, data.base))) 							// Converti la valeur brut en string (en prenant en compte la base donnee)
 		return (NULL);
 	arg_str_len = ft_strlen(arg_str);
@@ -66,7 +64,6 @@ static char *small_res_oux(t_struct data, unsigned long long int arg)
 	}
 	if (data.precision > (int)arg_str_len) 										// add enough space for '0's if needed (if precision is longer than input)
 		small_res_len += data.precision - arg_str_len;
-															// free small_res
 	if (!(small_res = ft_strnew(small_res_len)))
 		return (NULL);
 	ft_memset(small_res, '0', small_res_len);									// fill '0' BEST LIGNE EU
@@ -75,41 +72,41 @@ static char *small_res_oux(t_struct data, unsigned long long int arg)
 	return (small_res);
 }
 
-static char *create_res_oux(t_struct data, int result_len, char *small_res)
+static char						*create_res_oux(t_struct data, int res_len, char *small_res)
 {
-	char *result;
-	int small_res_len;
-	int sign_i;
+	char	*res;
+	int		small_res_len;
+	int		sign_i;
 
-															//free result
-	if (!result_len || !(result = ft_strnew(result_len))) 									// if result_len is 0 return NULL directly
+	if (!res_len || !(res = ft_strnew(res_len))) 								// if res_len is 0 return NULL directly
 		return (NULL);
-	ft_memset(result, ' ', result_len);													 	// fill with spaces
-	if (ft_strchr(data.flags, '0') && data.precision < 0 && !ft_strchr(data.flags, '-'))	// flag '0' without precision and no flag '-' => fill everything with '0' (La precision cancel le 0)
-		ft_memset(result, '0', result_len);
+	ft_memset(res, ' ', res_len);											 	// fill with spaces
+	if (ft_strchr(data.flags, '0') 
+		&& data.precision < 0 && !ft_strchr(data.flags, '-'))					// flag '0' without precision and no flag '-' => fill everything with '0' (La precision cancel le 0)
+		ft_memset(res, '0', res_len);
 	small_res_len = ft_strlen(small_res);
-	if (ft_strchr(data.flags, '-')) 														// put to the left if flag '-'
-		ft_memcpy(result, small_res, small_res_len);
+	if (ft_strchr(data.flags, '-')) 											// put to the left if flag '-'
+		ft_memcpy(res, small_res, small_res_len);
 	else
-		ft_memcpy(result + (result_len - small_res_len), small_res, small_res_len); 		// put to the right otherwise
-	if (data.sign)																			// Si un signe est requis
+		ft_memcpy(res + (res_len - small_res_len), small_res, small_res_len); 	// put to the right otherwise
+	if (data.sign)																// Si un signe est requis
 	{
-		sign_i = ft_get_char_index('0', result);
+		sign_i = ft_get_char_index('0', res);
 		if (data.type == 'x' || data.type == 'X')
 			sign_i++;
-		result[sign_i] = data.sign; 														// Placage du signe sur le premier 0 (place dans la petite partie si un signe est requis sans taille avec 0)
+		res[sign_i] = data.sign; 												// Placage du signe sur le premier 0 (place dans la petite partie si un signe est requis sans taille avec 0)
 	}
-	return (result);
+	return (res);
 }
 
-int conv_ouxX(t_struct *data, va_list list)
+int								conv_oux(t_struct *data, va_list list)
 {
-	int result_len;
-	char *result;
-	char *small_res;
-	unsigned long long int arg;
+	int						result_len;
+	char					*result;
+	char					*small_res;
+	unsigned long long int	arg;
 
-	arg = get_arg_ouxX(*data, list);				 					// Recupere la valeur caste avec le size donnee
+	arg = get_arg_oux(*data, list);				 						// Recupere la valeur caste avec le size donnee
 	data->sign = find_sign(*data, arg);			  						// Defini le signe (ou space) si besoin. 0 si pas de signe
 	result_len = 0;
 	if ((small_res = small_res_oux(*data, arg)))						// Converti la valeur en brut (Sans prendre en compte la size (petit resultat))
@@ -126,7 +123,7 @@ int conv_ouxX(t_struct *data, va_list list)
 			result_len = data->width;
 		if (!(result = create_res_oux(*data, result_len, small_res)))	// create the final result
 			result_len = 0;
-		ft_putstr(result); 											// print result
+		ft_putstr(result); 												// print result
 		ft_strdel(&result);												// clean everything: result, small_res, struct
 		ft_strdel(&small_res);
 	}

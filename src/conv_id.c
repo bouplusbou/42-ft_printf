@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 16:38:32 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/25 11:11:39 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/25 13:09:34 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static long long int	get_arg_decimal(t_struct data, va_list list)
 	return (arg);
 }
 
-static char	find_sign(t_struct data, int pos)
+static char				find_sign(t_struct data, int pos)
 {
 	if (pos)
 	{
@@ -44,8 +44,7 @@ static char	find_sign(t_struct data, int pos)
 	return (0);
 }
 
-
-static char					*small_res_decimal(t_struct data, long long int arg)
+static char				*small_res_decimal(t_struct data, long long int arg)
 {
 	char	*small_res;
 	int		small_res_len;
@@ -66,24 +65,25 @@ static char					*small_res_decimal(t_struct data, long long int arg)
 	return (small_res);
 }
 
-static char					*create_res_decimal(t_struct data, int result_len, char *small_res)
+static char				*create_res_deci(t_struct data, int res_len, char *small_res)
 {
-	char	*result;
+	char	*res;
 	int		small_res_len;
 
-	if (!result_len || !(result = ft_strnew(result_len))) 												// if result_len is 0 return NULL directly
+	if (!res_len || !(res = ft_strnew(res_len))) 												// if res_len is 0 return NULL directly
 		return (NULL);
-	ft_memset(result, ' ', result_len); 																// fill with spaces
-	if (ft_strchr(data.flags, '0') && data.precision < 0 && !ft_strchr(data.flags, '-')) 				// flag '0' without precision and no flag '-' => fill everything with '0' (La precision cancel le 0)
-		ft_memset(result, '0', result_len);
+	ft_memset(res, ' ', res_len); 																// fill with spaces
+	if (ft_strchr(data.flags, '0') && data.precision < 0 
+		&& !ft_strchr(data.flags, '-')) 														// flag '0' without precision and no flag '-' => fill everything with '0' (La precision cancel le 0)
+		ft_memset(res, '0', res_len);
 	small_res_len = ft_strlen(small_res);
 	if (ft_strchr(data.flags, '-')) 																	// put to the left if flag '-'
-		ft_memcpy(result, small_res, small_res_len);
+		ft_memcpy(res, small_res, small_res_len);
 	else
-		ft_memcpy(result + (result_len - small_res_len), small_res, small_res_len); 					// put to the right otherwise
+		ft_memcpy(res + (res_len - small_res_len), small_res, small_res_len); 					// put to the right otherwise
 	if (data.sign) 																						// Si un signe est requis
-			result[ft_get_char_index('0', result)] = data.sign; 										// Placage du signe sur le premier 0 (place dans la petite partie si un signe est requis sans taille avec 0)
-	return (result);
+		res[ft_get_char_index('0', res)] = data.sign; 										// Placage du signe sur le premier 0 (place dans la petite partie si un signe est requis sans taille avec 0)
+	return (res);
 }
 
 int						conv_id(t_struct *data, va_list list)
@@ -103,7 +103,7 @@ int						conv_id(t_struct *data, va_list list)
 		result_len = ft_strlen(small_res);
 		if (data->width > (int)ft_strlen(small_res)) 						// choose the result's size: the longer between width and small_res (pour malloc de la grande partie)
 			result_len = data->width;
-		if (!(result = create_res_decimal(*data, result_len, small_res)))	// create the final result
+		if (!(result = create_res_deci(*data, result_len, small_res)))	// create the final result
 			result_len = 0;
 		ft_putstr(result); 													// print result
 		ft_strdel(&result); 												// clean everything: result, small_res, struct

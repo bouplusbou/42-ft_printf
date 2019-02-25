@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/27 16:20:08 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/22 12:53:13 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/25 11:35:41 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static char	*parse_flags(char *conv, size_t *i)
 {
 	char	*flags;
-	size_t 	l;
+	size_t	l;
 
 	l = 0;
 	while (is_flag(conv[l]))
@@ -64,7 +64,7 @@ static int	parse_precision(char *conv, size_t *i)
 	return (precision_int);
 }
 
-char 		*parse_size(char *conv, size_t *i)
+static char	*parse_size(char *conv, size_t *i)
 {
 	char	*size;
 	size_t	l;
@@ -78,7 +78,7 @@ char 		*parse_size(char *conv, size_t *i)
 	return (size);
 }
 
-char 		*get_base(char type)
+static char	*get_base(char type)
 {
 	if (type == 'x' || type == 'p')
 		return ("0123456789abcdef");
@@ -100,10 +100,10 @@ static void	init_data_struct(t_struct *data)
 	data->sign = 'X';
 }
 
-int 		parse_conv(char *conv, va_list list)
+int			parse_conv(char *conv, va_list list)
 {
 	t_struct	*data;
-	size_t 		i;
+	size_t		i;
 
 	i = 1;
 	if (!(data = (t_struct *)malloc(sizeof(t_struct))))
