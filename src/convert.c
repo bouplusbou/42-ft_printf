@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 14:08:38 by bclaudio          #+#    #+#             */
-/*   Updated: 2019/02/22 17:29:09 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/25 09:55:57 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,19 @@ int	convert(t_struct *data, va_list list)
 
 	len = 0;
 	if (data->type == '%')
-		len = conv_perc(data); // return char conversion fonction call
+		len = conv_perc(data);
 	if (data->type == 'c' || data->type == 's')
 		len = conv_cs(data, list);
 	if (data->type == 'p')
-		len = conv_p(data, list); // return pointer conversion fonction call
+		len = conv_p(data, list);
+	if (data->type == 'o'
+		|| data->type == 'u'
+		|| data->type == 'x'
+		|| data->type == 'X')
+		len = conv_ouxX(data, list);
 	if (data->type == 'f')
-		len = conv_f(data, list); // return float conversion fonction call
+		len = conv_f(data, list);
 	if (data->type == 'i' || data->type == 'd')
-		len = conv_id(data, list); // return decimal conversion fonction call
+		len = conv_id(data, list);
 	return (len);
 }
