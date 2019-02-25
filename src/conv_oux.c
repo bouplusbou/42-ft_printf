@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 13:12:50 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/25 14:00:14 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/25 14:24:29 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,12 @@ static char						*small_res_oux(t_struct data, unsigned long long int arg)
 	small_res_len = arg_str_len; 												// Ajoute 1 a small_res_len si un signe est requis
 	if (data.sign)
 	{
+		small_res_len++;
 		if (data.type == 'x' || data.type == 'X')
-			small_res_len += 2; 												// Ajoute 1 a small_res_len si un signe est requis
-		else
-			small_res_len += 1;
+			small_res_len++; 													// Ajoute 1 a small_res_len si un signe est requis
 	}
-	if (data.precision > (int)arg_str_len) 										// add enough space for '0's if needed (if precision is longer than input)
-		small_res_len += data.precision - arg_str_len;
+	if (data.precision > small_res_len) 										// add enough space for '0's if needed (if precision is longer than input)
+		small_res_len += data.precision - small_res_len;
 	if (!(small_res = ft_strnew(small_res_len)))
 		return (NULL);
 	ft_memset(small_res, '0', small_res_len);									// fill '0' BEST LIGNE EU
