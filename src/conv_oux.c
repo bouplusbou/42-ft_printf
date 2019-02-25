@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 13:12:50 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/25 14:24:29 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/25 14:35:44 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,18 @@ static char						*small_res_oux(t_struct data, unsigned long long int arg)
 		if (data.type == 'x' || data.type == 'X')
 			small_res_len++; 													// Ajoute 1 a small_res_len si un signe est requis
 	}
-	if (data.precision > small_res_len) 										// add enough space for '0's if needed (if precision is longer than input)
-		small_res_len += data.precision - small_res_len;
+	if (data.precision > (data.type == 'x' ? (int)arg_str_len : small_res_len)) 										// add enough space for '0's if needed (if precision is longer than input)
+		small_res_len += data.precision - (data.type == 'x' ? (int)arg_str_len : small_res_len);
+	// if (data.type == 'x')
+	// {
+	// 	if (data.precision > (int)arg_str_len) 										// add enough space for '0's if needed (if precision is longer than input)
+	// 		small_res_len += data.precision - arg_str_len;
+	// }
+	// else
+	// {
+	// 	if (data.precision > small_res_len) 										// add enough space for '0's if needed (if precision is longer than input)
+	// 		small_res_len += data.precision - small_res_len;
+	// }
 	if (!(small_res = ft_strnew(small_res_len)))
 		return (NULL);
 	ft_memset(small_res, '0', small_res_len);									// fill '0' BEST LIGNE EU
