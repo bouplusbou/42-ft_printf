@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 13:12:50 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/25 13:19:34 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/25 14:00:14 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,32 +101,31 @@ static char						*create_res_oux(t_struct data, int res_len, char *small_res)
 
 int								conv_oux(t_struct *data, va_list list)
 {
-	int						result_len;
+	int						res_len;
 	char					*result;
 	char					*small_res;
 	unsigned long long int	arg;
 
 	arg = get_arg_oux(*data, list);				 						// Recupere la valeur caste avec le size donnee
 	data->sign = find_sign(*data, arg);			  						// Defini le signe (ou space) si besoin. 0 si pas de signe
-	result_len = 0;
+	res_len = 0;
 	if ((small_res = small_res_oux(*data, arg)))						// Converti la valeur en brut (Sans prendre en compte la size (petit resultat))
 	{
 		if (!ft_strcmp(small_res, "0") && data->precision == 0) 		// if input is '0' with a precision of 0, write nothing at all
 		{
-			if (ft_strchr(data->flags, '#'))
-				small_res[0] = data->type == 'o' ? '0' : '\0';
-			else
-				small_res[0] = data->type == 'o' ? '\0' : '0';
+			small_res[0] = '\0';
+			if (ft_strchr(data->flags, '#') && data->type == 'o')
+				small_res[0] = '0';
 		}
-		result_len = ft_strlen(small_res);
+		res_len = ft_strlen(small_res);
 		if (data->width > (int)ft_strlen(small_res)) 					// choose the result's size: the longer between width and small_res (pour malloc de la grande partie)
-			result_len = data->width;
-		if (!(result = create_res_oux(*data, result_len, small_res)))	// create the final result
-			result_len = 0;
+			res_len = data->width;
+		if (!(result = create_res_oux(*data, res_len, small_res)))	// create the final result
+			res_len = 0;
 		ft_putstr(result); 												// print result
 		ft_strdel(&result);												// clean everything: result, small_res, struct
 		ft_strdel(&small_res);
 	}
 	delete_struct(data);
-	return (result_len);
+	return (res_len);
 }
