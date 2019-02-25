@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 13:12:50 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/25 14:35:44 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/25 14:43:47 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static char						find_sign(t_struct data, unsigned long long int value)
 	if (ft_strchr(data.flags, '#') && value != 0)
 	{
 		if (data.type == 'x')
-			return ('x'); 			// a placer en +1
+			return ('x'); 			// a placer en res[1]
 		if (data.type == 'X')
 			return ('X');
 		if (data.type == 'o')
@@ -61,18 +61,9 @@ static char						*small_res_oux(t_struct data, unsigned long long int arg)
 		if (data.type == 'x' || data.type == 'X')
 			small_res_len++; 													// Ajoute 1 a small_res_len si un signe est requis
 	}
-	if (data.precision > (data.type == 'x' ? (int)arg_str_len : small_res_len)) 										// add enough space for '0's if needed (if precision is longer than input)
-		small_res_len += data.precision - (data.type == 'x' ? (int)arg_str_len : small_res_len);
-	// if (data.type == 'x')
-	// {
-	// 	if (data.precision > (int)arg_str_len) 										// add enough space for '0's if needed (if precision is longer than input)
-	// 		small_res_len += data.precision - arg_str_len;
-	// }
-	// else
-	// {
-	// 	if (data.precision > small_res_len) 										// add enough space for '0's if needed (if precision is longer than input)
-	// 		small_res_len += data.precision - small_res_len;
-	// }
+	if (data.precision > (data.type == 'x' ? (int)arg_str_len : small_res_len))	// add enough space for '0's if needed (if precision is longer than input)
+		small_res_len += data.precision - (data.type == 'x' ?
+			(int)arg_str_len : small_res_len);
 	if (!(small_res = ft_strnew(small_res_len)))
 		return (NULL);
 	ft_memset(small_res, '0', small_res_len);									// fill '0' BEST LIGNE EU
@@ -129,7 +120,7 @@ int								conv_oux(t_struct *data, va_list list)
 		res_len = ft_strlen(small_res);
 		if (data->width > (int)ft_strlen(small_res)) 					// choose the result's size: the longer between width and small_res (pour malloc de la grande partie)
 			res_len = data->width;
-		if (!(result = create_res_oux(*data, res_len, small_res)))	// create the final result
+		if (!(result = create_res_oux(*data, res_len, small_res)))		// create the final result
 			res_len = 0;
 		ft_putstr(result); 												// print result
 		ft_strdel(&result);												// clean everything: result, small_res, struct
