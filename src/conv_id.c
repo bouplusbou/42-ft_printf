@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 16:38:32 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/26 10:06:58 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/26 10:14:24 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,18 @@ static intmax_t	get_arg_decimal(t_struct data, va_list list)
 	arg = 0;
 	if (!data.size)
 		arg = va_arg(list, int);
+	else if (ft_strstr(data.size, "j"))
+		arg = va_arg(list, intmax_t);
 	else if (ft_strstr(data.size, "ll"))
 		arg = va_arg(list, long long int);
 	else if (ft_strstr(data.size, "l"))
 		arg = va_arg(list, long int);
+	else if (ft_strstr(data.size, "z"))
+		arg = (ssize_t)va_arg(list, long long int);
 	else if (ft_strstr(data.size, "h") && !ft_strstr(data.size, "hh"))
 		arg = (short int)va_arg(list, int);
 	else if (ft_strstr(data.size, "hh"))
 		arg = (signed char)va_arg(list, int);
-	else if (ft_strstr(data.size, "j"))
-		arg = va_arg(list, intmax_t);
-	else if (ft_strstr(data.size, "z"))
-		arg = (ssize_t)va_arg(list, long long int);
 	return (arg);
 }
 

@@ -6,23 +6,27 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 13:12:50 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/25 14:43:47 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/26 10:14:21 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static unsigned long long int	get_arg_oux(t_struct data, va_list list)
+static uintmax_t	get_arg_oux(t_struct data, va_list list)
 {
-	unsigned long long int arg;
+	uintmax_t arg;
 
 	arg = 0;
 	if (!data.size)
 		arg = va_arg(list, unsigned int);
+	else if (ft_strstr(data.size, "j"))
+		arg = va_arg(list, uintmax_t);
 	else if (ft_strstr(data.size, "ll"))
 		arg = va_arg(list, unsigned long long int);
 	else if (ft_strstr(data.size, "l"))
 		arg = va_arg(list, unsigned long int);
+	else if (ft_strstr(data.size, "z"))
+		arg = (size_t)va_arg(list, unsigned long long int);
 	else if (ft_strstr(data.size, "h") && !ft_strstr(data.size, "hh"))
 		arg = (unsigned short int)va_arg(list, unsigned int);
 	else if (ft_strstr(data.size, "hh"))
@@ -30,7 +34,7 @@ static unsigned long long int	get_arg_oux(t_struct data, va_list list)
 	return (arg);
 }
 
-static char						find_sign(t_struct data, unsigned long long int value)
+static char						find_sign(t_struct data, uintmax_t value)
 {
 	if (ft_strchr(data.flags, '#') && value != 0)
 	{
@@ -44,14 +48,14 @@ static char						find_sign(t_struct data, unsigned long long int value)
 	return (0);
 }
 
-static char						*small_res_oux(t_struct data, unsigned long long int arg)
+static char						*small_res_oux(t_struct data, uintmax_t arg)
 {
 	char	*small_res;
 	int		small_res_len;
 	char	*arg_str;
 	int		arg_str_len;
 
-	if (!(arg_str = ft_ulltoa_base(arg, data.base))) 							// Converti la valeur brut en string (en prenant en compte la base donnee)
+	if (!(arg_str = ft_uimxtoa_base(arg, data.base))) 							// Converti la valeur brut en string (en prenant en compte la base donnee)
 		return (NULL);
 	arg_str_len = ft_strlen(arg_str);
 	small_res_len = arg_str_len; 												// Ajoute 1 a small_res_len si un signe est requis
@@ -101,10 +105,10 @@ static char						*create_res_oux(t_struct data, int res_len, char *small_res)
 
 int								conv_oux(t_struct *data, va_list list)
 {
-	int						res_len;
-	char					*result;
-	char					*small_res;
-	unsigned long long int	arg;
+	int			res_len;
+	char		*result;
+	char		*small_res;
+	uintmax_t	arg;
 
 	arg = get_arg_oux(*data, list);				 						// Recupere la valeur caste avec le size donnee
 	data->sign = find_sign(*data, arg);			  						// Defini le signe (ou space) si besoin. 0 si pas de signe
