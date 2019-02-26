@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 16:15:15 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/25 16:59:17 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/26 09:28:12 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,12 @@ static char	*create_res_c(t_struct data, char arg, int res_len)
 	if (!(res = ft_strnew(res_len)))
 		return (NULL);
 	res = ft_memset(res, ' ', res_len);
-	if (ft_strchr(data.flags, '-')) 	// placer a gauche si flag '-'
+	if (ft_strchr(data.flags, '0'))				// remplir de '0' si flag '0', pas obligatoire mais gere
+		res = ft_memset(res, '0', res_len);
+	if (ft_strchr(data.flags, '-')) 			// placer a gauche si flag '-'
 		res[0] = arg;
 	else
-		res[res_len - 1] = arg;			// sinon placer a droite
+		res[res_len - 1] = arg;					// sinon placer a droite
 	return (res);	
 }
 
