@@ -53,7 +53,7 @@ SRC = checks.c \
       treat_format.c \
 	  delete_struct.c \
       convert.c \
-	  conv_id.c \
+	  conv_idb.c \
 	  conv_p.c \
 	  conv_perc.c \
 	  conv_c.c \

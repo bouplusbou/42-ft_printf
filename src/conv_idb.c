@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   conv_id.c                                          :+:      :+:    :+:   */
+/*   conv_idb.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 16:38:32 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/26 10:14:24 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/26 10:41:06 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static char				*small_res_decimal(t_struct data, intmax_t arg)
 	char	*arg_str;
 	int		arg_str_len;
 
-	if (!(arg_str = ft_uimxtoa_base(arg < 0 ? -arg : arg, "0123456789"))) 			// Converti la valeur brut en string (en prenant en compte la base donnee)
+	if (!(arg_str = ft_uimxtoa_base(arg < 0 ? -arg : arg, data.base))) 			// Converti la valeur brut en string (en prenant en compte la base donnee)
 		return (NULL);
 	arg_str_len = ft_strlen(arg_str);
 	small_res_len = arg_str_len + (data.sign ? 1 : 0); 								// Ajoute 1 a small_res_len si un signe est requis
@@ -90,7 +90,7 @@ static char				*create_res_deci(t_struct data, int res_len, char *small_res)
 	return (res);
 }
 
-int						conv_id(t_struct *data, va_list list)
+int						conv_idb(t_struct *data, va_list list)
 {
 	int				result_len;
 	char			*result;

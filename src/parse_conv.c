@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/27 16:20:08 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/25 11:35:41 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/26 10:41:56 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,8 @@ static char	*get_base(char type)
 		return ("0123456789ABCDEF");
 	if (type == 'o')
 		return ("01234567");
+	if (type == 'b')
+		return ("01");
 	return ("0123456789");
 }
 
