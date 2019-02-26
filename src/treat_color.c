@@ -17,8 +17,6 @@ int		get_color(char *str, size_t len)
 		ft_putstr("\033[34m");
 	else if ((is_color = !ft_strncmp("magenta", str, len)))
 		ft_putstr("\033[35m");
-	else if ((is_color = !ft_strncmp("cyan", str, len)))
-		ft_putstr("\033[36m");
 	else if ((is_color = !ft_strncmp("white", str, len)))
 		ft_putstr("\033[m");
 	else if ((is_color = !ft_strncmp("bold", str, len)))
@@ -37,16 +35,19 @@ void	treat_color(char *str, size_t *j, int *len)
 
 	i = 0;
 	end = 0;
-	printf("str:%s|\n", str);
-	while (str[i])
+	while (str[i] && end == 0)
 	{
-		if (str[i++] == '}')
-			end = 1 ;
+		if (str[i] == '}')
+			end = 1;
+		i++;
 	}
 	if (end)
 	{
 		if (get_color(str + 1, i - 2))
+		{
 			*j += i;
+			return ;
+		}
 	}
 	printf_write('{', len);
 	*j += 1;
