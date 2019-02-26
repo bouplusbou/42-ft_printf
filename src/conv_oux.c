@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 13:12:50 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/26 10:14:21 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/26 10:34:12 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@ static uintmax_t	get_arg_oux(t_struct data, va_list list)
 	uintmax_t arg;
 
 	arg = 0;
-	if (!data.size)
+	if (data.type == 'U')													// meme avec size 'h' le FC veut unsigned long avec type 'U', a verifier quand meme si avec toutes les size 'U' toujours unsigned long
+		arg = va_arg(list, unsigned long);
+	else if (!data.size)
 		arg = va_arg(list, unsigned int);
 	else if (ft_strstr(data.size, "j"))
 		arg = va_arg(list, uintmax_t);
