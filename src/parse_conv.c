@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/27 16:20:08 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/26 14:42:09 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/26 18:30:39 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,23 @@ static void	init_data_struct(t_struct *data)
 	data->sign = 'X';
 }
 
+static void	parse_star(size_t *i, t_struct *data, va_list list)
+{
+
+	int arg;
+	
+	arg = va_arg(list, int);
+	if (arg < 0)
+	{
+		if (data->flags)
+			ft_strjoin(data->flags, "-");
+		else
+			data->flags = ft_strdup("-");
+	}
+	data->width = arg < 0 ? -arg : arg;
+	*i += 1;
+}
+
 int			parse_conv(char *conv, va_list list)
 {
 	t_struct	*data;
@@ -113,8 +130,12 @@ int			parse_conv(char *conv, va_list list)
 	init_data_struct(data);
 	if (is_flag(conv[i]))
 		data->flags = parse_flags(conv + i, &i);
+	if (conv[i] == '*')
+		parse_star(&i, data, list);
 	if (ft_isdigit(conv[i]))
 		data->width = parse_width(conv + i, &i);
+	if (conv[i] == '*')
+		parse_star(&i, data, list);
 	if (conv[i] == '.')
 		data->precision = parse_precision(conv + i, &i);
 	if (is_size(conv[i]))

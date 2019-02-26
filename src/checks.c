@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/27 16:05:57 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/26 10:43:16 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/26 17:35:04 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int		is_type(char c)
 int		is_conv(char c)
 {
 	return (c == '%'
+			|| c == '*'
 			|| is_flag(c)
 			|| ft_isdigit(c)
 			|| is_precision(c)
