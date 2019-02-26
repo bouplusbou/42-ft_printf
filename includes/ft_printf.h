@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/27 16:06:29 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/26 10:43:43 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/26 14:09:57 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,5 @@ int		conv_oux(t_struct *data, va_list list);
 int		conv_perc(t_struct *data);
 
 char	*ft_uimxtoa_base(uintmax_t nbr, const char *basestr);
-
+void	treat_color(char *str, size_t *j, int *len);
 #endif

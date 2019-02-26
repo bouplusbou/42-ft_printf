@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/27 16:05:38 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/22 10:03:04 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/26 14:16:49 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ int	treat_format(const char *format, va_list list)
 			if (0 < (tmp = treat_conv(((char*)format + i), &i, &len, list)))
 				len += tmp;
 		}
+		if (format[i] == '{')
+			treat_color(((char*)format + i), &i);
 		else
 			printf_write(format[i++], &len);
 	}

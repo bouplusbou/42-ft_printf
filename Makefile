@@ -60,6 +60,7 @@ SRC = checks.c \
 	  conv_s.c \
 	  conv_oux.c \
 	  conv_f.c \
+	  treat_color.c \
 	  ft_uimxtoa_base.c
 
 	##### Libft Sources #####
