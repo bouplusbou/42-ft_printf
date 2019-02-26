@@ -6,15 +6,15 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 16:38:32 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/25 13:09:34 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/26 10:06:58 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static long long int	get_arg_decimal(t_struct data, va_list list)
+static intmax_t	get_arg_decimal(t_struct data, va_list list)
 {
-	long long int	arg;
+	intmax_t	arg;
 
 	arg = 0;
 	if (!data.size)
@@ -27,6 +27,10 @@ static long long int	get_arg_decimal(t_struct data, va_list list)
 		arg = (short int)va_arg(list, int);
 	else if (ft_strstr(data.size, "hh"))
 		arg = (signed char)va_arg(list, int);
+	else if (ft_strstr(data.size, "j"))
+		arg = va_arg(list, intmax_t);
+	else if (ft_strstr(data.size, "z"))
+		arg = (ssize_t)va_arg(list, long long int);
 	return (arg);
 }
 
@@ -44,14 +48,14 @@ static char				find_sign(t_struct data, int pos)
 	return (0);
 }
 
-static char				*small_res_decimal(t_struct data, long long int arg)
+static char				*small_res_decimal(t_struct data, intmax_t arg)
 {
 	char	*small_res;
 	int		small_res_len;
 	char	*arg_str;
 	int		arg_str_len;
 
-	if (!(arg_str = ft_ulltoa_base(arg < 0 ? -arg : arg, "0123456789"))) 			// Converti la valeur brut en string (en prenant en compte la base donnee)
+	if (!(arg_str = ft_uimxtoa_base(arg < 0 ? -arg : arg, "0123456789"))) 			// Converti la valeur brut en string (en prenant en compte la base donnee)
 		return (NULL);
 	arg_str_len = ft_strlen(arg_str);
 	small_res_len = arg_str_len + (data.sign ? 1 : 0); 								// Ajoute 1 a small_res_len si un signe est requis
@@ -91,7 +95,7 @@ int						conv_id(t_struct *data, va_list list)
 	int				result_len;
 	char			*result;
 	char			*small_res;
-	long long int	arg;
+	intmax_t		arg;
 
 	arg = get_arg_decimal(*data, list); 									// Recupere la valeur caste avec le size donnee
 	data->sign = find_sign(*data, arg >= 0 ? 1 : 0); 						// Defini le signe (ou space) si besoin. 0 si pas de signe

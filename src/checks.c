@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/27 16:05:57 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/22 08:51:48 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/26 10:05:00 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int		is_precision(char c)
 
 int		is_size(char c)
 {
-	return (c == 'h' || c == 'l' || c == 'L');
+	return (c == 'h' || c == 'l' || c == 'j' || c == 'z' || c == 'L');
 }
 
 int		is_type(char c)

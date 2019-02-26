@@ -59,7 +59,8 @@ SRC = checks.c \
 	  conv_c.c \
 	  conv_s.c \
 	  conv_oux.c \
-	  conv_f.c
+	  conv_f.c \
+	  ft_uimxtoa_base.c
 
 	##### Libft Sources #####
 LIBSRCPATH = libsrc/
