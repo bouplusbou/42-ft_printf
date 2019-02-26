@@ -53,12 +53,12 @@ SRC = checks.c \
       treat_format.c \
 	  delete_struct.c \
       convert.c \
-	  conv_idb.c \
+	  conv_id.c \
 	  conv_p.c \
 	  conv_perc.c \
 	  conv_c.c \
 	  conv_s.c \
-	  conv_oux.c \
+	  conv_ouxb.c \
 	  conv_f.c \
 	  treat_color.c \
 	  ft_uimxtoa_base.c

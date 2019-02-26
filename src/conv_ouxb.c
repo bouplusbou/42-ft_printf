@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   conv_oux.c                                         :+:      :+:    :+:   */
+/*   conv_ouxb.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/25 13:12:50 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/26 10:34:12 by bboucher         ###   ########.fr       */
+/*   Created: 2019/02/26 14:40:31 by bboucher          #+#    #+#             */
+/*   Updated: 2019/02/26 14:40:33 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static uintmax_t	get_arg_oux(t_struct data, va_list list)
+static uintmax_t	get_arg_ouxb(t_struct data, va_list list)
 {
 	uintmax_t arg;
 
@@ -50,7 +50,7 @@ static char						find_sign(t_struct data, uintmax_t value)
 	return (0);
 }
 
-static char						*small_res_oux(t_struct data, uintmax_t arg)
+static char						*small_res_ouxb(t_struct data, uintmax_t arg)
 {
 	char	*small_res;
 	int		small_res_len;
@@ -78,7 +78,7 @@ static char						*small_res_oux(t_struct data, uintmax_t arg)
 	return (small_res);
 }
 
-static char						*create_res_oux(t_struct data, int res_len, char *small_res)
+static char						*create_res_ouxb(t_struct data, int res_len, char *small_res)
 {
 	char	*res;
 	int		small_res_len;
@@ -105,17 +105,17 @@ static char						*create_res_oux(t_struct data, int res_len, char *small_res)
 	return (res);
 }
 
-int								conv_oux(t_struct *data, va_list list)
+int								conv_ouxb(t_struct *data, va_list list)
 {
 	int			res_len;
 	char		*result;
 	char		*small_res;
 	uintmax_t	arg;
 
-	arg = get_arg_oux(*data, list);				 						// Recupere la valeur caste avec le size donnee
+	arg = get_arg_ouxb(*data, list);				 						// Recupere la valeur caste avec le size donnee
 	data->sign = find_sign(*data, arg);			  						// Defini le signe (ou space) si besoin. 0 si pas de signe
 	res_len = 0;
-	if ((small_res = small_res_oux(*data, arg)))						// Converti la valeur en brut (Sans prendre en compte la size (petit resultat))
+	if ((small_res = small_res_ouxb(*data, arg)))						// Converti la valeur en brut (Sans prendre en compte la size (petit resultat))
 	{
 		if (!ft_strcmp(small_res, "0") && data->precision == 0) 		// if input is '0' with a precision of 0, write nothing at all
 		{
@@ -126,7 +126,7 @@ int								conv_oux(t_struct *data, va_list list)
 		res_len = ft_strlen(small_res);
 		if (data->width > (int)ft_strlen(small_res)) 					// choose the result's size: the longer between width and small_res (pour malloc de la grande partie)
 			res_len = data->width;
-		if (!(result = create_res_oux(*data, res_len, small_res)))		// create the final result
+		if (!(result = create_res_ouxb(*data, res_len, small_res)))		// create the final result
 			res_len = 0;
 		ft_putstr(result); 												// print result
 		ft_strdel(&result);												// clean everything: result, small_res, struct
