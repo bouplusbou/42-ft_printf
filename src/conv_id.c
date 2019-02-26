@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   conv_idb.c                                          :+:      :+:    :+:   */
+/*   conv_id.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 16:38:32 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/26 10:41:06 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/26 14:39:46 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ static char				*create_res_deci(t_struct data, int res_len, char *small_res)
 	return (res);
 }
 
-int						conv_idb(t_struct *data, va_list list)
+int						conv_id(t_struct *data, va_list list)
 {
 	int				result_len;
 	char			*result;

@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 14:08:38 by bclaudio          #+#    #+#             */
-/*   Updated: 2019/02/26 10:40:55 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/26 14:41:55 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,12 @@ int	convert(t_struct *data, va_list list)
 		|| data->type == 'u'
 		|| data->type == 'U'
 		|| data->type == 'x'
-		|| data->type == 'X')
-		len = conv_oux(data, list);
+		|| data->type == 'X'
+		|| data->type == 'b')
+		len = conv_ouxb(data, list);
 	if (data->type == 'f')
 		len = conv_f(data, list);
-	if (data->type == 'i' || data->type == 'd'
-		|| data->type == 'b')
-		len = conv_idb(data, list);
+	if (data->type == 'i' || data->type == 'd')
+		len = conv_id(data, list);
 	return (len);
 }
