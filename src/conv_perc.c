@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   conv_perc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bclaudio <bclaudio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:02:49 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/27 09:51:57 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/27 15:26:25 by bclaudio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,5 @@ int	conv_perc(t_struct *data, int fd)
 		ft_putstr_fd(result, fd);								// print result
 		ft_strdel(&result);								// clean everything: result, concat, struct
 	}
-	delete_struct(data);
 	return (result_size);
 }

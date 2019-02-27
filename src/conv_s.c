@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   conv_s.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bclaudio <bclaudio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 16:15:09 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/27 09:58:18 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/27 15:22:34 by bclaudio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,5 @@ int			conv_s(t_struct *data, int fd, va_list list)
 	}
 	if (arg && !ft_strcmp(arg, "(null)"))							// arg a ete malloc que si ft_strdup("(null)") au dessus
 		ft_strdel(&arg);
-	delete_struct(data);
 	return (res_len);
 }

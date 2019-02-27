@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   convert.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bclaudio <bclaudio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 14:08:38 by bclaudio          #+#    #+#             */
-/*   Updated: 2019/02/27 09:48:51 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/27 15:22:01 by bclaudio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,6 @@ int	convert(t_struct *data, int fd, va_list list)
 		len = conv_f(data, fd, list);
 	if (data->type == 'i' || data->type == 'd')
 		len = conv_id(data, fd, list);
+	delete_struct(data);	
 	return (len);
 }

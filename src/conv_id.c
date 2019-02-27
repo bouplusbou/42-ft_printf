@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   conv_id.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bclaudio <bclaudio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 16:38:32 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/27 10:16:27 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/27 15:22:15 by bclaudio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,5 @@ int						conv_id(t_struct *data, int fd, va_list list)
 		ft_strdel(&result); 												// clean everything: result, small_res, struct
 		ft_strdel(&small_res);
 	}
-	delete_struct(data);
 	return (result_len);
 }

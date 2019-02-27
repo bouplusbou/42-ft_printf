@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   conv_c.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bclaudio <bclaudio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 16:15:15 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/27 09:53:31 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/27 15:22:16 by bclaudio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,5 @@ int			conv_c(t_struct *data, int fd, va_list list)
 	res = create_res_c(*data, arg, res_len);		// creation du res final
 	print_res_c(res, fd, res_len);					// doit print les char speciaux, don't believe the '\0', don't use ft_putstr
 	ft_strdel(&res);								// free res et delete la struct
-	delete_struct(data);
 	return (res_len);
 }

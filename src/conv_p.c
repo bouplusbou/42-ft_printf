@@ -6,7 +6,7 @@
 /*   By: bclaudio <bclaudio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/02 11:57:57 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/27 15:08:52 by bclaudio         ###   ########.fr       */
+/*   Updated: 2019/02/27 15:22:28 by bclaudio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,5 @@ int			conv_p(t_struct *data, int fd, va_list list)
 		ft_strdel(&result); 														// clean everything: result, small_res, struct
 	}
 	ft_strdel(&small_res);
-	delete_struct(data);
 	return (result_len);
 }
