@@ -6,14 +6,14 @@
 /*   By: bclaudio <bclaudio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/22 16:53:03 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/27 15:27:07 by bclaudio         ###   ########.fr       */
+/*   Updated: 2019/02/27 17:13:49 by bclaudio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <limits.h>
 
-int main()
+void test()
 {
 	// printf("\n===|%s|\n", "coucou");
 	// ft_printf(">>>|%s|\n", "coucou");
@@ -2484,8 +2484,12 @@ int main()
 	ft_printf(">>>|%-+5.3f$\n", nb28);
     printf("\n===|%-#+5.0f$\n", nb28);
 	ft_printf(">>>|%-#+5.0f$\n", nb28);
-
 	while (1)
 		;
+}
+
+int main()
+{
+	test();
 	return (0);
 }

@@ -1,33 +1,27 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   conv_f.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bclaudio <bclaudio@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/02/27 16:07:07 by bclaudio          #+#    #+#             */
+/*   Updated: 2019/02/27 17:28:43 by bclaudio         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-static long double	get_arg_float(t_struct data, va_list list)
-{
-	long double arg;
-
-	arg = 0;
-	if (!data.size)
-		arg = va_arg(list, double);
-	else if (ft_strstr(data.size, "L"))
-		arg = va_arg(list, long double);
-	return (arg);
-}
-
-static char			*inf_nan(long double arg, char *small_res)
-{
-	ft_strdel(&small_res);
-	if (arg != arg)
-		return (ft_strdup("nan"));
-	return (ft_strdup("inf"));
-}
-
-static char			*format_res(t_struct data, long double arg, char *small_res)
+static char	*format_res(t_struct data, long double arg, char *small_res)
 {
 	char	*res;
 	int		res_len;
 	int		small_res_len;
 
-	if (arg != arg || arg == +1.0 / 0.0 || arg == -1.0 / 0.0)
-		small_res = inf_nan(arg, small_res);
+	if (arg != arg)
+		small_res = ft_strreplace(small_res, "nan");
+	else if (arg == +1.0 / 0.0 || arg == -1.0 / 0.0)
+		small_res = ft_strreplace(small_res, "inf");
 	if (data.sign)
 		small_res = ft_strjoinf("0", small_res, 2);
 	small_res_len = (int)ft_strlen(small_res);
@@ -45,20 +39,6 @@ static char			*format_res(t_struct data, long double arg, char *small_res)
 		res[ft_get_char_index('0', res)] = data.sign;
 	ft_strdel(&small_res);
 	return (res);
-}
-
-static char			find_sign(t_struct data, long double arg)
-{
-	if ((1 / arg < 0) || arg == -1.0 / 0.0 || arg < 0)
-		return ('-');
-	else
-	{
-		if (ft_strchr(data.flags, '+'))
-			return ('+');
-		if (ft_strchr(data.flags, ' '))
-			return (' ');
-	}
-	return (0);
 }
 
 static char	*get_float(t_struct data, long double value, char *result)
@@ -81,17 +61,11 @@ static char	*get_float(t_struct data, long double value, char *result)
 	return (result);
 }
 
-static char			*manage_preci(t_struct data, long double value, char *res)
+char		*jesaispas(char *res, int *last_i)
 {
-	int		last_i;
-	int		i;
+	int	i;
 
-	last_i = ft_get_char_index('.', res) + data.preci;
-	if (res[last_i - 1] == '.' && value != 0)
-		res[last_i - 2] += res[last_i] >= '5' ? 1 : 0;
-	else if (value != 0)
-		res[last_i - 1] += res[last_i] >= '5' ? 1 : 0;
-	i = last_i;
+	i = *last_i;
 	while (i >= 0)
 	{
 		if (res[i] == ':')
@@ -104,25 +78,40 @@ static char			*manage_preci(t_struct data, long double value, char *res)
 			else
 			{
 				res = ft_strjoinf("1", res, 2);
-				last_i++;
+				*last_i += 1;
 			}
 		}
 		i--;
 	}
+	return (res);
+}
+
+static char	*manage_preci(t_struct data, long double value, char *res)
+{
+	int		last_i;
+	int		i;
+
+	last_i = ft_get_char_index('.', res) + data.preci;
+	if (res[last_i - 1] == '.' && value != 0)
+		res[last_i - 2] += res[last_i] >= '5' ? 1 : 0;
+	else if (value != 0)
+		res[last_i - 1] += res[last_i] >= '5' ? 1 : 0;
+	res = jesaispas(res, &last_i);
+	i = last_i;
 	if (res[last_i - 1] == '.' && !ft_strchr(data.flags, '#'))
 		last_i--;
 	res[last_i] = '\0';
 	return (res);
 }
 
-int					conv_f(t_struct *data, int fd, va_list list)
+int			conv_f(t_struct *data, int fd, va_list list)
 {
 	int			result_len;
 	char		*result;
 	long double	arg;
 
 	arg = get_arg_float(*data, list);
-	data->sign = find_sign(*data, arg);
+	data->sign = find_sign_f(*data, arg);
 	arg = arg > 0 ? arg : -arg;
 	result = ft_ulltoa_base((unsigned long long)arg, data->base);
 	data->preci = data->preci == -1 ? 6 : data->preci;
@@ -135,12 +124,9 @@ int					conv_f(t_struct *data, int fd, va_list list)
 		result = manage_preci(*data, arg, result);
 	}
 	if (!(result = format_res(*data, arg, result)))
-		result_len = 0;
-	else
-	{
-		ft_putstr_fd(result, fd);
-		result_len = ft_strlen(result);
-	}
+		exit(0);
+	ft_putstr_fd(result, fd);
+	result_len = ft_strlen(result);
 	ft_strdel(&result);
 	return (result_len);
 }

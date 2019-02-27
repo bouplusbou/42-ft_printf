@@ -6,47 +6,11 @@
 /*   By: bclaudio <bclaudio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 16:38:32 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/27 15:38:39 by bclaudio         ###   ########.fr       */
+/*   Updated: 2019/02/27 17:22:58 by bclaudio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-static intmax_t	get_arg_decimal(t_struct data, va_list list)
-{
-	intmax_t	arg;
-
-	arg = 0;
-	if (!data.size)
-		arg = va_arg(list, int);
-	else if (ft_strstr(data.size, "j"))
-		arg = va_arg(list, intmax_t);
-	else if (ft_strstr(data.size, "ll"))
-		arg = va_arg(list, long long int);
-	else if (ft_strstr(data.size, "l"))
-		arg = va_arg(list, long int);
-	else if (ft_strstr(data.size, "z"))
-		arg = (ssize_t)va_arg(list, long long int);
-	else if (ft_strstr(data.size, "h") && !ft_strstr(data.size, "hh"))
-		arg = (short int)va_arg(list, int);
-	else if (ft_strstr(data.size, "hh"))
-		arg = (signed char)va_arg(list, int);
-	return (arg);
-}
-
-static char				find_sign(t_struct data, int pos)
-{
-	if (pos)
-	{
-		if (ft_strchr(data.flags, '+'))
-			return ('+');
-		if (ft_strchr(data.flags, ' '))
-			return (' ');
-	}
-	else
-		return ('-');
-	return (0);
-}
 
 static char				*small_res_decimal(t_struct data, intmax_t arg)
 {
@@ -98,7 +62,7 @@ int						conv_id(t_struct *data, int fd, va_list list)
 	intmax_t		arg;
 
 	arg = get_arg_decimal(*data, list); 									// Recupere la valeur caste avec le size donnee
-	data->sign = find_sign(*data, arg >= 0 ? 1 : 0); 						// Defini le signe (ou space) si besoin. 0 si pas de signe
+	data->sign = find_sign_id(*data, arg >= 0 ? 1 : 0); 						// Defini le signe (ou space) si besoin. 0 si pas de signe
 	result_len = 0;
 	if ((small_res = small_res_decimal(*data, arg))) 						// Converti le valeur en brut (Sans prendre en compte la size (petit resultat))
 	{

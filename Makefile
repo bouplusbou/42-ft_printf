@@ -51,13 +51,15 @@ SRC = checks.c \
       treat_format.c \
 	  delete_struct.c \
       convert.c \
+	  get_arg.c \
+	  get_sign.c \
 	  conv_id.c \
 	  conv_p.c \
 	  conv_perc.c \
 	  conv_c.c \
 	  conv_s.c \
 	  conv_boux.c \
-	  conv_f.c 
+	  conv_f.c
 
 	##### Libft Sources #####
 LIBSRCPATH = libsrc/
@@ -134,7 +136,8 @@ LIBSRC = ft_strlen.c \
 	  ft_ulltoa_base.c \
 	  ft_get_char_index.c \
 	  ft_power.c \
-	  ft_uimxtoa_base.c
+	  ft_uimxtoa_base.c \
+	  ft_strreplace.c
 
 	##### EXEC SOURCE #####
 EXSRCS = $(addprefix $(EXPATH), $(EXSRC))

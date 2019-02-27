@@ -3,52 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   conv_boux.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bclaudio <bclaudio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 14:40:31 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/27 16:06:05 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/27 17:23:05 by bclaudio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-static uintmax_t	get_arg_boux(t_struct data, va_list list)
-{
-	uintmax_t arg;
-
-	arg = 0;
-	if (data.type == 'U')
-		arg = va_arg(list, unsigned long);
-	else if (!data.size)
-		arg = va_arg(list, unsigned int);
-	else if (ft_strstr(data.size, "j"))
-		arg = va_arg(list, uintmax_t);
-	else if (ft_strstr(data.size, "ll"))
-		arg = va_arg(list, unsigned long long int);
-	else if (ft_strstr(data.size, "l"))
-		arg = va_arg(list, unsigned long int);
-	else if (ft_strstr(data.size, "z"))
-		arg = (size_t)va_arg(list, unsigned long long int);
-	else if (ft_strstr(data.size, "h") && !ft_strstr(data.size, "hh"))
-		arg = (unsigned short int)va_arg(list, unsigned int);
-	else if (ft_strstr(data.size, "hh"))
-		arg = (unsigned char)va_arg(list, unsigned int);
-	return (arg);
-}
-
-static char						find_sign(t_struct data, uintmax_t value)
-{
-	if (ft_strchr(data.flags, '#') && value != 0)
-	{
-		if (data.type == 'x')
-			return ('x');
-		if (data.type == 'X')
-			return ('X');
-		if (data.type == 'o')
-			return ('0');
-	}
-	return (0);
-}
 
 static char						*small_res_boux(t_struct data, uintmax_t arg)
 {
@@ -113,7 +75,7 @@ int								conv_boux(t_struct *data, int fd, va_list list)
 	uintmax_t	arg;
 
 	arg = get_arg_boux(*data, list);
-	data->sign = find_sign(*data, arg);
+	data->sign = find_sign_boux(*data, arg);
 	res_len = 0;
 	if ((small_res = small_res_boux(*data, arg)))
 	{
