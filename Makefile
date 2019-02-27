@@ -56,7 +56,7 @@ SRC = checks.c \
 	  conv_perc.c \
 	  conv_c.c \
 	  conv_s.c \
-	  conv_ouxb.c \
+	  conv_boux.c \
 	  conv_f.c \
 	  ft_uimxtoa_base.c
 

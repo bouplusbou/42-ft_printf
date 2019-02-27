@@ -6,7 +6,7 @@
 /*   By: bclaudio <bclaudio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/27 16:20:08 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/27 15:31:24 by bclaudio         ###   ########.fr       */
+/*   Updated: 2019/02/27 15:40:28 by bclaudio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,21 +47,21 @@ static int	parse_width(char *conv, size_t *i)
 	return (width_int);
 }
 
-static int	parse_precision(char *conv, size_t *i)
+static int	parse_preci(char *conv, size_t *i)
 {
-	int		precision_int;
+	int		preci_int;
 	size_t	l;
-	char	*precision_str;
+	char	*preci_str;
 
 	l = 1;
-	while (is_precision(conv[l]))
+	while (is_preci(conv[l]))
 		l++;
 	*i += l;
-	if (!(precision_str = ft_strndup(conv + 1, l)))
+	if (!(preci_str = ft_strndup(conv + 1, l)))
 		return (0);
-	precision_int = ft_atoi(precision_str);
-	ft_strdel(&precision_str);
-	return (precision_int);
+	preci_int = ft_atoi(preci_str);
+	ft_strdel(&preci_str);
+	return (preci_int);
 }
 
 static char	*parse_size(char *conv, size_t *i)
@@ -94,7 +94,7 @@ static char	*get_base(char type)
 static void	init_data_struct(t_struct *data)
 {
 	data->width = -1;
-	data->precision = -1;
+	data->preci = -1;
 	data->type = '0';
 	data->size = NULL;
 	data->flags = NULL;
@@ -132,7 +132,7 @@ int			parse_conv(char *conv, int fd, va_list list)
 	if (conv[i] == '*')
 		parse_star(&i, data, list);
 	if (conv[i] == '.')
-		data->precision = parse_precision(conv + i, &i);
+		data->preci = parse_preci(conv + i, &i);
 	if (is_size(conv[i]))
 		data->size = parse_size(conv + i, &i);
 	data->type = conv[i];

@@ -69,13 +69,13 @@ static char	*get_float(t_struct data, long double value, char *result)
 	value -= (unsigned long long)value;									//	Extracting float value
 	if (!(float_res = ft_strnew(0)))
 		return (NULL);
-	while (data.precision >= 0)											//	Looping times precision
+	while (data.preci >= 0)											//	Looping times preci
 	{
 		value *= 10;													//	Converting first float digit to int
 		digit = ft_ulltoa_base((unsigned long long)value, data.base);	//	Socking resulting digit
 		float_res = ft_strjoinf(float_res, digit, 3);					//	Addin digit to result
 		value -= (unsigned long long)value;								//	Removing previously added digit
-		data.precision--;
+		data.preci--;
 	}
 	result = ft_strjoinf(result, float_res, 3);						//	Joining int and float value together
 	return (result);
@@ -86,8 +86,8 @@ static char			*manage_preci(t_struct data, long double value, char *res)
 	int		last_i;
 	int		i;
 
-	last_i = ft_get_char_index('.', res) + data.precision;			//	Finding the last digit required by the precision (+1 for the digit used for the rounding)
-	if (res[last_i - 1] == '.' && value != 0)						//	If precision = 0, rounding value on the first digit of the int
+	last_i = ft_get_char_index('.', res) + data.preci;			//	Finding the last digit required by the preci (+1 for the digit used for the rounding)
+	if (res[last_i - 1] == '.' && value != 0)						//	If preci = 0, rounding value on the first digit of the int
 		res[last_i - 2] += res[last_i] >= '5' ? 1 : 0;
 	else if (value != 0)											//	Rounding last digit in the res
 		res[last_i - 1] += res[last_i] >= '5' ? 1 : 0;
@@ -104,14 +104,14 @@ static char			*manage_preci(t_struct data, long double value, char *res)
 			else
 			{														//	Else if we're on the first int digit
 				res = ft_strjoinf("1", res, 2);						//	Adding 1 to the left of the res
-				last_i++;											//	Incrementing last digit index to keep matching the precision value
+				last_i++;											//	Incrementing last digit index to keep matching the preci value
 			}
 		}
 		i--;
 	}
-	if (res[last_i - 1] == '.' && !ft_strchr(data.flags, '#'))	//	Move the index backward if precision = 0 and the '#' flag is not present
+	if (res[last_i - 1] == '.' && !ft_strchr(data.flags, '#'))	//	Move the index backward if preci = 0 and the '#' flag is not present
 		last_i--;													//	to get rid of the decimal point that is not requested
-	res[last_i] = '\0';											//	Nul terminating the res depending on the precision
+	res[last_i] = '\0';											//	Nul terminating the res depending on the preci
 	return (res);
 }
 
@@ -125,14 +125,14 @@ int					conv_f(t_struct *data, int fd, va_list list)
 	data->sign = find_sign(*data, arg);								//	Getting sign
 	arg = arg > 0 ? arg : -arg;										//	Switching argument trop positive if it wasn't
 	result = ft_ulltoa_base((unsigned long long)arg, data->base);	//	Getting integer value from argument
-	data->precision = data->precision == -1 ? 6 : data->precision;	//	Normalising precision value
-	if (data->precision >= 0 || ft_strchr(data->flags, '#'))		//	Adding '.' to the result string if required
+	data->preci = data->preci == -1 ? 6 : data->preci;	//	Normalising preci value
+	if (data->preci >= 0 || ft_strchr(data->flags, '#'))		//	Adding '.' to the result string if required
 		result = ft_strjoinf(result, ".", 1);
-	if (data->precision >= 0)								
+	if (data->preci >= 0)								
 	{
-		data->precision++;											//	Incrementation de la precision pour les arrondit plus tard (augmente la taille de la string de 1)
+		data->preci++;											//	Incrementation de la preci pour les arrondit plus tard (augmente la taille de la string de 1)
 		result = get_float(*data, arg, result);						//	Getting float value from argument if required
-		result = manage_preci(*data, arg, result);					//	Applying precision on result
+		result = manage_preci(*data, arg, result);					//	Applying preci on result
 	}
 	if (!(result = format_res(*data, arg, result)))					//	Formating result
 		result_len = 0;												//	Printing result

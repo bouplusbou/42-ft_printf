@@ -6,7 +6,7 @@
 /*   By: bclaudio <bclaudio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/27 16:05:57 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/27 15:22:18 by bclaudio         ###   ########.fr       */
+/*   Updated: 2019/02/27 15:41:10 by bclaudio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int		is_flag(char c)
 			|| c == '+' || c == ' ');
 }
 
-int		is_precision(char c)
+int		is_preci(char c)
 {
 	return (c == '.' || ('0' <= c && c <= '9'));
 }
@@ -43,7 +43,7 @@ int		is_conv(char c)
 			|| c == '*'
 			|| is_flag(c)
 			|| ft_isdigit(c)
-			|| is_precision(c)
+			|| is_preci(c)
 			|| is_size(c)
 			|| is_type(c));
 }

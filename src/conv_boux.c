@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   conv_ouxb.c                                        :+:      :+:    :+:   */
+/*   conv_boux.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bclaudio <bclaudio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 14:40:31 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/27 15:22:14 by bclaudio         ###   ########.fr       */
+/*   Updated: 2019/02/27 15:37:34 by bclaudio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static uintmax_t	get_arg_ouxb(t_struct data, va_list list)
+static uintmax_t	get_arg_boux(t_struct data, va_list list)
 {
 	uintmax_t arg;
 
@@ -50,7 +50,7 @@ static char						find_sign(t_struct data, uintmax_t value)
 	return (0);
 }
 
-static char						*small_res_ouxb(t_struct data, uintmax_t arg)
+static char						*small_res_boux(t_struct data, uintmax_t arg)
 {
 	char	*small_res;
 	int		small_res_len;
@@ -67,8 +67,8 @@ static char						*small_res_ouxb(t_struct data, uintmax_t arg)
 		if (data.type == 'x' || data.type == 'X')
 			small_res_len++; 													// Ajoute 1 a small_res_len si un signe est requis
 	}
-	if (data.precision > (data.type == 'x' ? (int)arg_str_len : small_res_len))	// add enough space for '0's if needed (if precision is longer than input)
-		small_res_len += data.precision - (data.type == 'x' ?
+	if (data.preci > (data.type == 'x' ? (int)arg_str_len : small_res_len))	// add enough space for '0's if needed (if preci is longer than input)
+		small_res_len += data.preci - (data.type == 'x' ?
 			(int)arg_str_len : small_res_len);
 	if (!(small_res = ft_strnew(small_res_len)))
 		return (NULL);
@@ -78,7 +78,7 @@ static char						*small_res_ouxb(t_struct data, uintmax_t arg)
 	return (small_res);
 }
 
-static char						*create_res_ouxb(t_struct data, int res_len, char *small_res)
+static char						*create_res_boux(t_struct data, int res_len, char *small_res)
 {
 	char	*res;
 	int		small_res_len;
@@ -88,7 +88,7 @@ static char						*create_res_ouxb(t_struct data, int res_len, char *small_res)
 		return (NULL);
 	ft_memset(res, ' ', res_len);											 	// fill with spaces
 	if (ft_strchr(data.flags, '0') 
-		&& data.precision < 0 && !ft_strchr(data.flags, '-'))					// flag '0' without precision and no flag '-' => fill everything with '0' (La precision cancel le 0)
+		&& data.preci < 0 && !ft_strchr(data.flags, '-'))					// flag '0' without preci and no flag '-' => fill everything with '0' (La preci cancel le 0)
 		ft_memset(res, '0', res_len);
 	small_res_len = ft_strlen(small_res);
 	if (ft_strchr(data.flags, '-')) 											// put to the left if flag '-'
@@ -105,19 +105,19 @@ static char						*create_res_ouxb(t_struct data, int res_len, char *small_res)
 	return (res);
 }
 
-int								conv_ouxb(t_struct *data, int fd, va_list list)
+int								conv_boux(t_struct *data, int fd, va_list list)
 {
 	int			res_len;
 	char		*result;
 	char		*small_res;
 	uintmax_t	arg;
 
-	arg = get_arg_ouxb(*data, list);				 						// Recupere la valeur caste avec le size donnee
+	arg = get_arg_boux(*data, list);				 						// Recupere la valeur caste avec le size donnee
 	data->sign = find_sign(*data, arg);			  						// Defini le signe (ou space) si besoin. 0 si pas de signe
 	res_len = 0;
-	if ((small_res = small_res_ouxb(*data, arg)))						// Converti la valeur en brut (Sans prendre en compte la size (petit resultat))
+	if ((small_res = small_res_boux(*data, arg)))						// Converti la valeur en brut (Sans prendre en compte la size (petit resultat))
 	{
-		if (!ft_strcmp(small_res, "0") && data->precision == 0) 		// if input is '0' with a precision of 0, write nothing at all
+		if (!ft_strcmp(small_res, "0") && data->preci == 0) 		// if input is '0' with a preci of 0, write nothing at all
 		{
 			small_res[0] = '\0';
 			if (ft_strchr(data->flags, '#') && data->type == 'o')
@@ -126,7 +126,7 @@ int								conv_ouxb(t_struct *data, int fd, va_list list)
 		res_len = ft_strlen(small_res);
 		if (data->width > (int)ft_strlen(small_res)) 					// choose the result's size: the longer between width and small_res (pour malloc de la grande partie)
 			res_len = data->width;
-		if (!(result = create_res_ouxb(*data, res_len, small_res)))		// create the final result
+		if (!(result = create_res_boux(*data, res_len, small_res)))		// create the final result
 			res_len = 0;
 		ft_putstr_fd(result, fd); 												// print result
 		ft_strdel(&result);												// clean everything: result, small_res, struct

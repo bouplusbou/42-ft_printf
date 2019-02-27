@@ -6,7 +6,7 @@
 /*   By: bclaudio <bclaudio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 16:38:32 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/27 15:22:15 by bclaudio         ###   ########.fr       */
+/*   Updated: 2019/02/27 15:38:39 by bclaudio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ static char				*small_res_decimal(t_struct data, intmax_t arg)
 		return (NULL);
 	arg_str_len = ft_strlen(arg_str);
 	small_res_len = arg_str_len + (data.sign ? 1 : 0); 								// Ajoute 1 a small_res_len si un signe est requis
-	if (data.precision > (int)arg_str_len) 											// add enough space for '0's if needed (if precision is longer than input)
-		small_res_len += data.precision - arg_str_len;
+	if (data.preci > (int)arg_str_len) 											// add enough space for '0's if needed (if preci is longer than input)
+		small_res_len += data.preci - arg_str_len;
 	if (!(small_res = ft_strnew(small_res_len)))
 		return (NULL);
 	ft_memset(small_res, '0', small_res_len); 										// fill '0' BEST LIGNE EU
@@ -77,8 +77,8 @@ static char				*create_res_deci(t_struct data, int res_len, char *small_res)
 	if (!res_len || !(res = ft_strnew(res_len))) 												// if res_len is 0 return NULL directly
 		return (NULL);
 	ft_memset(res, ' ', res_len); 																// fill with spaces
-	if (ft_strchr(data.flags, '0') && data.precision < 0 
-		&& !ft_strchr(data.flags, '-')) 														// flag '0' without precision and no flag '-' => fill everything with '0' (La precision cancel le 0)
+	if (ft_strchr(data.flags, '0') && data.preci < 0 
+		&& !ft_strchr(data.flags, '-')) 														// flag '0' without preci and no flag '-' => fill everything with '0' (La preci cancel le 0)
 		ft_memset(res, '0', res_len);
 	small_res_len = ft_strlen(small_res);
 	if (ft_strchr(data.flags, '-')) 																	// put to the left if flag '-'
@@ -102,7 +102,7 @@ int						conv_id(t_struct *data, int fd, va_list list)
 	result_len = 0;
 	if ((small_res = small_res_decimal(*data, arg))) 						// Converti le valeur en brut (Sans prendre en compte la size (petit resultat))
 	{
-		if (!ft_strcmp(small_res, "0") && data->precision == 0) 			// if input is '0' with a precision of 0, write nothing at all
+		if (!ft_strcmp(small_res, "0") && data->preci == 0) 			// if input is '0' with a preci of 0, write nothing at all
 			small_res[0] = '\0';
 		result_len = ft_strlen(small_res);
 		if (data->width > (int)ft_strlen(small_res)) 						// choose the result's size: the longer between width and small_res (pour malloc de la grande partie)

@@ -6,7 +6,7 @@
 /*   By: bclaudio <bclaudio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 16:15:09 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/27 15:22:34 by bclaudio         ###   ########.fr       */
+/*   Updated: 2019/02/27 15:39:24 by bclaudio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static char	*small_res_s(t_struct data, char *arg)
 	char	*small_res;
 	int		len;
 
-	len = data.precision >= 0 ? (size_t)data.precision : ft_strlen(arg); 		// tronquer le resultat en fonction de la precision
+	len = data.preci >= 0 ? (size_t)data.preci : ft_strlen(arg); 		// tronquer le resultat en fonction de la preci
 	if (!(small_res = ft_strnew(len)))
 		return (NULL);
 	ft_strncpy(small_res, arg, len);
