@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   conv_p.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bclaudio <bclaudio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/02 11:57:57 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/27 10:14:22 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/27 15:08:52 by bclaudio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static char	*small_res_addr(t_struct data, unsigned long arg)
 	if (!(addr = ft_ulltoa_base(arg, data.base)))
 		return (NULL);
 	concat = ft_strdup("0x");
-	concat = ft_strjoinf(&concat, &addr, 3);
+	concat = ft_strjoinf(concat, addr, 3);
 	return (concat);
 }
 

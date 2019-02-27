@@ -87,11 +87,11 @@ static char	*get_float(t_struct data, long double value, char *result)
 	{
 		value *= 10;													//	Converting first float digit to int
 		digit = ft_ulltoa_base((unsigned long long)value, data.base);	//	Socking resulting digit
-		float_res = ft_strjoinf(&float_res, &digit, 3);					//	Addin digit to result
+		float_res = ft_strjoinf(float_res, digit, 3);					//	Addin digit to result
 		value -= (unsigned long long)value;								//	Removing previously added digit
 		data.precision--;
 	}
-	result = ft_strjoinf(&result, &float_res, 3);						//	Joining int and float value together
+	result = ft_strjoinf(result, float_res, 3);						//	Joining int and float value together
 	return (result);
 }
 

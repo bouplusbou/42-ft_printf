@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bclaudio <bclaudio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/09 13:07:20 by bclaudio          #+#    #+#             */
-/*   Updated: 2019/02/19 11:51:41 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/27 15:04:29 by bclaudio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ int				ft_min(int a, int b);
 int				ft_max(int a, int b);
 void			ft_swap(int *a, int *b);
 void			*ft_realloc(void *ptr, size_t initsize, size_t size);
-char			*ft_strjoinf(char **s1, char **s2, int flag);
+char			*ft_strjoinf(char *s1, char *s2, int flag);
 int				get_next_line(int const fd, char **line);
 char			*ft_strndup(const char *s1, size_t len);
 char			*ft_itoa_base(int nbr, const char *basestr);

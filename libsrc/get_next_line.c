@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bclaudio <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: bclaudio <bclaudio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/03 13:07:46 by bclaudio          #+#    #+#             */
-/*   Updated: 2018/12/07 14:01:34 by bclaudio         ###   ########.fr       */
+/*   Updated: 2019/02/27 15:10:54 by bclaudio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ int				get_next_line(int const fd, char **line)
 	{
 		ft_strclr(buf);
 		rd = read(fd, buf, BUFF_SIZE);
-		target->str = ft_strjoinf(&(target->str), &buf, target->str ? 1 : 0);
+		target->str = ft_strjoinf(target->str, buf, target->str ? 1 : 0);
 	}
 	ft_strdel(&buf);
 	if (rd == -1)
