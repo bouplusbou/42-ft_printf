@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/27 16:20:08 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/26 18:30:39 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/27 09:48:05 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ static void	parse_star(size_t *i, t_struct *data, va_list list)
 	*i += 1;
 }
 
-int			parse_conv(char *conv, va_list list)
+int			parse_conv(char *conv, int fd, va_list list)
 {
 	t_struct	*data;
 	size_t		i;
@@ -144,5 +144,5 @@ int			parse_conv(char *conv, va_list list)
 	if (!(data->base = ft_strdup(get_base(data->type))))
 		return (0);
 	ft_strdel(&conv);
-	return (convert(data, list));
+	return (convert(data, fd, list));
 }

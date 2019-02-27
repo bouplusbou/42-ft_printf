@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/02 11:57:57 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/25 13:21:04 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/27 10:14:22 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static char	*create_res_addr(t_struct data, char *concat)
 	return (result);
 }
 
-int			conv_p(t_struct *data, va_list list)
+int			conv_p(t_struct *data, int fd, va_list list)
 {
 	int		result_len;
 	char	*result;
@@ -54,7 +54,7 @@ int			conv_p(t_struct *data, va_list list)
 	else
 	{
 		result_len = ft_strlen(result);
-		ft_putstr(result); 															// print result
+		ft_putstr_fd(result, fd); 															// print result
 		ft_strdel(&result); 														// clean everything: result, small_res, struct
 	}
 	ft_strdel(&small_res);

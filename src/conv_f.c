@@ -138,7 +138,7 @@ static char			*concat_after(char *tmp, char *after)
 	return (result);
 }
 
-int					conv_f(t_struct *data, va_list list)
+int					conv_f(t_struct *data, int fd, va_list list)
 {
 	int			result_len;
 	char		*result;
@@ -161,7 +161,7 @@ int					conv_f(t_struct *data, va_list list)
 		result_len = 0;												//	Printing result
 	else
 	{
-		ft_putstr(result);
+		ft_putstr_fd(result, fd);
 		result_len = ft_strlen(result);								//	Printing result
 	}
 	ft_strdel(&result); 											// clean everything: result, small_res, struct

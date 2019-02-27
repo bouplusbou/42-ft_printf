@@ -48,8 +48,6 @@ SRCPATH = src/
 SRC = checks.c \
       ft_printf.c \
       parse_conv.c \
-      printf_write.c \
-      treat_conv.c \
       treat_format.c \
 	  delete_struct.c \
       convert.c \
@@ -60,7 +58,6 @@ SRC = checks.c \
 	  conv_s.c \
 	  conv_ouxb.c \
 	  conv_f.c \
-	  treat_color.c \
 	  ft_uimxtoa_base.c
 
 	##### Libft Sources #####

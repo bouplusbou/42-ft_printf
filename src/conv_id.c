@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 16:38:32 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/26 14:39:46 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/27 10:16:27 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ static char				*create_res_deci(t_struct data, int res_len, char *small_res)
 	return (res);
 }
 
-int						conv_id(t_struct *data, va_list list)
+int						conv_id(t_struct *data, int fd, va_list list)
 {
 	int				result_len;
 	char			*result;
@@ -109,7 +109,7 @@ int						conv_id(t_struct *data, va_list list)
 			result_len = data->width;
 		if (!(result = create_res_deci(*data, result_len, small_res)))	// create the final result
 			result_len = 0;
-		ft_putstr(result); 													// print result
+		ft_putstr_fd(result, fd); 													// print result
 		ft_strdel(&result); 												// clean everything: result, small_res, struct
 		ft_strdel(&small_res);
 	}

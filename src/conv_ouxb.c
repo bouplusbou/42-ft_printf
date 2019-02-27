@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 14:40:31 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/26 14:40:33 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/27 10:15:01 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ static char						*create_res_ouxb(t_struct data, int res_len, char *small_res)
 	return (res);
 }
 
-int								conv_ouxb(t_struct *data, va_list list)
+int								conv_ouxb(t_struct *data, int fd, va_list list)
 {
 	int			res_len;
 	char		*result;
@@ -128,7 +128,7 @@ int								conv_ouxb(t_struct *data, va_list list)
 			res_len = data->width;
 		if (!(result = create_res_ouxb(*data, res_len, small_res)))		// create the final result
 			res_len = 0;
-		ft_putstr(result); 												// print result
+		ft_putstr_fd(result, fd); 												// print result
 		ft_strdel(&result);												// clean everything: result, small_res, struct
 		ft_strdel(&small_res);
 	}

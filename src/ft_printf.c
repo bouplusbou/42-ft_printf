@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/27 16:05:28 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/22 10:03:18 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/27 09:01:42 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 int	ft_printf(const char *format, ...)
 {
-	int		ret;
+	int		len;
 	va_list	list;
 
 	va_start(list, format);
-	ret = treat_format(format, list);
+	len = treat_format(format, list);
 	va_end(list);
-	return (ret);
+	return (len);
 }
