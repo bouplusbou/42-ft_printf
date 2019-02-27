@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_conv.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bclaudio <bclaudio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/27 16:20:08 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/27 09:48:05 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/27 15:31:24 by bclaudio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,12 +109,7 @@ static void	parse_star(size_t *i, t_struct *data, va_list list)
 	
 	arg = va_arg(list, int);
 	if (arg < 0)
-	{
-		if (data->flags)
-			ft_strjoin(data->flags, "-");
-		else
-			data->flags = ft_strdup("-");
-	}
+		ft_strjoinf(data->flags, "-", 0);
 	data->width = arg < 0 ? -arg : arg;
 	*i += 1;
 }
