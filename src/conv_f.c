@@ -34,14 +34,14 @@ static char			*format_res(t_struct data, long double arg, char *small_res)
 	res_len = data.width < small_res_len ? small_res_len : data.width;
 	if (!(res = ft_strnew(res_len)))
 		return (NULL);
-	ft_memset(res, ' ', res_len);												// else fill with spaces
+	ft_memset(res, ' ', res_len);
 	if (ft_strchr(data.flags, '0') && !ft_strchr(data.flags, '-'))
 		ft_memset(res, '0', res_len);
-	if (ft_strchr(data.flags, '-')) 											// put to the left if flag '-'
+	if (ft_strchr(data.flags, '-'))
 		ft_memcpy(res, small_res, small_res_len);
 	else
 		ft_memcpy(res + (res_len - small_res_len), small_res, small_res_len);
-	if (data.sign)																// Si un signe est requis
+	if (data.sign)
 		res[ft_get_char_index('0', res)] = data.sign;
 	ft_strdel(&small_res);
 	return (res);
@@ -49,7 +49,7 @@ static char			*format_res(t_struct data, long double arg, char *small_res)
 
 static char			find_sign(t_struct data, long double arg)
 {
-	if ((1 / arg < 0) || arg == -1.0 / 0.0 || arg < 0)							// Si arg == -0.0 ou -inf ou est negatif
+	if ((1 / arg < 0) || arg == -1.0 / 0.0 || arg < 0)
 		return ('-');
 	else
 	{
@@ -66,18 +66,18 @@ static char	*get_float(t_struct data, long double value, char *result)
 	char	*float_res;
 	char	*digit;
 
-	value -= (unsigned long long)value;									//	Extracting float value
+	value -= (unsigned long long)value;
 	if (!(float_res = ft_strnew(0)))
 		return (NULL);
-	while (data.preci >= 0)											//	Looping times preci
+	while (data.preci >= 0)
 	{
-		value *= 10;													//	Converting first float digit to int
-		digit = ft_ulltoa_base((unsigned long long)value, data.base);	//	Socking resulting digit
-		float_res = ft_strjoinf(float_res, digit, 3);					//	Addin digit to result
-		value -= (unsigned long long)value;								//	Removing previously added digit
+		value *= 10;
+		digit = ft_ulltoa_base((unsigned long long)value, data.base);
+		float_res = ft_strjoinf(float_res, digit, 3);
+		value -= (unsigned long long)value;
 		data.preci--;
 	}
-	result = ft_strjoinf(result, float_res, 3);						//	Joining int and float value together
+	result = ft_strjoinf(result, float_res, 3);
 	return (result);
 }
 
@@ -86,32 +86,32 @@ static char			*manage_preci(t_struct data, long double value, char *res)
 	int		last_i;
 	int		i;
 
-	last_i = ft_get_char_index('.', res) + data.preci;			//	Finding the last digit required by the preci (+1 for the digit used for the rounding)
-	if (res[last_i - 1] == '.' && value != 0)						//	If preci = 0, rounding value on the first digit of the int
+	last_i = ft_get_char_index('.', res) + data.preci;
+	if (res[last_i - 1] == '.' && value != 0)
 		res[last_i - 2] += res[last_i] >= '5' ? 1 : 0;
-	else if (value != 0)											//	Rounding last digit in the res
+	else if (value != 0)
 		res[last_i - 1] += res[last_i] >= '5' ? 1 : 0;
 	i = last_i;
-	while (i >= 0)													//	Check the entire res starting from the end
+	while (i >= 0)
 	{
-		if (res[i] == ':')											//	If digit has been incremented to 10
+		if (res[i] == ':')
 		{
-			res[i] = '0';											//	Replacing digit with 0
-			if (res[i - 1] == '.')									//	If the previous digit is the decimal point
-				res[i - 2]++;										//	Incrementing first int digit
-			else if (i != 0)										//	Else if we're not on the first int digit
-				res[i - 1]++;										//	Incrementing previous digit
+			res[i] = '0';
+			if (res[i - 1] == '.')
+				res[i - 2]++;
+			else if (i != 0)
+				res[i - 1]++;
 			else
-			{														//	Else if we're on the first int digit
-				res = ft_strjoinf("1", res, 2);						//	Adding 1 to the left of the res
-				last_i++;											//	Incrementing last digit index to keep matching the preci value
+			{
+				res = ft_strjoinf("1", res, 2);
+				last_i++;
 			}
 		}
 		i--;
 	}
-	if (res[last_i - 1] == '.' && !ft_strchr(data.flags, '#'))	//	Move the index backward if preci = 0 and the '#' flag is not present
-		last_i--;													//	to get rid of the decimal point that is not requested
-	res[last_i] = '\0';											//	Nul terminating the res depending on the preci
+	if (res[last_i - 1] == '.' && !ft_strchr(data.flags, '#'))
+		last_i--;
+	res[last_i] = '\0';
 	return (res);
 }
 
@@ -121,26 +121,26 @@ int					conv_f(t_struct *data, int fd, va_list list)
 	char		*result;
 	long double	arg;
 
-	arg = get_arg_float(*data, list);								//	Getting argument value
-	data->sign = find_sign(*data, arg);								//	Getting sign
-	arg = arg > 0 ? arg : -arg;										//	Switching argument trop positive if it wasn't
-	result = ft_ulltoa_base((unsigned long long)arg, data->base);	//	Getting integer value from argument
-	data->preci = data->preci == -1 ? 6 : data->preci;	//	Normalising preci value
-	if (data->preci >= 0 || ft_strchr(data->flags, '#'))		//	Adding '.' to the result string if required
+	arg = get_arg_float(*data, list);
+	data->sign = find_sign(*data, arg);
+	arg = arg > 0 ? arg : -arg;
+	result = ft_ulltoa_base((unsigned long long)arg, data->base);
+	data->preci = data->preci == -1 ? 6 : data->preci;
+	if (data->preci >= 0 || ft_strchr(data->flags, '#'))
 		result = ft_strjoinf(result, ".", 1);
-	if (data->preci >= 0)								
+	if (data->preci >= 0)
 	{
-		data->preci++;											//	Incrementation de la preci pour les arrondit plus tard (augmente la taille de la string de 1)
-		result = get_float(*data, arg, result);						//	Getting float value from argument if required
-		result = manage_preci(*data, arg, result);					//	Applying preci on result
+		data->preci++;
+		result = get_float(*data, arg, result);
+		result = manage_preci(*data, arg, result);
 	}
-	if (!(result = format_res(*data, arg, result)))					//	Formating result
-		result_len = 0;												//	Printing result
+	if (!(result = format_res(*data, arg, result)))
+		result_len = 0;
 	else
 	{
 		ft_putstr_fd(result, fd);
-		result_len = ft_strlen(result);								//	Printing result
+		result_len = ft_strlen(result);
 	}
-	ft_strdel(&result); 											// clean everything: result, small_res, struct
+	ft_strdel(&result);
 	return (result_len);
 }
