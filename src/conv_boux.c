@@ -6,13 +6,13 @@
 /*   By: bclaudio <bclaudio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 14:40:31 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/27 17:23:05 by bclaudio         ###   ########.fr       */
+/*   Updated: 2019/02/27 17:31:57 by bclaudio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static char						*small_res_boux(t_struct data, uintmax_t arg)
+static char	*small_res_boux(t_struct data, uintmax_t arg)
 {
 	char	*small_res;
 	int		small_res_len;
@@ -40,7 +40,7 @@ static char						*small_res_boux(t_struct data, uintmax_t arg)
 	return (small_res);
 }
 
-static char						*create_res_boux(t_struct data, int res_len, char *small_res)
+static char	*create_res_boux(t_struct data, int res_len, char *small_res)
 {
 	char	*res;
 	int		small_res_len;
@@ -67,7 +67,7 @@ static char						*create_res_boux(t_struct data, int res_len, char *small_res)
 	return (res);
 }
 
-int								conv_boux(t_struct *data, int fd, va_list list)
+int			conv_boux(t_struct *data, int fd, va_list list)
 {
 	int			res_len;
 	char		*result;
@@ -78,21 +78,20 @@ int								conv_boux(t_struct *data, int fd, va_list list)
 	data->sign = find_sign_boux(*data, arg);
 	res_len = 0;
 	if ((small_res = small_res_boux(*data, arg)))
+		exit(0);
+	if (!ft_strcmp(small_res, "0") && data->preci == 0)
 	{
-		if (!ft_strcmp(small_res, "0") && data->preci == 0)
-		{
-			small_res[0] = '\0';
-			if (ft_strchr(data->flags, '#') && data->type == 'o')
-				small_res[0] = '0';
-		}
-		res_len = ft_strlen(small_res);
-		if (data->width > (int)ft_strlen(small_res))
-			res_len = data->width;
-		if (!(result = create_res_boux(*data, res_len, small_res)))
-			res_len = 0;
-		ft_putstr_fd(result, fd);
-		ft_strdel(&result);
-		ft_strdel(&small_res);
+		small_res[0] = '\0';
+		if (ft_strchr(data->flags, '#') && data->type == 'o')
+			small_res[0] = '0';
 	}
+	res_len = ft_strlen(small_res);
+	if (data->width > (int)ft_strlen(small_res))
+		res_len = data->width;
+	if (!(result = create_res_boux(*data, res_len, small_res)))
+		exit(0);
+	ft_putstr_fd(result, fd);
+	ft_strdel(&result);
+	ft_strdel(&small_res);
 	return (res_len);
 }
