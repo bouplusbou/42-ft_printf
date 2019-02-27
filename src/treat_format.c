@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/27 16:05:38 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/27 10:39:17 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/27 10:47:49 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,6 @@ int	treat_format(const char *format, va_list list)
 	fd = 1;
 	if (format[0] == '{')
 		fd = treat_fd((char*)format, &i, list);
-	// printf("fd:%d\n", fd);
 	while (i < ft_strlen(format))
 	{
 		if (format[i] == '%')
