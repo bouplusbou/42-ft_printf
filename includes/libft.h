@@ -6,7 +6,7 @@
 /*   By: bclaudio <bclaudio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/09 13:07:20 by bclaudio          #+#    #+#             */
-/*   Updated: 2019/02/27 15:04:29 by bclaudio         ###   ########.fr       */
+/*   Updated: 2019/02/27 15:50:31 by bclaudio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define LIBFT_H
 
 # include <string.h>
+# include <stdint.h>
 
 # define BUFF_SIZE 32
 
@@ -103,5 +104,6 @@ char			*ft_lltoa_base(long long nbr, const char *basestr);
 char			*ft_ulltoa_base(unsigned long long nbr, const char *basestr);
 int				ft_get_char_index(char c, char *str);
 long long		ft_power(int nb, int power);
+char			*ft_uimxtoa_base(uintmax_t nbr, const char *basestr);
 
 #endif
