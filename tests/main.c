@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/22 16:53:03 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/28 15:02:20 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/28 15:25:23 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -2536,17 +2536,22 @@ void test()
 		// ft_printf(">>>|%O|\n", LONG_MIN);
 		// printf("\n===|{%f}{%F}|\n", 1.42, 1.42);
 		// ft_printf(">>>|{%f}{%F}|\n", 1.42, 1.42);
-
-
-
-		// printf("\n===|sdassd %|\n");
-		// ft_printf("\n===|sdassd %|\n");
-		// printf("\n===|%|\n");
-		// ft_printf(">>>|%|\n");
 		// printf("\n===|%S|\n", L"Á±≥");
 		// ft_printf(">>>|%S|\n", L"Á±≥");
-		// printf("\n===|%lc, %lc|\n", L'ÊM-^ZM-^V', L'ÿ≠');
+
+
+		// printf("\n|%d|\n", printf("===|sdassd %|\n"));
+		// printf("\n|%d|\n", ft_printf(">>>|sdassd %|\n"));
+		// printf("\n|%d|\n", printf("===|sdassd %%|\n"));
+		// printf("\n|%d|\n", ft_printf(">>>|sdassd %%|\n"));
+		printf("\n===|%|\n"); // OK
+		ft_printf(">>>|%|\n");
+		// printf("\n===|%lc, %lc|\n", L'ÊM-^ZM-^V', L'ÿ≠'); //ne fonctionne pas
 		// ft_printf(">>>|%lc, %lc|\n", L'ÊM-^ZM-^V', L'ÿ≠');
+		// printf("\n===|%lc|\n", L'ÊM-^ZM-^V'); // OK
+		// ft_printf(">>>|%lc|\n", L'ÊM-^ZM-^V'); // OK
+		// printf("\n===|%lc|\n", L'ÿ≠'); // ne fonctionne pas
+		// ft_printf(">>>|%lc|\n", L'ÿ≠'); 
 		// printf("\n===|{%10R}|\n");
 		// ft_printf(">>>|{%10R}|\n");
 		// printf("\n===|{%05s}|\n", "abc");

@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/27 16:05:38 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/28 11:21:29 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/28 15:18:21 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,9 +95,8 @@ int	treat_conv(char *format, size_t *j, int fd, va_list list)
 			return (0);
 		return (parse_conv(conv, fd, list));
 	}
-	ft_putchar_fd('%', fd);
 	*j += 1;
-	return (1);
+	return (0);
 }
 
 int	treat_format(const char *format, va_list list)
