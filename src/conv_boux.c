@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 14:40:31 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/28 11:42:03 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/28 14:27:25 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,12 @@ static char	*small_res_boux(t_struct data, uintmax_t arg)
 	if (data.sign)
 	{
 		small_res_len++;
-		if (data.type == 'x' || data.type == 'X')
+		if (ft_strchr("xX", data.type))
 			small_res_len++;
 	}
-	if (data.preci > (data.type == 'x' ? (int)arg_str_len : small_res_len))
-		small_res_len += data.preci - (data.type == 'x' ?
+	if (data.preci > (ft_strchr("xX", data.type) ?
+		(int)arg_str_len : small_res_len))
+		small_res_len += data.preci - (ft_strchr("xX", data.type) ?
 			(int)arg_str_len : small_res_len);
 	if (!(small_res = ft_strnew(small_res_len)))
 		exit(EXIT_FAILURE);

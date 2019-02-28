@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/03 12:33:04 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/21 16:59:47 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/28 14:29:21 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ long long	ft_power(int nb, int power)
 	count = 1;
 	while (count < power)
 	{
-		result *= nb;;
+		result *= nb;
 		count++;
 	}
 	return (result);
