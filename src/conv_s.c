@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 16:15:09 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/28 11:04:58 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/28 15:28:09 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ static char	*res_s(t_struct data, char *small_res)
 	if (!(res = ft_strnew(len)))
 		exit(EXIT_FAILURE);
 	res = ft_memset(res, ' ', len);
+	if (!ft_strchr(data.flags, '-') && ft_strchr(data.flags, '0'))
+		res = ft_memset(res, '0', len);
 	if (ft_strchr(data.flags, '-'))
 		i_cpy = 0;
 	else

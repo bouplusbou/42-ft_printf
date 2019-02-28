@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/22 16:53:03 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/28 15:25:23 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/28 15:29:06 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -2544,8 +2544,8 @@ void test()
 		// printf("\n|%d|\n", ft_printf(">>>|sdassd %|\n"));
 		// printf("\n|%d|\n", printf("===|sdassd %%|\n"));
 		// printf("\n|%d|\n", ft_printf(">>>|sdassd %%|\n"));
-		printf("\n===|%|\n"); // OK
-		ft_printf(">>>|%|\n");
+		// printf("\n===|%|\n"); // OK
+		// ft_printf(">>>|%|\n");
 		// printf("\n===|%lc, %lc|\n", L'ÊM-^ZM-^V', L'ÿ≠'); //ne fonctionne pas
 		// ft_printf(">>>|%lc, %lc|\n", L'ÊM-^ZM-^V', L'ÿ≠');
 		// printf("\n===|%lc|\n", L'ÊM-^ZM-^V'); // OK
@@ -2554,8 +2554,10 @@ void test()
 		// ft_printf(">>>|%lc|\n", L'ÿ≠'); 
 		// printf("\n===|{%10R}|\n");
 		// ft_printf(">>>|{%10R}|\n");
-		// printf("\n===|{%05s}|\n", "abc");
+		// printf("\n===|{%05s}|\n", "abc"); // OK
 		// ft_printf(">>>|{%05s}|\n", "abc");
+		// printf("\n===|{%0-5s}|\n", "abc"); // OK
+		// ft_printf(">>>|{%0-5s}|\n", "abc");
 		// printf("\n===|%.0p, %.p|\n", 0, 0);
 		// ft_printf(">>>|%.0p, %.p|\n", 0, 0);
 		// printf("\n===|%.p, %.0p|\n", 0, 0);
