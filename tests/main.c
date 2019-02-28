@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/22 16:53:03 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/28 16:50:28 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/28 17:41:31 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ void test()
 	// printf("\n===|%*15s|\n", -10, "coucou");
 	// ft_printf(">>>|%*15s|\n", -10, "coucou");
 
-	// Attention ces tests boucle infini
-	// printf("\n===|%**s|\n", 10, "coucou");
-	// ft_printf(">>>|%**s|\n", 10, "coucou");
+	// // Attention ces tests boucle infini
+	// // printf("\n===|%**s|\n", 10, "coucou");
+	// // ft_printf(">>>|%**s|\n", 10, "coucou");
 
 	// printf("\n|ret:%d|\n", ft_printf("{green}%b", 100));
 	// printf("\n|ret:%d|\n", ft_printf("ds{{{{{}}}}{red}}{magenta}%s {blue} % b|\n", "OK", "lol"));
@@ -2497,12 +2497,8 @@ void test()
 	// ft_printf(">>>|%-+5.3f$\n", nb28);
     // printf("\n===|%-#+5.0f$\n", nb28);
 	// ft_printf(">>>|%-#+5.0f$\n", nb28);
-	// while (1)
-	// 	;
 
-
-
-	// printf("%s %C %d %p %x %% %S", "bonjour ", L'Ë©≤', 42, &free, 42, L"ŸM-^Dÿ≠ŸM-^E ÿÆŸM-^Fÿ...
+	// // printf("%s %C %d %p %x %% %S", "bonjour ", L'Ë©≤', 42, &free, 42, L"ŸM-^Dÿ≠ŸM-^E ÿÆŸM-^Fÿ...
 	// printf("\n===|%D|\n", 0L);
 	// ft_printf(">>>|%D|\n", 0L);
 	// printf("\n===|%O|\n", 42);
@@ -2567,7 +2563,7 @@ void test()
 	// ft_printf(">>>|{%05.*d}|\n", -15, 42);
 	// printf("\n===|{%.*d}|\n", -15, 42); // OK
 	// ft_printf(">>>|{%.*d}|\n", -15, 42);
-	// printf("\n===|{%.0d}|\n", 42);
+	// printf("\n===|{%.0d}|\n", 42); // OK
 	// ft_printf(">>>|{%.0d}|\n", 42);
 	// printf("\n===|{%*d}|\n", -15, 42);
 	// ft_printf(">>>|{%*d}|\n", -15, 42);
@@ -2577,11 +2573,15 @@ void test()
 	// ft_printf(">>>|{%.*d}|\n", 15, 42);		
 	// printf("\n===|{%-.15d}|\n", 42);
 	// ft_printf(">>>|{%-.15d}|\n", 42);
-	printf("\n===|%.0p, %.p|\n", 0, 0);
-	ft_printf(">>>|%.0p, %.p|\n", 0, 0);
-	printf("\n===|%.p, %.0p|\n", 0, 0);
-	ft_printf(">>>|%.p, %.0p|\n", 0, 0);
+	// printf("\n===|%.0p, %.p|\n", 0, 0);
+	// ft_printf(">>>|%.0p, %.p|\n", 0, 0);
+	// printf("\n===|%.p, %.0p|\n", 0, 0);
+	// ft_printf(">>>|%.p, %.0p|\n", 0, 0);
+
 	// while (1);
+
+	printf("\n===|%.p, %s|\n", 0);
+	// ft_printf(">>>|%.p, %s|\n", 0);
 }
 
 int main()

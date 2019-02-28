@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 16:38:32 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/28 16:34:29 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/28 17:18:28 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ int			conv_id(t_struct *data, int fd, va_list list)
 	char			*small_res;
 	intmax_t		arg;
 
-	// printf("\n|data->preci:%d|\n", data->preci);
 	arg = get_arg_decimal(*data, list);
 	data->sign = find_sign_id(*data, arg >= 0 ? 1 : 0);
 	small_res = small_res_idmal(*data, arg);
