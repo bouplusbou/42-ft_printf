@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/27 16:06:29 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/28 14:41:10 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/28 16:26:40 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ char			find_sign_f(t_struct data, long double arg);
 char			find_sign_id(t_struct data, int pos);
 char			find_sign_boux(t_struct data, uintmax_t value);
 void			parse_star(size_t *i, t_struct *data, va_list list);
-int				parse_preci(char *conv, size_t *i);
+int				parse_preci(char *conv, size_t *i, va_list list);
 int				parse_width(char *conv, size_t *i);
 char			*parse_size(char *conv, size_t *i);
 char			*parse_flags(char *conv, size_t *i);

@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/27 16:20:08 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/28 11:29:18 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/28 16:26:17 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int			parse_conv(char *conv, int fd, va_list list)
 	if (conv[i] == '*')
 		parse_star(&i, data, list);
 	if (conv[i] == '.')
-		data->preci = parse_preci(conv + i, &i);
+		data->preci = parse_preci(conv + i, &i, list);
 	if (is_size(conv[i]))
 		data->size = parse_size(conv + i, &i);
 	data->type = conv[i];

@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/22 16:53:03 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/28 15:29:06 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/28 16:50:28 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -2500,74 +2500,88 @@ void test()
 	// while (1)
 	// 	;
 
-		// printf("%s %C %d %p %x %% %S", "bonjour ", L'Ë©≤', 42, &free, 42, L"ŸM-^Dÿ≠ŸM-^E ÿÆŸM-^Fÿ...
-
-		// printf("\n===|%D|\n", 0L);
-		// ft_printf(">>>|%D|\n", 0L);
-		// printf("\n===|%O|\n", 42);
-		// ft_printf(">>>|%O|\n", 42);
-		// printf("\n===|%C|\n", 'c');
-		// ft_printf(">>>|%C|\n", 'c');
-		// printf("\n===|%llO, %llO|\n", 0, USHRT_MAX);
-		// ft_printf(">>>|%llO, %llO|\n", 0, USHRT_MAX);
-		// printf("\n===|%hO, %hO|\n", 0, USHRT_MAX);
-		// ft_printf(">>>|%hO, %hO|\n", 0, USHRT_MAX);
-		// printf("\n===|%hhO, %hhO|\n", 0, USHRT_MAX);
-		// ft_printf(">>>|%hhO, %hhO|\n", 0, USHRT_MAX);
-		// printf("\n===|%jO, %jO|\n", 0, USHRT_MAX);
-		// ft_printf(">>>|%jO, %jO|\n", 0, USHRT_MAX);
-		// printf("\n===|%zO, %zO|\n", 0, USHRT_MAX);
-		// ft_printf(">>>|%zO, %zO|\n", 0, USHRT_MAX);
-		// printf("\n===|{%-15Z}|\n", 123);
-		// ft_printf(">>>|{%-15Z}|\n", 123);
-		// printf("\n===|%#O|\n", 1);
-		// ft_printf(">>>|%#O|\n", 1);
-		// printf("\n===|%+C|\n", 0);
-		// ft_printf(">>>|%+C|\n", 0);
-		// printf("\n===|%#.O|\n", 0);
-		// ft_printf(">>>|%#.O|\n", 0);
-		// printf("\n===|%.4O|\n", 42);
-		// ft_printf(">>>|%.4O|\n", 42);
-		// printf("\n===|%.4S|\n", L"ÊM-M-^QÊM-^XØ‰∏M-ÂM-^O™ÁM-^L´„M-M-^B");
-		// ft_printf(">>>|%.4S|\n", L"ÊM-M-^QÊM-^XØ‰∏M-ÂM-^O™ÁM-^L´„M-M-^B");
-		// printf("\n===|%.C|\n", 0);
-		// ft_printf(">>>|%.C|\n", 0);
-		// printf("\n===|%O|\n", LONG_MIN);
-		// ft_printf(">>>|%O|\n", LONG_MIN);
-		// printf("\n===|{%f}{%F}|\n", 1.42, 1.42);
-		// ft_printf(">>>|{%f}{%F}|\n", 1.42, 1.42);
-		// printf("\n===|%S|\n", L"Á±≥");
-		// ft_printf(">>>|%S|\n", L"Á±≥");
 
 
-		// printf("\n|%d|\n", printf("===|sdassd %|\n"));
-		// printf("\n|%d|\n", ft_printf(">>>|sdassd %|\n"));
-		// printf("\n|%d|\n", printf("===|sdassd %%|\n"));
-		// printf("\n|%d|\n", ft_printf(">>>|sdassd %%|\n"));
-		// printf("\n===|%|\n"); // OK
-		// ft_printf(">>>|%|\n");
-		// printf("\n===|%lc, %lc|\n", L'ÊM-^ZM-^V', L'ÿ≠'); //ne fonctionne pas
-		// ft_printf(">>>|%lc, %lc|\n", L'ÊM-^ZM-^V', L'ÿ≠');
-		// printf("\n===|%lc|\n", L'ÊM-^ZM-^V'); // OK
-		// ft_printf(">>>|%lc|\n", L'ÊM-^ZM-^V'); // OK
-		// printf("\n===|%lc|\n", L'ÿ≠'); // ne fonctionne pas
-		// ft_printf(">>>|%lc|\n", L'ÿ≠'); 
-		// printf("\n===|{%10R}|\n");
-		// ft_printf(">>>|{%10R}|\n");
-		// printf("\n===|{%05s}|\n", "abc"); // OK
-		// ft_printf(">>>|{%05s}|\n", "abc");
-		// printf("\n===|{%0-5s}|\n", "abc"); // OK
-		// ft_printf(">>>|{%0-5s}|\n", "abc");
-		// printf("\n===|%.0p, %.p|\n", 0, 0);
-		// ft_printf(">>>|%.0p, %.p|\n", 0, 0);
-		// printf("\n===|%.p, %.0p|\n", 0, 0);
-		// ft_printf(">>>|%.p, %.0p|\n", 0, 0);
-		// printf("\n===|{%*d}|\n", -5, 42);
-		// ft_printf(">>>|{%*d}|\n", -5, 42);
-		// printf("\n===|%*.*d|\n", 0, 3, 0);
-		// ft_printf(">>>|%*.*d|\n", 0, 3, 0);
-		// printf("\n===|{%05.*d}|\n", -15, 42);
-		// ft_printf(">>>|{%05.*d}|\n", -15, 42);
+	// printf("%s %C %d %p %x %% %S", "bonjour ", L'Ë©≤', 42, &free, 42, L"ŸM-^Dÿ≠ŸM-^E ÿÆŸM-^Fÿ...
+	// printf("\n===|%D|\n", 0L);
+	// ft_printf(">>>|%D|\n", 0L);
+	// printf("\n===|%O|\n", 42);
+	// ft_printf(">>>|%O|\n", 42);
+	// printf("\n===|%C|\n", 'c');
+	// ft_printf(">>>|%C|\n", 'c');
+	// printf("\n===|%llO, %llO|\n", 0, USHRT_MAX);
+	// ft_printf(">>>|%llO, %llO|\n", 0, USHRT_MAX);
+	// printf("\n===|%hO, %hO|\n", 0, USHRT_MAX);
+	// ft_printf(">>>|%hO, %hO|\n", 0, USHRT_MAX);
+	// printf("\n===|%hhO, %hhO|\n", 0, USHRT_MAX);
+	// ft_printf(">>>|%hhO, %hhO|\n", 0, USHRT_MAX);
+	// printf("\n===|%jO, %jO|\n", 0, USHRT_MAX);
+	// ft_printf(">>>|%jO, %jO|\n", 0, USHRT_MAX);
+	// printf("\n===|%zO, %zO|\n", 0, USHRT_MAX);
+	// ft_printf(">>>|%zO, %zO|\n", 0, USHRT_MAX);
+	// printf("\n===|{%-15Z}|\n", 123);
+	// ft_printf(">>>|{%-15Z}|\n", 123);
+	// printf("\n===|%#O|\n", 1);
+	// ft_printf(">>>|%#O|\n", 1);
+	// printf("\n===|%+C|\n", 0);
+	// ft_printf(">>>|%+C|\n", 0);
+	// printf("\n===|%#.O|\n", 0);
+	// ft_printf(">>>|%#.O|\n", 0);
+	// printf("\n===|%.4O|\n", 42);
+	// ft_printf(">>>|%.4O|\n", 42);
+	// printf("\n===|%.4S|\n", L"ÊM-M-^QÊM-^XØ‰∏M-ÂM-^O™ÁM-^L´„M-M-^B");
+	// ft_printf(">>>|%.4S|\n", L"ÊM-M-^QÊM-^XØ‰∏M-ÂM-^O™ÁM-^L´„M-M-^B");
+	// printf("\n===|%.C|\n", 0);
+	// ft_printf(">>>|%.C|\n", 0);
+	// printf("\n===|%O|\n", LONG_MIN);
+	// ft_printf(">>>|%O|\n", LONG_MIN);
+	// printf("\n===|{%f}{%F}|\n", 1.42, 1.42);
+	// ft_printf(">>>|{%f}{%F}|\n", 1.42, 1.42);
+	// printf("\n===|%S|\n", L"Á±≥");
+	// ft_printf(">>>|%S|\n", L"Á±≥");
+
+
+	// printf("\n|%d|\n", printf("===|sdassd %|\n"));
+	// printf("\n|%d|\n", ft_printf(">>>|sdassd %|\n"));
+	// printf("\n|%d|\n", printf("===|sdassd %%|\n"));
+	// printf("\n|%d|\n", ft_printf(">>>|sdassd %%|\n"));
+	// printf("\n===|%|\n"); // OK
+	// ft_printf(">>>|%|\n");
+	// printf("\n===|%lc, %lc|\n", L'ÊM-^ZM-^V', L'ÿ≠'); //ne fonctionne pas
+	// ft_printf(">>>|%lc, %lc|\n", L'ÊM-^ZM-^V', L'ÿ≠');
+	// printf("\n===|%lc|\n", L'ÊM-^ZM-^V'); // OK
+	// ft_printf(">>>|%lc|\n", L'ÊM-^ZM-^V'); // OK
+	// printf("\n===|%lc|\n", L'ÿ≠'); // ne fonctionne pas
+	// ft_printf(">>>|%lc|\n", L'ÿ≠'); 
+	// printf("\n===|{%10R}|\n");
+	// ft_printf(">>>|{%10R}|\n");
+	// printf("\n===|{%05s}|\n", "abc"); // OK
+	// ft_printf(">>>|{%05s}|\n", "abc");
+	// printf("\n===|{%0-5s}|\n", "abc"); // OK
+	// ft_printf(">>>|{%0-5s}|\n", "abc");
+	// printf("\n===|{%0*d}|\n", -5, 42); // OK
+	// ft_printf(">>>|{%0*d}|\n", -5, 42);
+	// printf("\n===|%*.*d|\n", 0, 3, 0); // OK
+	// ft_printf(">>>|%*.*d|\n", 0, 3, 0);
+	// printf("\n===|{%05.*d}|\n", -15, 42);
+	// ft_printf(">>>|{%05.*d}|\n", -15, 42);
+	// printf("\n===|{%.*d}|\n", -15, 42); // OK
+	// ft_printf(">>>|{%.*d}|\n", -15, 42);
+	// printf("\n===|{%.0d}|\n", 42);
+	// ft_printf(">>>|{%.0d}|\n", 42);
+	// printf("\n===|{%*d}|\n", -15, 42);
+	// ft_printf(">>>|{%*d}|\n", -15, 42);
+	// printf("\n===|{%d}|\n", 42);
+	// ft_printf(">>>|{%d}|\n", 42);
+	// printf("\n===|{%.*d}|\n", 15, 42);
+	// ft_printf(">>>|{%.*d}|\n", 15, 42);		
+	// printf("\n===|{%-.15d}|\n", 42);
+	// ft_printf(">>>|{%-.15d}|\n", 42);
+	printf("\n===|%.0p, %.p|\n", 0, 0);
+	ft_printf(">>>|%.0p, %.p|\n", 0, 0);
+	printf("\n===|%.p, %.0p|\n", 0, 0);
+	ft_printf(">>>|%.p, %.0p|\n", 0, 0);
+	// while (1);
 }
 
 int main()

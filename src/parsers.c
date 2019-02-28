@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/28 11:28:14 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/28 11:51:49 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/28 16:45:18 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,19 @@ int		parse_width(char *conv, size_t *i)
 	return (width_int);
 }
 
-int		parse_preci(char *conv, size_t *i)
+int		parse_preci(char *conv, size_t *i, va_list list)
 {
 	int		preci_int;
 	size_t	l;
 	char	*preci_str;
 
 	l = 1;
+	if (conv[1] == '*')
+	{
+		preci_int = va_arg(list, int);
+		*i += 2;
+		return (preci_int < 0 ? 0 : preci_int);
+	}
 	while (is_preci(conv[l]))
 		l++;
 	*i += l;
@@ -84,7 +90,7 @@ void	parse_star(size_t *i, t_struct *data, va_list list)
 
 	arg = va_arg(list, int);
 	if (arg < 0)
-		ft_strjoinf(data->flags, "-", 0);
+		data->flags = ft_strjoinf(data->flags, "-", 1);
 	data->width = arg < 0 ? -arg : arg;
 	*i += 1;
 }
