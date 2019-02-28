@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bclaudio <bclaudio@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/22 16:53:03 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/27 17:13:49 by bclaudio         ###   ########.fr       */
+/*   Updated: 2019/02/28 11:20:39 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void test()
 	printf("\n|ret:%d|\n", ft_printf("{green}%b", 100));
 	printf("\n|ret:%d|\n", ft_printf("ds{{{{{}}}}{red}}{magenta}%s {blue} % b|\n", "OK", "lol"));
 	ft_printf("{magenta}Sisi {green}{bold}la {red}{underline}SOURIS{eof} %s, {bold}{yellow}j'aime les bits{cyan} %b \n", "lol", 100);
-	ft_printf("Normal {red}RED {green}GREEN {yellow}YELLOW {blue}BLUE {magenta}MAGENTA {cyan}CYAN {white}WHITE\n");
+	ft_printf("Normal {red}RED {green}GREEN {yellow}YELLOW {blue}BLUE {magenta}MAGENTA {cyan}CYAN {normal}WHITE\n");
 
 	int nb1 = -45;
 	printf("===|% d$\n", nb1);

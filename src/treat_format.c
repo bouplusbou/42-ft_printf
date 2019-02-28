@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/27 16:05:38 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/27 10:47:49 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/02/28 11:21:29 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	treat_fd(char *format, size_t *j, va_list list)
 {
-	if (!ft_strncmp(format, "{fd}", 4)) // tester avec un format vide ou un char
+	if (!ft_strncmp(format, "{fd}", 4))
 	{
 		*j += 4;
 		return (va_arg(list, int));
@@ -27,25 +27,23 @@ int	get_color(char *str, size_t len, int fd)
 	int is_color;
 
 	is_color = 0;
-	if (!len)
+	if (len < 3)
 		return (0);
-	else if ((is_color = !ft_strncmp("red", str, len)))
+	else if (len == 3 && (is_color = !ft_strncmp("red", str, len)))
 		ft_putstr_fd("\033[31m", fd);
-	else if ((is_color = !ft_strncmp("green", str, len)))
+	else if (len == 5 && (is_color = !ft_strncmp("green", str, len)))
 		ft_putstr_fd("\033[32m", fd);
-	else if ((is_color = !ft_strncmp("yellow", str, len)))
+	else if (len == 6 && (is_color = !ft_strncmp("yellow", str, len)))
 		ft_putstr_fd("\033[33m", fd);
-	else if ((is_color = !ft_strncmp("blue", str, len)))
+	else if (len == 4 && (is_color = !ft_strncmp("blue", str, len)))
 		ft_putstr_fd("\033[34m", fd);
-	else if ((is_color = !ft_strncmp("magenta", str, len)))
+	else if (len == 7 && (is_color = !ft_strncmp("magenta", str, len)))
 		ft_putstr_fd("\033[35m", fd);
-	else if ((is_color = !ft_strncmp("white", str, len)))
-		ft_putstr_fd("\033[m", fd);
-	else if ((is_color = !ft_strncmp("bold", str, len)))
+	else if (len == 4 && (is_color = !ft_strncmp("bold", str, len)))
 		ft_putstr_fd("\e[1m", fd);
-	else if ((is_color = !ft_strncmp("underline", str, len)))
+	else if (len == 9 && (is_color = !ft_strncmp("underline", str, len)))
 		ft_putstr_fd("\e[4m", fd);
-	else if ((is_color = !ft_strncmp("eof", str, len)))
+	else if (len == 6 && (is_color = !ft_strncmp("normal", str, len)))
 		ft_putstr_fd("\e[0m", fd);
 	return (is_color);
 }

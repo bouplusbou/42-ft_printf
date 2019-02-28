@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   conv_boux.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bclaudio <bclaudio@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 14:40:31 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/27 17:31:57 by bclaudio         ###   ########.fr       */
+/*   Updated: 2019/02/28 11:42:03 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static char	*small_res_boux(t_struct data, uintmax_t arg)
 	int		arg_str_len;
 
 	if (!(arg_str = ft_uimxtoa_base(arg, data.base)))
-		return (NULL);
+		exit(EXIT_FAILURE);
 	arg_str_len = ft_strlen(arg_str);
 	small_res_len = arg_str_len;
 	if (data.sign)
@@ -33,21 +33,21 @@ static char	*small_res_boux(t_struct data, uintmax_t arg)
 		small_res_len += data.preci - (data.type == 'x' ?
 			(int)arg_str_len : small_res_len);
 	if (!(small_res = ft_strnew(small_res_len)))
-		return (NULL);
+		exit(EXIT_FAILURE);
 	ft_memset(small_res, '0', small_res_len);
 	ft_memcpy(small_res + (small_res_len - arg_str_len), arg_str, arg_str_len);
 	ft_strdel(&arg_str);
 	return (small_res);
 }
 
-static char	*create_res_boux(t_struct data, int res_len, char *small_res)
+static char	*res_boux(t_struct data, int res_len, char *small_res)
 {
 	char	*res;
 	int		small_res_len;
 	int		sign_i;
 
-	if (!res_len || !(res = ft_strnew(res_len)))
-		return (NULL);
+	if (!(res = ft_strnew(res_len)))
+		exit(EXIT_FAILURE);
 	ft_memset(res, ' ', res_len);
 	if (ft_strchr(data.flags, '0')
 		&& data.preci < 0 && !ft_strchr(data.flags, '-'))
@@ -70,15 +70,14 @@ static char	*create_res_boux(t_struct data, int res_len, char *small_res)
 int			conv_boux(t_struct *data, int fd, va_list list)
 {
 	int			res_len;
-	char		*result;
+	char		*res;
 	char		*small_res;
 	uintmax_t	arg;
 
 	arg = get_arg_boux(*data, list);
 	data->sign = find_sign_boux(*data, arg);
 	res_len = 0;
-	if ((small_res = small_res_boux(*data, arg)))
-		exit(0);
+	small_res = small_res_boux(*data, arg);
 	if (!ft_strcmp(small_res, "0") && data->preci == 0)
 	{
 		small_res[0] = '\0';
@@ -88,10 +87,9 @@ int			conv_boux(t_struct *data, int fd, va_list list)
 	res_len = ft_strlen(small_res);
 	if (data->width > (int)ft_strlen(small_res))
 		res_len = data->width;
-	if (!(result = create_res_boux(*data, res_len, small_res)))
-		exit(0);
-	ft_putstr_fd(result, fd);
-	ft_strdel(&result);
+	res = res_boux(*data, res_len, small_res);
+	ft_putstr_fd(res, fd);
+	ft_strdel(&res);
 	ft_strdel(&small_res);
 	return (res_len);
 }

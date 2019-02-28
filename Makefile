@@ -45,11 +45,12 @@ SRCS = $(addprefix $(SRCPATH), $(SRC)) $(addprefix $(LIBSRCPATH), $(LIBSRC))
 
 	##### Printf Sources #####
 SRCPATH = src/
-SRC = checks.c \
-      ft_printf.c \
-      parse_conv.c \
+SRC = ft_printf.c \
       treat_format.c \
-	  delete_struct.c \
+	  checks.c \
+      parse_conv.c \
+	  parsers.c \
+	  manage_struct.c \
       convert.c \
 	  get_arg.c \
 	  get_sign.c \

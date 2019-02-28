@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   conv_s.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bclaudio <bclaudio@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 16:15:09 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/27 15:39:24 by bclaudio         ###   ########.fr       */
+/*   Updated: 2019/02/28 11:04:58 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,31 +17,31 @@ static char	*small_res_s(t_struct data, char *arg)
 	char	*small_res;
 	int		len;
 
-	len = data.preci >= 0 ? (size_t)data.preci : ft_strlen(arg); 		// tronquer le resultat en fonction de la preci
+	len = data.preci >= 0 ? (size_t)data.preci : ft_strlen(arg);
 	if (!(small_res = ft_strnew(len)))
-		return (NULL);
+		exit(EXIT_FAILURE);
 	ft_strncpy(small_res, arg, len);
 	return (small_res);
 }
 
-static char	*create_res_s(t_struct data, char *small_res)
+static char	*res_s(t_struct data, char *small_res)
 {
 	char	*res;
 	int		len;
 	int		i_cpy;
 
-	len = data.width > (int)ft_strlen(small_res) ? 
-			data.width : (int)ft_strlen(small_res);						// choisir la taille finale en fonction de la width
+	len = data.width > (int)ft_strlen(small_res) ?
+			data.width : (int)ft_strlen(small_res);
 	if (!(res = ft_strnew(len)))
-		return (NULL);
+		exit(EXIT_FAILURE);
 	res = ft_memset(res, ' ', len);
-	if (ft_strchr(data.flags, '-')) 									// placer a gauche si flag '-'
+	if (ft_strchr(data.flags, '-'))
 		i_cpy = 0;
 	else
-		i_cpy = len - ft_strlen(small_res); 							// sinon placer a droite
+		i_cpy = len - ft_strlen(small_res);
 	ft_memcpy(res + i_cpy, small_res, ft_strlen(small_res));
-	ft_strdel(&small_res); 												// small_res a forcement ete malloc avant si rentre dans cette fonction 
-	return (res);	
+	ft_strdel(&small_res);
+	return (res);
 }
 
 int			conv_s(t_struct *data, int fd, va_list list)
@@ -50,21 +50,21 @@ int			conv_s(t_struct *data, int fd, va_list list)
 	char	*arg;
 	char	*small_res;
 	char	*res;
-	
-	if (!(arg = va_arg(list, char *)))								// recupere arg, si arg == NULL alors lui assigner la string "(null)"
+
+	if (!(arg = va_arg(list, char *)))
 		arg = ft_strdup("(null)");
 	res_len = 0;
-	if (arg)														// protection du malloc ft_strdup("(null)") au dessus, si malloc OK alors go inside
+	if (arg)
 	{
-		if ((small_res = small_res_s(*data, arg))						
-			&& (res = create_res_s(*data, small_res)))				// si les malloc dans small_res_s() et create_res_s OK, go inside
+		if ((small_res = small_res_s(*data, arg))
+			&& (res = res_s(*data, small_res)))
 		{
-				ft_putstr_fd(res, fd);
-				res_len = ft_strlen(res);
-				ft_strdel(&res);									// res a forcement ete malloc si arrive ici
+			ft_putstr_fd(res, fd);
+			res_len = ft_strlen(res);
+			ft_strdel(&res);
 		}
 	}
-	if (arg && !ft_strcmp(arg, "(null)"))							// arg a ete malloc que si ft_strdup("(null)") au dessus
+	if (arg && !ft_strcmp(arg, "(null)"))
 		ft_strdel(&arg);
 	return (res_len);
 }

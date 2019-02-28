@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checks.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bclaudio <bclaudio@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/27 16:05:57 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/27 15:41:10 by bclaudio         ###   ########.fr       */
+/*   Updated: 2019/02/28 11:39:08 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,36 +14,25 @@
 
 int		is_flag(char c)
 {
-	return (c == '#' || c == '0' || c == '-'
-			|| c == '+' || c == ' ');
+	return (ft_strchr("#0-+ ", c) != NULL);
 }
 
 int		is_preci(char c)
 {
-	return (c == '.' || ('0' <= c && c <= '9'));
+	return (ft_strchr(".0123456789", c) != NULL);
 }
 
 int		is_size(char c)
 {
-	return (c == 'h' || c == 'l' || c == 'j' || c == 'z' || c == 'L');
+	return (ft_strchr("hljzL", c) != NULL);
 }
 
 int		is_type(char c)
 {
-	return (c == 'c' || c == 's' || c == 'p'
-			|| c == 'd' || c == 'i' || c == 'b'
-			|| c == 'o' || c == 'u' || c == 'U'
-			|| c == 'x' || c == 'X' || c == 'f'
-			|| c == '%');
+	return (ft_strchr("cspdibouUxXf%", c) != NULL);
 }
 
 int		is_conv(char c)
 {
-	return (c == '%'
-			|| c == '*'
-			|| is_flag(c)
-			|| ft_isdigit(c)
-			|| is_preci(c)
-			|| is_size(c)
-			|| is_type(c));
+	return (ft_strchr("#0-+ .0123456789hljzLcspdibouUxXf%*", c) != NULL);
 }

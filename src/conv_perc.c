@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   conv_perc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bclaudio <bclaudio@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:02:49 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/27 15:26:25 by bclaudio         ###   ########.fr       */
+/*   Updated: 2019/02/28 11:43:31 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,18 @@
 
 int	conv_perc(t_struct *data, int fd)
 {
-	int		result_size;
-	char	*result;
+	int		res_size;
+	char	*res;
 
-	result_size = data->width > 1 ? data->width : 1;
-	if (!(result = ft_strnew(result_size)))
-		result_size = 0;
+	res_size = data->width > 1 ? data->width : 1;
+	if (!(res = ft_strnew(res_size)))
+		exit(EXIT_FAILURE);
+	ft_memset(res, ' ', res_size);
+	if (ft_strchr(data->flags, '-'))
+		res[0] = '%';
 	else
-	{
-		ft_memset(result, ' ', result_size);
-		if (ft_strchr(data->flags, '-'))				// colle a gauche
-			result[0] = '%';
-		else
-			result[result_size - 1] = '%';
-		ft_putstr_fd(result, fd);								// print result
-		ft_strdel(&result);								// clean everything: result, concat, struct
-	}
-	return (result_size);
+		res[res_size - 1] = '%';
+	ft_putstr_fd(res, fd);
+	ft_strdel(&res);
+	return (res_size);
 }

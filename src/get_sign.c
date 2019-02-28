@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_sign.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bclaudio <bclaudio@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/27 17:20:35 by bclaudio          #+#    #+#             */
-/*   Updated: 2019/02/27 17:25:24 by bclaudio         ###   ########.fr       */
+/*   Updated: 2019/02/28 10:47:01 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char			find_sign_f(t_struct data, long double arg)
+char	find_sign_f(t_struct data, long double arg)
 {
 	if ((1 / arg < 0) || arg == -1.0 / 0.0 || arg < 0)
 		return ('-');
@@ -26,7 +26,7 @@ char			find_sign_f(t_struct data, long double arg)
 	return (0);
 }
 
-char				find_sign_id(t_struct data, int pos)
+char	find_sign_id(t_struct data, int pos)
 {
 	if (pos)
 	{
@@ -40,7 +40,7 @@ char				find_sign_id(t_struct data, int pos)
 	return (0);
 }
 
-char						find_sign_boux(t_struct data, uintmax_t value)
+char	find_sign_boux(t_struct data, uintmax_t value)
 {
 	if (ft_strchr(data.flags, '#') && value != 0)
 	{
