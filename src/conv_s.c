@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 16:15:09 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/28 15:28:09 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/03/01 13:48:39 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,10 @@ int			conv_s(t_struct *data, int fd, va_list list)
 	char	*res;
 
 	if (!(arg = va_arg(list, char *)))
-		arg = ft_strdup("(null)");
+	{
+		if (!(arg = ft_strdup("(null)")))
+			exit(EXIT_FAILURE);
+	}
 	res_len = 0;
 	if (arg)
 	{

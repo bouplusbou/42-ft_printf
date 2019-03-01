@@ -27,10 +27,6 @@ OK = $(GREEN)[OK]$(WHITE)
 NAME = libftprintf.a
 PROJECT = $(RED)LibftPrintf$(WHITE)
 
-########## Executable Infos ##########
-
-EXNAME = Printf
-
 ########## Compilation Infos ##########
 
 CC = gcc
@@ -140,15 +136,9 @@ LIBSRC = ft_strlen.c \
 	  ft_uimxtoa_base.c \
 	  ft_strreplace.c
 
-	##### EXEC SOURCE #####
-EXSRCS = $(addprefix $(EXPATH), $(EXSRC))
-EXPATH = tests/
-EXSRC = main.c \
-
 ########## Compilation Rules ##########
 
 OBJ = $(SRCS:.c=.o)
-EXOBJ = main.o \
 
 %.o: %.c
 	@$(CC) $(FLAGS) $(INC) -o $@ -c $?
@@ -159,11 +149,6 @@ $(NAME) : $(OBJ)
 	@ar rc $(NAME) $(OBJ)
 	@ranlib $(NAME)
 	@echo "$(BLUE)[$(PROJECT)$(BLUE)] | Compilation$(WHITE)						$(OK)"
-
-ex : all
-	@$(CC) -c $(INC) $(EXSRCS) 
-	@$(CC) $(INC) $(EXOBJ) $(NAME) -o $(EXNAME)
-	@echo "$(BLUE)[$(RED)$(EXNAME)$(BLUE)] | Compilation$(WHITE)							$(OK)"
 
 re : fclean all
 

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/27 16:06:29 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/28 16:26:40 by bboucher         ###   ########.fr       */
+/*   Created: 2019/03/01 13:51:27 by bboucher          #+#    #+#             */
+/*   Updated: 2019/03/01 13:51:28 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,6 @@
 # include <unistd.h>
 # include <stdarg.h>
 # include "libft.h"
-
-/* A supprimer */
-# include <stdio.h>
 
 typedef struct	s_struct
 {

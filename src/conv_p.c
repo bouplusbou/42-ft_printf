@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/02 11:57:57 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/28 11:43:24 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/03/01 13:47:58 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ static char	*small_res_addr(t_struct data, unsigned long arg)
 
 	if (!(addr = ft_ulltoa_base(arg, data.base)))
 		exit(EXIT_FAILURE);
-	concat = ft_strdup("0x");
+	if (!(concat = ft_strdup("0x")))
+		exit(EXIT_FAILURE);
 	concat = ft_strjoinf(concat, addr, 3);
 	return (concat);
 }

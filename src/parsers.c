@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/28 11:28:14 by bboucher          #+#    #+#             */
-/*   Updated: 2019/03/01 09:30:12 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/03/01 13:50:22 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@ char	*parse_flags(char *conv, size_t *i)
 			exit(EXIT_FAILURE);
 		return (flags);
 	}
-	return (ft_strnew(0));
+	if (!(flags = ft_strnew(0)))
+		exit(EXIT_FAILURE);
+	return (flags);
 }
 
 int		parse_width(char *conv, size_t *i)
