@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/22 16:53:03 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/28 17:41:31 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/03/01 09:28:54 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -2580,8 +2580,15 @@ void test()
 
 	// while (1);
 
-	printf("\n===|%.p, %s|\n", 0);
+	// printf("\n===|%.p, %s|\n", 0);
 	// ft_printf(">>>|%.p, %s|\n", 0);
+
+	// printf("\n|real:%d|\n", printf("%ls", "abcdefghijklmnopqrtuvwxyz"));
+	// printf("\n|ft_:%d|\n", ft_printf("%ls", "abcdefghijklmnopqrtuvwxyz"));
+
+	printf("\n===|%.*f|\n", -10, 6.12345);
+	ft_printf(">>>|%.*f|\n", -10, 6.12345);
+
 }
 
 int main()

@@ -6,7 +6,7 @@
 /*   By: bboucher <bboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/28 11:28:14 by bboucher          #+#    #+#             */
-/*   Updated: 2019/02/28 16:45:18 by bboucher         ###   ########.fr       */
+/*   Updated: 2019/03/01 09:30:12 by bboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int		parse_preci(char *conv, size_t *i, va_list list)
 	{
 		preci_int = va_arg(list, int);
 		*i += 2;
-		return (preci_int < 0 ? 0 : preci_int);
+		return (preci_int < 0 ? -1 : preci_int);
 	}
 	while (is_preci(conv[l]))
 		l++;
