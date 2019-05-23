@@ -23,14 +23,14 @@ ft_printf [subject](https://github.com/bouplusbou/42-ft_printf/blob/master/readm
 - choose your file descriptor
 - Add some colors to the output 🌈
 
-## Usage
+<-- ## Usage
 
 ```
 // launch the seed
 php config/seed.php
 ```
 
-<!-- ## Visuals
+## Visuals
 **Galery**
 <p align="center">
   <img src="./readme_assets/galery.png" alt="Camagru galery" width="738">
