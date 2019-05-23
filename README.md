@@ -23,7 +23,7 @@ ft_printf [subject](https://github.com/bouplusbou/42-ft_printf/blob/master/readm
 - choose your file descriptor
 - Add some colors to the output 🌈
 
-<-- ## Usage
+<!-- ## Usage
 
 ```
 // launch the seed
